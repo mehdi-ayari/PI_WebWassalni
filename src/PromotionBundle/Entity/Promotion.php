@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Promotion
  *
  * @ORM\Table(name="promotion", indexes={@ORM\Index(name="fk_reservation_id", columns={"reservation_id"}), @ORM\Index(name="fk_id_user", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PromotionBundle\Repository\PromotionRepository")
  */
 class Promotion
 {

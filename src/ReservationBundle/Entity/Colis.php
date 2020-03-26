@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Colis
  *
  * @ORM\Table(name="colis")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ReservationBundle\Repository\ColisRepository")
  */
 class Colis
 {
