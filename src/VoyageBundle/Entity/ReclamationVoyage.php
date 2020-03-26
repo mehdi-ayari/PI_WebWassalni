@@ -46,6 +46,20 @@ class ReclamationVoyage
     private $idVoy;
 
     /**
+     * ReclamationVoyage constructor.
+     * @param string $titre
+     * @param string $commentaire
+     * @param \Voyage $idVoy
+     */
+    public function __construct($idReclamationVoyage, $titre, $commentaire, \Voyage $idVoy)
+    {
+        $this->idReclamationVoyage = $idReclamationVoyage;
+        $this->titre = $titre;
+        $this->commentaire = $commentaire;
+        $this->idVoy = $idVoy;
+    }
+
+    /**
      * @return int
      */
     public function getIdReclamationVoyage()
