@@ -1,0 +1,23 @@
+voyage:
+    resource: "@VoyageBundle/Resources/config/routing.yml"
+    prefix:   /Voyage
+
+reclamation:
+    resource: "@ReclamationBundle/Resources/config/routing.yml"
+    prefix:   /Reclamation
+
+promotion:
+    resource: "@PromotionBundle/Resources/config/routing.yml"
+    prefix:   /Promotion
+
+news:
+    resource: "@NewsBundle/Resources/config/routing.yml"
+    prefix:   /News
+
+reservation:
+    resource: "@ReservationBundle/Resources/config/routing.yml"
+    prefix:   /Reservation
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
