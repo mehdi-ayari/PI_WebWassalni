@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservationbusiness</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idresbusiness</th>
+                <td>{{ reservationBusiness.idResBusiness }}</td>
+            </tr>
+            <tr>
+                <th>Datedepart</th>
+                <td>{% if reservationBusiness.dateDepart %}{{ reservationBusiness.dateDepart|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>{{ reservationBusiness.destination }}</td>
+            </tr>
+            <tr>
+                <th>Datereservation</th>
+                <td>{% if reservationBusiness.dateReservation %}{{ reservationBusiness.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nomcliententreprise</th>
+                <td>{{ reservationBusiness.nomClientEntreprise }}</td>
+            </tr>
+            <tr>
+                <th>Prenoncliententreprise</th>
+                <td>{{ reservationBusiness.prenonClientEntreprise }}</td>
+            </tr>
+            <tr>
+                <th>Pointdepart</th>
+                <td>{{ reservationBusiness.pointDepart }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservationbusiness_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reservationbusiness_edit', { 'idResBusiness': reservationBusiness.idResBusiness }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

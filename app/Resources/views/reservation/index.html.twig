@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservations list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idres</th>
+                <th>Destination</th>
+                <th>Datereservation</th>
+                <th>Prix</th>
+                <th>Typereservation</th>
+                <th>Objet</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td><a href="{{ path('reservation_show', { 'idRes': reservation.idRes }) }}">{{ reservation.idRes }}</a></td>
+                <td>{{ reservation.destination }}</td>
+                <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ reservation.prix }}</td>
+                <td>{{ reservation.typeReservation }}</td>
+                <td>{{ reservation.objet }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservation_show', { 'idRes': reservation.idRes }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservation_edit', { 'idRes': reservation.idRes }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservation_new') }}">Create a new reservation</a>
+        </li>
+    </ul>
+{% endblock %}

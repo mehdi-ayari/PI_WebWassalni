@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservationbusinesses list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idresbusiness</th>
+                <th>Datedepart</th>
+                <th>Destination</th>
+                <th>Datereservation</th>
+                <th>Nomcliententreprise</th>
+                <th>Prenoncliententreprise</th>
+                <th>Pointdepart</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservationBusiness in reservationBusinesses %}
+            <tr>
+                <td><a href="{{ path('reservationbusiness_show', { 'idResBusiness': reservationBusiness.idResBusiness }) }}">{{ reservationBusiness.idResBusiness }}</a></td>
+                <td>{% if reservationBusiness.dateDepart %}{{ reservationBusiness.dateDepart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ reservationBusiness.destination }}</td>
+                <td>{% if reservationBusiness.dateReservation %}{{ reservationBusiness.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ reservationBusiness.nomClientEntreprise }}</td>
+                <td>{{ reservationBusiness.prenonClientEntreprise }}</td>
+                <td>{{ reservationBusiness.pointDepart }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservationbusiness_show', { 'idResBusiness': reservationBusiness.idResBusiness }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservationbusiness_edit', { 'idResBusiness': reservationBusiness.idResBusiness }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservationbusiness_new') }}">Create a new reservationBusiness</a>
+        </li>
+    </ul>
+{% endblock %}

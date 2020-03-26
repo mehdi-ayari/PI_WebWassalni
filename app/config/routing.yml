@@ -1,3 +1,11 @@
+reservation_reservation_business:
+    resource: "@ReservationBundle/Controller/ReservationBusinessController.php"
+    type:     annotation
+
+reservation_reservation:
+    resource: "@ReservationBundle/Controller/ReservationController.php"
+    type:     annotation
+
 voyage:
     resource: "@VoyageBundle/Resources/config/routing.yml"
     prefix:   /Voyage
