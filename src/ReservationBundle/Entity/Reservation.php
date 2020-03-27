@@ -47,7 +47,7 @@ class Reservation
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id_chauffeur", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id_chauffeur", referencedColumnName="id", nullable=false)
      * })
      */
     private $userChauffeur;
@@ -57,7 +57,7 @@ class Reservation
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id_client", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id_client", referencedColumnName="id", nullable=false)
      * })
      */
     private $userClient;
@@ -230,6 +230,11 @@ class Reservation
     public function setIdColis($idColis)
     {
         $this->idColis = $idColis;
+    }
+
+
+    public function __toString() {
+        return $this->name;
     }
 
 }

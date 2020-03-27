@@ -6,6 +6,7 @@ use ReservationBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Reservation controller.
@@ -26,7 +27,7 @@ class ReservationController extends Controller
 
         $reservations = $em->getRepository('ReservationBundle:Reservation')->findAll();
 
-        return $this->render('reservation/index.html.twig', array(
+        return $this->render('@Reservation/reservation/index.html.twig', array(
             'reservations' => $reservations,
         ));
     }
@@ -51,7 +52,7 @@ class ReservationController extends Controller
             return $this->redirectToRoute('reservation_show', array('idRes' => $reservation->getIdres()));
         }
 
-        return $this->render('reservation/new.html.twig', array(
+        return $this->render('@Reservation/reservation/new.html.twig', array(
             'reservation' => $reservation,
             'form' => $form->createView(),
         ));
@@ -67,7 +68,7 @@ class ReservationController extends Controller
     {
         $deleteForm = $this->createDeleteForm($reservation);
 
-        return $this->render('reservation/show.html.twig', array(
+        return $this->render('@Reservation/reservation/show.html.twig', array(
             'reservation' => $reservation,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +92,7 @@ class ReservationController extends Controller
             return $this->redirectToRoute('reservation_edit', array('idRes' => $reservation->getIdres()));
         }
 
-        return $this->render('reservation/edit.html.twig', array(
+        return $this->render('@Reservation/reservation/edit.html.twig', array(
             'reservation' => $reservation,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -140,4 +141,10 @@ class ReservationController extends Controller
         $conn = $em->getConnection();
         $conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
     }
+
+    public function bnAction()
+    {
+        return new Response("Bonjour");
+    }
+
 }

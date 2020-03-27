@@ -26,7 +26,7 @@ class ReservationBusinessController extends Controller
 
         $reservationBusinesses = $em->getRepository('ReservationBundle:ReservationBusiness')->findAll();
 
-        return $this->render('reservationbusiness/index.html.twig', array(
+        return $this->render('@ReservationBusiness/reservationbusiness/index.html.twig', array(
             'reservationBusinesses' => $reservationBusinesses,
         ));
     }
@@ -51,7 +51,7 @@ class ReservationBusinessController extends Controller
             return $this->redirectToRoute('reservationbusiness_show', array('idResBusiness' => $reservationBusiness->getIdresbusiness()));
         }
 
-        return $this->render('reservationbusiness/new.html.twig', array(
+        return $this->render('@ReservationBusiness/reservationbusiness/new.html.twig', array(
             'reservationBusiness' => $reservationBusiness,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class ReservationBusinessController extends Controller
     {
         $deleteForm = $this->createDeleteForm($reservationBusiness);
 
-        return $this->render('reservationbusiness/show.html.twig', array(
+        return $this->render('@ReservationBusiness/reservationbusiness/show.html.twig', array(
             'reservationBusiness' => $reservationBusiness,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class ReservationBusinessController extends Controller
             return $this->redirectToRoute('reservationbusiness_edit', array('idResBusiness' => $reservationBusiness->getIdresbusiness()));
         }
 
-        return $this->render('reservationbusiness/edit.html.twig', array(
+        return $this->render('@ReservationBusiness/reservationbusiness/edit.html.twig', array(
             'reservationBusiness' => $reservationBusiness,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
