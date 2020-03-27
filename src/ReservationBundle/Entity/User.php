@@ -86,6 +86,31 @@ class User
     /** @ORM\Column(type="string", columnDefinition="ENUM('client', 'administrateur', 'chauffeur', 'entreprise')", nullable=false ) */
     private $role;
 
+    /**
+     * User constructor.
+     * @param string $nom
+     * @param string $prenom
+     * @param string $mail
+     * @param int $telephone
+     * @param string $adresse
+     * @param bool $etat
+     * @param int $nbrEmp
+     * @param string $mdp
+     * @param $role
+     */
+    public function __construct($nom, $prenom, $mail, $telephone, $adresse, $etat, $nbrEmp, $mdp, $role)
+    {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->mail = $mail;
+        $this->telephone = $telephone;
+        $this->adresse = $adresse;
+        $this->etat = $etat;
+        $this->nbrEmp = $nbrEmp;
+        $this->mdp = $mdp;
+        $this->role = $role;
+    }
+
     public function setRole($role)
     {
         if (!in_array($role, array(self::client, self::administrateur, self::chauffeur, self::entreprise))) {
