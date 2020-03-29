@@ -129,7 +129,7 @@ class ReservationController extends Controller
     private function createDeleteForm(Reservation $reservation)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('reservation_delete', array('idRes' => $reservation->getId())))
+            ->setAction($this->generateUrl('reservation_delete', array('id' => $reservation->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
