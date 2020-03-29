@@ -22,7 +22,7 @@
         <tbody>
         {% for reservation in reservations %}
             <tr>
-                <td><a href="{{ path('reservation_show', { 'idRes': reservation.idRes }) }}">{{ reservation.idRes }}</a></td>
+                <td><a href="{{ path('reservation_show', { 'id': reservation.id }) }}">{{ reservation.id }}</a></td>
                 <td>{{ reservation.destination }}</td>
                 <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ reservation.prix }}</td>
@@ -31,10 +31,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('reservation_show', { 'idRes': reservation.idRes }) }}">show</a>
+                            <a href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('reservation_edit', { 'idRes': reservation.idRes }) }}">edit</a>
+                            <a href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>

@@ -1,6 +1,6 @@
 <?php
 
-namespace ReservationBundle\Repository;
+namespace AppBundle\Repository;
 
 /**
  * UserRepository

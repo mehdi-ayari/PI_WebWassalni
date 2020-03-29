@@ -6,10 +6,23 @@ bonour:
     path:     /bn
     defaults: { _controller: ReservationBundle:Reservation:bn }
 
-ajout:
-    path:     /add
+new:
+    path:     /reservation_new
     defaults: { _controller: ReservationBundle:Reservation:new }
 
-affiche:
-    path:     /list
+index:
+    path:     /reservation_index
     defaults: { _controller: ReservationBundle:Reservation:index }
+
+show:
+    path:     /reservation_show/{Id}
+    defaults: { _controller: ReservationBundle:Reservation:show }
+
+edit:
+    path:     /reservation_edit
+    defaults: { _controller: ReservationBundle:Reservation:edit }
+
+delete:
+    path:     /reservation_delete
+    defaults: { _controller: ReservationBundle:Reservation:delete }
+

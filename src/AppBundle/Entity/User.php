@@ -1,16 +1,17 @@
 <?php
+// src/AppBundle/Entity/User.php
+namespace AppBundle\Entity;
 
-namespace ReservationBundle\Entity;
-
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="ReservationBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -19,7 +20,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -98,18 +99,6 @@ class User
      * @param string $mdp
      * @param $role
      */
-    public function __construct($nom, $prenom, $mail, $telephone, $adresse, $etat, $nbrEmp, $mdp, $role)
-    {
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->mail = $mail;
-        $this->telephone = $telephone;
-        $this->adresse = $adresse;
-        $this->etat = $etat;
-        $this->nbrEmp = $nbrEmp;
-        $this->mdp = $mdp;
-        $this->role = $role;
-    }
 
     public function setRole($role)
     {

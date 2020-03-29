@@ -59,7 +59,7 @@ class Promotion
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -69,7 +69,7 @@ class Promotion
     /**
      * @var \Reservation
      *
-     * @ORM\ManyToOne(targetEntity="Reservation")
+     * @ORM\ManyToOne(targetEntity="ReservationBundle\Entity\Reservation")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="reservation_id", referencedColumnName="id_res")
      * })

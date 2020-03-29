@@ -4,6 +4,7 @@ namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Reservation
  *
@@ -19,7 +20,7 @@ class Reservation
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idRes;
+    protected $id;
 
     /**
      * @var string
@@ -45,7 +46,7 @@ class Reservation
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id_chauffeur", referencedColumnName="id", nullable=false)
      * })
@@ -55,7 +56,7 @@ class Reservation
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id_client", referencedColumnName="id", nullable=false)
      * })
@@ -104,13 +105,7 @@ class Reservation
         $this->objet = $objet;
     }
 
-    /**
-     * @return int
-     */
-    public function getIdRes()
-    {
-        return $this->idRes;
-    }
+
 
     /**
      * @return string
@@ -177,12 +172,22 @@ class Reservation
     }
 
     /**
-     * @param int $idRes
+     * @return int
      */
-    public function setIdRes($idRes)
+    public function getId()
     {
-        $this->idRes = $idRes;
+        return $this->id;
     }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+
 
     /**
      * @param string $destination
@@ -233,9 +238,7 @@ class Reservation
     }
 
 
-    public function toString() {
-        return $this->name;
-    }
+
 
 }
 

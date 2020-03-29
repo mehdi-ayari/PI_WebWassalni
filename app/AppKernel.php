@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new PromotionBundle\PromotionBundle(),
             new ReclamationBundle\ReclamationBundle(),
             new VoyageBundle\VoyageBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

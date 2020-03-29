@@ -26,6 +26,9 @@ reservation:
     resource: "@ReservationBundle/Resources/config/routing.yml"
     prefix:   /Reservation
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

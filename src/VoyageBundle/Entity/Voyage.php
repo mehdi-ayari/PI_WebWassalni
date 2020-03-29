@@ -38,7 +38,7 @@ class Voyage
     /**
      * @var \Reservation
      *
-     * @ORM\ManyToOne(targetEntity="Reservation")
+     * @ORM\ManyToOne(targetEntity="ReservationBundle\Entity\Reservation")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="reservation_id_res", referencedColumnName="id_res")
      * })
