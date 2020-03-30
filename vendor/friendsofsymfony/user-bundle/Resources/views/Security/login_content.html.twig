@@ -1,5 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
+<center>
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
@@ -33,9 +33,10 @@
             </div>
             <div class="forg">
                 <a href="#" class="forg-left">Forgot Password</a>
-                <a href="{{ asset ('/debboWeb/web/app_dev.php/register') }}" class="forg-right">Register</a>
+                <a href="{{ asset ('/WebWassalni/web/app_dev.php/register') }}" class="forg-right">Register</a>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
 </form>
+</center>

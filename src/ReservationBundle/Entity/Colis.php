@@ -83,6 +83,5 @@ class Colis
         $this->contenu = $contenu;
     }
 
-
 }
 

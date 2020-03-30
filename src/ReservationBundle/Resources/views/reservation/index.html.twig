@@ -1,51 +1,59 @@
 {% extends 'base.html.twig' %}
+
 {% block content %}
     <br>
     <br>
     <br>
     <br>
     <br>
-    <h1>Reservations list</h1>
-
-    <table>
-        <thead>
+    <br>
+    <br>
+    <center>
+    <div class="spec ">
+        <h3>Reservation list</h3>
+        <div class="ser-t">
+            <b></b>
+            <span><i></i></span>
+            <b class="line"></b>
+        </div>
+    </div>
+    </center>
+    <div class="bs-docs-example">
+        <table class="table">
+            <thead>
             <tr>
-                <th>Idres</th>
+                <th>IdReservation</th>
                 <th>Destination</th>
-                <th>Datereservation</th>
+                <th>Date Reservation</th>
                 <th>Prix</th>
-                <th>Typereservation</th>
+                <th>Type Reservation</th>
                 <th>Objet</th>
-                <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for reservation in reservations %}
-            <tr>
-                <td><a href="{{ path('reservation_show', { 'id': reservation.id }) }}">{{ reservation.id }}</a></td>
-                <td>{{ reservation.destination }}</td>
-                <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ reservation.prix }}</td>
-                <td>{{ reservation.typeReservation }}</td>
-                <td>{{ reservation.objet }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td><a href="{{ path('reservation_show', { 'id': reservation.id }) }}">{{ reservation.id }}</a></td>
+                    <td>{{ reservation.destination }}</td>
+                    <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ reservation.prix }}</td>
+                    <td>{{ reservation.typeReservation }}</td>
+                    <td>{{ reservation.objet }}</td>
+                    <td>
+                        <ul>
+                            <li class="label label-info" > <a style="color:white"  href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a></li>
+                            <li class="label label-default"><a style="color: white" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <center>
+    <div>
+    <input type=button onclick=window.location.href="{{ path('reservation_new') }}"; value="Créer une Reservation" />
+    </div>
+    </center>
 
-    <ul>
-        <li>
-            <a href="{{ path('reservation_new') }}">Create a new reservation</a>
-        </li>
-    </ul>
 {% endblock %}

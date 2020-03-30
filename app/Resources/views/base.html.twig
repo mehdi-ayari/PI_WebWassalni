@@ -50,7 +50,6 @@
                         <li><a href="">Promotion</a></li>
                         <li><a href="">Forum</a></li>
                         <li><a href="">About US</a></li>
-
                         <li> <div>
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |

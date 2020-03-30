@@ -6,33 +6,34 @@
     <br>
     <br>
     <br>
+    <br>
     <h1>Reservation</h1>
     <table>
         <tbody>
-             <tr>
-                <th>Id</th>
-                <td>{{ reservation.Id }}</td>
-            </tr>
-            <tr>
-                <th>Destination</th>
-                <td>{{ reservation.destination }}</td>
-            </tr>
-            <tr>
-                <th>Datereservation</th>
-                <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ reservation.prix }}</td>
-            </tr>
-            <tr>
-                <th>Typereservation</th>
-                <td>{{ reservation.typeReservation }}</td>
-            </tr>
-            <tr>
-                <th>Objet</th>
-                <td>{{ reservation.objet }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ reservation.Id }}</td>
+        </tr>
+        <tr>
+            <th>Destination</th>
+            <td>{{ reservation.destination }}</td>
+        </tr>
+        <tr>
+            <th>Datereservation</th>
+            <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ reservation.prix }}</td>
+        </tr>
+        <tr>
+            <th>Typereservation</th>
+            <td>{{ reservation.typeReservation }}</td>
+        </tr>
+        <tr>
+            <th>Objet</th>
+            <td>{{ reservation.objet }}</td>
+        </tr>
         </tbody>
     </table>
 
@@ -45,7 +46,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
