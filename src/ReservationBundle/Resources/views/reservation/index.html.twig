@@ -29,6 +29,7 @@
                 <th>Prix</th>
                 <th>Type Reservation</th>
                 <th>Objet</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -44,8 +45,8 @@
                                 <td>{{ reservation.objet }}</td>
                                 <td>
                                     <ul>
-                                        <li class="label label-info" > <a style="color:white"  href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a></li>
-                                        <li class="label label-default"><a style="color: white" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a></li>
+                                        <li class="label label-info" > <a style="color:blue"  href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a></li>
+                                        <li class="label label-default"><a style="color: blue" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a></li>
                                     </ul>
                                 </td>
                             </tr>
