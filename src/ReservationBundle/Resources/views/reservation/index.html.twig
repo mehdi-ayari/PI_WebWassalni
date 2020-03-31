@@ -10,19 +10,20 @@
     <br>
     <center>
     <div class="spec ">
-        <h3>Reservation list</h3>
+        <h3>Votre Historique des Reservations</h3>
         <div class="ser-t">
             <b></b>
             <span><i></i></span>
             <b class="line"></b>
         </div>
     </div>
+        <br>
+        <br>
     </center>
     <div class="bs-docs-example">
         <table class="table">
             <thead>
             <tr>
-                <th>IdReservation</th>
                 <th>Destination</th>
                 <th>Date Reservation</th>
                 <th>Prix</th>
@@ -31,21 +32,26 @@
             </tr>
             </thead>
             <tbody>
-            {% for reservation in reservations %}
-                <tr>
-                    <td><a href="{{ path('reservation_show', { 'id': reservation.id }) }}">{{ reservation.id }}</a></td>
-                    <td>{{ reservation.destination }}</td>
-                    <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{{ reservation.prix }}</td>
-                    <td>{{ reservation.typeReservation }}</td>
-                    <td>{{ reservation.objet }}</td>
-                    <td>
-                        <ul>
-                            <li class="label label-info" > <a style="color:white"  href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a></li>
-                            <li class="label label-default"><a style="color: white" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a></li>
-                        </ul>
-                    </td>
-                </tr>
+            {% for user in users %}
+                {% if user.id == idconnected  %}
+                    {% for reservation in reservations %}
+                        {% if user == reservation.userClient  %}
+                            <tr>
+                                <td>{{ reservation.destination }}</td>
+                                <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{{ reservation.prix }}</td>
+                                <td>{{ reservation.typeReservation }}</td>
+                                <td>{{ reservation.objet }}</td>
+                                <td>
+                                    <ul>
+                                        <li class="label label-info" > <a style="color:white"  href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a></li>
+                                        <li class="label label-default"><a style="color: white" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>

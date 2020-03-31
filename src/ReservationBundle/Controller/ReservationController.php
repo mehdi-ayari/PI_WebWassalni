@@ -26,9 +26,10 @@ class ReservationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository('ReservationBundle:Reservation')->findAll();
-
+        $idconnected = $this->getUser()->getId();
+        $users = $em->getRepository('AppBundle:User')->findAll();
         return $this->render('@Reservation/reservation/index.html.twig', array(
-            'reservations' => $reservations,
+            'reservations' => $reservations, 'idconnected'=>$idconnected, 'users'=>$users
         ));
     }
 
