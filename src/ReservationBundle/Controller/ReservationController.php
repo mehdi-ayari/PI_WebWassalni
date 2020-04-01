@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use ReservationBundle\Entity\ReservationBusiness;
+use ReservationBundle\Form\ReservationBusinessType;
 
 /**
  * Reservation controller.
@@ -147,5 +149,62 @@ class ReservationController extends Controller
     {
         return new Response("Bonjour");
     }
+
+    public function rootAction(Request $request)
+    {
+        $clientconnected = $this->container->get('security.authorization_checker')->isGranted('ROLE_CLIENT');
+        $entrepriseconnected = $this->container->get('security.authorization_checker')->isGranted('ROLE_ENTREPRISE');
+
+
+        $reservation =new Reservation();
+        $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
+        $form->handleRequest($request);
+
+        if ($clientconnected == true)
+        {
+            $reservation =new Reservation();
+            $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($reservation);
+                $em->flush();
+
+                return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
+            }
+
+            return $this->render('@Reservation/reservation/new.html.twig', array(
+                'reservation' => $reservation,
+                'form' => $form->createView(),
+            ));
+        }
+
+        elseif ($entrepriseconnected == true)
+            {
+                $reservationBusiness = new Reservationbusiness();
+                $form = $this->createForm('ReservationBundle\Form\ReservationBusinessType', $reservationBusiness);
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($reservationBusiness);
+                    $em->flush();
+
+                    return $this->redirectToRoute('reservationbusiness_show', array('idResBusiness' => $reservationBusiness->getIdresbusiness()));
+                }
+
+                return $this->render('@ReservationBusiness/reservationbusiness/new.html.twig', array(
+                    'reservationBusiness' => $reservationBusiness,
+                    'form' => $form->createView(),
+                ));
+            }
+        return $this->render('@Reservation/reservation/new.html.twig', array(
+            'reservation' => $reservation,
+            'form' => $form->createView(),
+        ));
+
+    }
+
 
 }

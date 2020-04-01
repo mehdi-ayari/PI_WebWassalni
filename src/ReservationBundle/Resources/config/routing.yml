@@ -26,3 +26,6 @@ delete:
     path:     /reservation_delete
     defaults: { _controller: ReservationBundle:Reservation:delete }
 
+root:
+    path:     /root
+    defaults: { _controller: ReservationBundle:Reservation:root }
