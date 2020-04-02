@@ -7,7 +7,8 @@
     <br>
     <br>
     <br>
-    <h1>Reservation</h1>
+    <center>
+    <h1>Votre Reservation</h1>
     <table>
         <tbody>
         
@@ -35,16 +36,17 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('reservation_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('reservation_edit', { 'id': reservation.id }) }}">Edit</a>
-        </li>
+        <div>
+            <input type=button onclick=window.location.href="{{ path('reservation_index') }}"; value="Retour au Historique" />
+        </div>
+        <div>
+            <input type=button onclick=window.location.href="{{ path('reservation_edit', { 'id': reservation.id }) }}"; value="Editer" />
+        </div>
         <li>
             {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
+            <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    </center>
 {% endblock %}

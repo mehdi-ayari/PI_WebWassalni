@@ -1,52 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Reservationbusiness</h1>
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center>
+    <h1>Votre Reservation</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Idresbusiness</th>
-                <td>{{ reservationBusiness.idResBusiness }}</td>
+                <th>Date depart</th>
+                <td>{% if reservationBusiness.dateDepart %}{{ reservationBusiness.dateDepart|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Datedepart</th>
-                <td>{% if reservationBusiness.dateDepart %}{{ reservationBusiness.dateDepart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Point depart</th>
+                <td>{{ reservationBusiness.pointDepart }}</td>
             </tr>
             <tr>
                 <th>Destination</th>
                 <td>{{ reservationBusiness.destination }}</td>
             </tr>
             <tr>
-                <th>Datereservation</th>
+                <th>Date Reservation</th>
                 <td>{% if reservationBusiness.dateReservation %}{{ reservationBusiness.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Nomcliententreprise</th>
+                <th>Nom Client</th>
                 <td>{{ reservationBusiness.nomClientEntreprise }}</td>
             </tr>
             <tr>
-                <th>Prenoncliententreprise</th>
+                <th>Prenon Client</th>
                 <td>{{ reservationBusiness.prenonClientEntreprise }}</td>
             </tr>
-            <tr>
-                <th>Pointdepart</th>
-                <td>{{ reservationBusiness.pointDepart }}</td>
-            </tr>
+
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('reservationbusiness_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('reservationbusiness_edit', { 'idResBusiness': reservationBusiness.idResBusiness }) }}">Edit</a>
-        </li>
+        <div>
+            <input type=button onclick=window.location.href="{{ path('reservationbusiness_index') }}"; value="Retour au Historique" />
+        </div>
+        <div>
+            <input type=button onclick=window.location.href="{{ path('reservationbusiness_edit', { 'idResBusiness': reservationBusiness.idResBusiness }) }}"; value="Editer" />
+        </div>
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    </center>
 {% endblock %}

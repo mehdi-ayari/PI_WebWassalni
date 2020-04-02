@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h1>Reservationbusiness edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Editer" />
     {{ form_end(edit_form) }}
 
     <ul>
-        <li>
-            <a href="{{ path('reservationbusiness_index') }}">Back to the list</a>
-        </li>
+        <div>
+            <input type=button onclick=window.location.href="{{ path('reservationbusiness_index') }}"; value="Retour au Historique" />
+        </div>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

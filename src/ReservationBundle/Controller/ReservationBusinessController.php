@@ -25,9 +25,11 @@ class ReservationBusinessController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $reservationBusinesses = $em->getRepository('ReservationBundle:ReservationBusiness')->findAll();
+        $idconnected = $this->getUser()->getId();
+        $users = $em->getRepository('AppBundle:User')->findAll();
 
-        return $this->render('@ReservationBusiness/reservationbusiness/index.html.twig', array(
-            'reservationBusinesses' => $reservationBusinesses,
+        return $this->render('@Reservation/reservationbusiness/index.html.twig', array(
+            'reservationBusinesses' => $reservationBusinesses, 'idconnected'=>$idconnected, 'users'=>$users
         ));
     }
 
@@ -51,7 +53,7 @@ class ReservationBusinessController extends Controller
             return $this->redirectToRoute('reservationbusiness_show', array('idResBusiness' => $reservationBusiness->getIdresbusiness()));
         }
 
-        return $this->render('@ReservationBusiness/reservationbusiness/new.html.twig', array(
+        return $this->render('@Reservation/reservationbusiness/new.html.twig', array(
             'reservationBusiness' => $reservationBusiness,
             'form' => $form->createView(),
         ));
@@ -67,7 +69,7 @@ class ReservationBusinessController extends Controller
     {
         $deleteForm = $this->createDeleteForm($reservationBusiness);
 
-        return $this->render('@ReservationBusiness/reservationbusiness/show.html.twig', array(
+        return $this->render('@Reservation/reservationbusiness/show.html.twig', array(
             'reservationBusiness' => $reservationBusiness,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +93,7 @@ class ReservationBusinessController extends Controller
             return $this->redirectToRoute('reservationbusiness_edit', array('idResBusiness' => $reservationBusiness->getIdresbusiness()));
         }
 
-        return $this->render('@ReservationBusiness/reservationbusiness/edit.html.twig', array(
+        return $this->render('@Reservation/reservationbusiness/edit.html.twig', array(
             'reservationBusiness' => $reservationBusiness,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

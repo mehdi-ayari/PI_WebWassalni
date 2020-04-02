@@ -29,3 +29,19 @@ delete:
 root:
     path:     /root
     defaults: { _controller: ReservationBundle:Reservation:root }
+
+newbusiness:
+    path:     /reservationbusiness_new
+    defaults: { _controller: ReservationBundle:ReservationBusiness:new }
+
+indexbusiness:
+    path:     /reservationbusiness_index
+    defaults: { _controller: ReservationBundle:ReservationBusiness:index }
+
+showbusiness:
+    path:     /reservationbusiness_show/{idResBusiness}
+    defaults: { _controller: ReservationBundle:ReservationBusiness:show }
+
+editbusiness:
+    path:     /reservationbusiness_edit
+    defaults: { _controller: ReservationBundle:ReservationBusiness:edit }

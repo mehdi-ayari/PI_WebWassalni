@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ReservationBundle\Entity\ReservationBusiness;
-use ReservationBundle\Form\ReservationBusinessType;
 
 /**
  * Reservation controller.
@@ -194,7 +193,7 @@ class ReservationController extends Controller
                     return $this->redirectToRoute('reservationbusiness_show', array('idResBusiness' => $reservationBusiness->getIdresbusiness()));
                 }
 
-                return $this->render('@ReservationBusiness/reservationbusiness/new.html.twig', array(
+                return $this->render('@Reservation/reservationbusiness/new.html.twig', array(
                     'reservationBusiness' => $reservationBusiness,
                     'form' => $form->createView(),
                 ));
