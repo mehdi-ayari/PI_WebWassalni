@@ -45,7 +45,6 @@ class ReservationController extends Controller
         $reservation =new Reservation();
         $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
@@ -198,10 +197,7 @@ class ReservationController extends Controller
                     'form' => $form->createView(),
                 ));
             }
-        return $this->render('@Reservation/reservation/new.html.twig', array(
-            'reservation' => $reservation,
-            'form' => $form->createView(),
-        ));
+        return $this->render('@Reservation/reservation/alerte.html.twig');
 
     }
 
