@@ -5,6 +5,8 @@ namespace ReservationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class ReservationType extends AbstractType
 {
@@ -17,10 +19,23 @@ class ReservationType extends AbstractType
             ->add('destination')
             ->add('dateReservation')
             ->add('prix')
-            ->add('typeReservation')
-            ->add('objet')
+            ->add('typeReservation',choiceType::class,[
+                'choices'=>[
+                    'selectionner votre voiture'=>false,
+                    'Taxi'=>'Taxi',
+                    'Privée'=>'Privée',
+                    'camion'=>'camion',
+                ],
+                'required' =>true])
+            ->add('objet',choiceType::class,[
+                'choices'=>[
+                    'selectionner Objet'=>false,
+                    'passager'=>'passager',
+                    'colis'=>'colis',
+
+                ],
+                'required' =>true])
             ->add('userChauffeur')
-            ->add('userClient')
             ->add('idColis');
     }/**
      * {@inheritdoc}

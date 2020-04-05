@@ -13,7 +13,13 @@ class ReservationBusinessType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateDepart')->add('destination')->add('dateReservation')->add('nomClientEntreprise')->add('prenonClientEntreprise')->add('pointDepart')->add('userEntreprise');
+        $builder->add('dateDepart')
+            ->add('destination')
+            ->add('dateReservation')
+            ->add('nomClientEntreprise')
+            ->add('prenonClientEntreprise')
+            ->add('pointDepart')
+            ;
     }/**
      * {@inheritdoc}
      */

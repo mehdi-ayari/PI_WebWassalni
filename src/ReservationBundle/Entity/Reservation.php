@@ -148,6 +148,16 @@ class Reservation
     }
 
     /**
+     * @param \User $userClient
+     */
+    public function setUserClient($userClient)
+    {
+        $this->userClient = $userClient;
+    }
+
+
+
+    /**
      * @return \Colis
      */
     public function getIdColis()
@@ -221,13 +231,7 @@ class Reservation
         $this->userChauffeur = $userChauffeur;
     }
 
-    /**
-     * @param \User $userClient
-     */
-    public function setUserClient($userClient)
-    {
-        $this->userClient = $userClient;
-    }
+
 
     /**
      * @param \Colis $idColis

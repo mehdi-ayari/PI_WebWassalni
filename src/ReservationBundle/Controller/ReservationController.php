@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ReservationBundle\Entity\ReservationBusiness;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Reservation controller.
@@ -43,10 +44,18 @@ class ReservationController extends Controller
     public function newAction(Request $request)
     {
         $reservation =new Reservation();
+        $date=new \DateTime('now');
+        $reservation->setDateReservation($date);
+
+
         $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
         $form->handleRequest($request);
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $client = $this->getUser();
+            $reservation->setUserClient($client);
             $em->persist($reservation);
             $em->flush();
 

@@ -1,13 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block content %}
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
     <section class="banner-area relative" id="home">
         <div class="overlay overlay-bg"></div>
         <div class="container">
@@ -23,6 +16,11 @@
                     <a href="#" class="primary-btn text-uppercase">Call for taxi</a>
                 </div>
                 <div class="col-lg-4  col-md-6 header-right">
+                    <br>
+                    <br>
+                    <br><br>
+                    <br>
+                    <br>
                     <h4 class="pb-30">Reserver Maintenant</h4>
 
                         <div class="from-group">
@@ -42,6 +40,7 @@
                                 <div class="clearfix"></div>
                                 </center>
                             </div>
+                            <br>
                             <div class="key">
                                 <label >Prix :   </label>
                                 {{ form_widget(form.prix) }}
@@ -50,10 +49,40 @@
                             </div>
                             <div class="key">
                                 <label >Type Reservation :</label>
+                                <center>
                                 {{ form_widget(form.typeReservation) }}
                                 {{ form_errors(form.typeReservation) }}
                                 <div class="clearfix"></div>
+                                </center>
                             </div>
+                            <br>
+                            <div class="key">
+                                <label >Objet :</label>
+                                <center>
+                                {{ form_widget(form.objet) }}
+                                {{ form_errors(form.objet) }}
+                                <div class="clearfix"></div>
+                                </center>
+                            </div>
+                            <br>
+                            <div class="key">
+                                <label >Votre chauffeur :</label>
+                                <center>
+                                {{ form_widget(form.userChauffeur) }}
+                                {{ form_errors(form.userChauffeur) }}
+                                <div class="clearfix"></div>
+                                </center>
+                            </div>
+                            <br>
+                            <div class="key">
+                                <label >colis :</label>
+                                <center>
+                                    {{ form_widget(form.idColis) }}
+                                    {{ form_errors(form.idColis) }}
+                                    <div class="clearfix"></div>
+                                </center>
+                            </div>
+                            <br>
 
                             <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Reserver</button>
 
@@ -62,7 +91,7 @@
                                 <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('reservation_index') }}"; value="Historique" />
                             </div>
                         </div>
-
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
