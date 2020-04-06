@@ -2,6 +2,8 @@
 
 namespace ReservationBundle\Controller;
 
+use AppBundle\Entity\User;
+use http\Client;
 use ReservationBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -43,19 +45,16 @@ class ReservationController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $reservation =new Reservation();
-        $date=new \DateTime('now');
-        $reservation->setDateReservation($date);
-
-
         $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $client = $this->getUser();
-            $reservation->setUserClient($client);
+            $u=$this->getUser();
+            $reservation->setUserClient($u);
             $em->persist($reservation);
             $em->flush();
 
@@ -64,6 +63,7 @@ class ReservationController extends Controller
 
         return $this->render('@Reservation/reservation/new.html.twig', array(
             'reservation' => $reservation,
+            'u'=>$u,
             'form' => $form->createView(),
         ));
     }
@@ -206,7 +206,7 @@ class ReservationController extends Controller
                     'form' => $form->createView(),
                 ));
             }
-        return $this->render('@Reservation/reservation/alerte.html.twig');
+        return $this->render('base.html.twig');
 
     }
 

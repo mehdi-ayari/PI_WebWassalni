@@ -44,6 +44,7 @@ class RegistrationFormType extends AbstractType
             ->add('prenom')
             ->add('telephone')
             ->add('adresse')
+            ->add('mail')
 
             ->add('email', EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('roles',choiceType::class, array('label'=>'Type

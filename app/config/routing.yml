@@ -1,3 +1,7 @@
+reservation_colis:
+    resource: "@ReservationBundle/Controller/ColisController.php"
+    type:     annotation
+
 reservation_reservation_business:
     resource: "@ReservationBundle/Controller/ReservationBusinessController.php"
     type:     annotation

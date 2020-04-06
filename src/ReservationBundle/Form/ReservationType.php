@@ -17,7 +17,7 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('destination')
-            ->add('dateReservation')
+
             ->add('prix')
             ->add('typeReservation',choiceType::class,[
                 'choices'=>[
@@ -36,6 +36,7 @@ class ReservationType extends AbstractType
                 ],
                 'required' =>true])
             ->add('userChauffeur')
+
             ->add('idColis');
     }/**
      * {@inheritdoc}

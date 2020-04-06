@@ -74,6 +74,14 @@ class ReservationBusiness
     private $userEntreprise;
 
     /**
+     * ReservationBusiness constructor.
+     */
+    public function __construct()
+    {
+        $this->setDateReservation(new \DateTime('now'));
+    }
+
+    /**
      * @return int
      */
     public function getIdResBusiness()

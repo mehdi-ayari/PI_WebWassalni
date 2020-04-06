@@ -44,11 +44,12 @@ class ReservationBusinessController extends Controller
         $reservationBusiness = new Reservationbusiness();
         $form = $this->createForm('ReservationBundle\Form\ReservationBusinessType', $reservationBusiness);
         $form->handleRequest($request);
-        $entreprise = $this->getUser();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $reservationBusiness->setUserClient($entreprise);
+            $entreprise = $this->getUser()->getId();
+            $en=$em->getRepository('AppBundle:User')->find($entreprise);
+            $reservationBusiness->setUserEntreprise($en);
             $em->persist($reservationBusiness);
             $em->flush();
 

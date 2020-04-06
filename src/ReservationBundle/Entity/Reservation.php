@@ -3,6 +3,7 @@
 namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\User;
 
 
 /**
@@ -81,6 +82,15 @@ class Reservation
     /** @ORM\Column(type="string", columnDefinition="ENUM('Taxi', 'Privée','camion')", nullable=false) */
     private $typeReservation;
 
+    /**
+     * Reservation constructor.
+     */
+    public function __construct()
+    {
+        $this->dateReservation=new \DateTime('now');
+
+    }
+
     public function setTypeReservation($typeReservation)
     {
         if (!in_array($typeReservation, array(self::taxi, self::prive , self::camion))) {
@@ -154,6 +164,10 @@ class Reservation
     {
         $this->userClient = $userClient;
     }
+
+
+
+
 
 
 

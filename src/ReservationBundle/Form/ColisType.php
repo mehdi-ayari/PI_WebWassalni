@@ -6,27 +6,21 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReservationBusinessType extends AbstractType
+class ColisType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateDepart')
-            ->add('destination')
-
-            ->add('nomClientEntreprise')
-            ->add('prenonClientEntreprise')
-            ->add('pointDepart')
-            ;
+        $builder->add('poids')->add('contenu');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ReservationBundle\Entity\ReservationBusiness'
+            'data_class' => 'ReservationBundle\Entity\Colis'
         ));
     }
 
@@ -35,7 +29,7 @@ class ReservationBusinessType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'reservationbundle_reservationbusiness';
+        return 'reservationbundle_colis';
     }
 
 
