@@ -4,6 +4,7 @@ namespace ReservationBundle\Controller;
 
 use AppBundle\Entity\User;
 use http\Client;
+use ReservationBundle\Entity\Colis;
 use ReservationBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -11,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 use Symfony\Component\HttpFoundation\Response;
 use ReservationBundle\Entity\ReservationBusiness;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Security\Core\Security;
+
 
 /**
  * Reservation controller.
@@ -50,11 +53,9 @@ class ReservationController extends Controller
         $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $u=$this->getUser();
-            $reservation->setUserClient($u);
+            $reservation->setUserClient($this->getUser());
             $em->persist($reservation);
             $em->flush();
 
@@ -63,7 +64,6 @@ class ReservationController extends Controller
 
         return $this->render('@Reservation/reservation/new.html.twig', array(
             'reservation' => $reservation,
-            'u'=>$u,
             'form' => $form->createView(),
         ));
     }
@@ -157,33 +157,57 @@ class ReservationController extends Controller
         return new Response("Bonjour");
     }
 
-    public function rootAction(Request $request)
+    public function rootAction(Request $request, Request $request1)
     {
         $clientconnected = $this->container->get('security.authorization_checker')->isGranted('ROLE_CLIENT');
         $entrepriseconnected = $this->container->get('security.authorization_checker')->isGranted('ROLE_ENTREPRISE');
 
 
-        $reservation =new Reservation();
-        $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
-        $form->handleRequest($request);
-
         if ($clientconnected == true)
         {
             $reservation =new Reservation();
+            $colis= new Colis();
             $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
             $form->handleRequest($request);
+            $form1 = $this->createForm('ReservationBundle\Form\ColisType', $colis);
+            $form1->handleRequest($request1);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            $id=28;
+
+           /* if ($form1->isSubmitted() && $form1->isValid() && $form->isSubmitted() && $form->isValid()) {
+                $em1 = $this->getDoctrine()->getManager();
                 $em = $this->getDoctrine()->getManager();
+                $reservation->setUserClient($this->getUser());
                 $em->persist($reservation);
                 $em->flush();
+                $em1->persist($colis);
+                $em1->flush();
+                return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
+
+            }*/
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $id=$id+1;
+                $em = $this->getDoctrine()->getManager();
+                $reservation->setUserClient($this->getUser());
+                $en=$em->getRepository('ReservationBundle:Colis')->find($id);
+                $reservation->setIdColis($en);
+                $em->persist($reservation);
+                $em->persist($colis);
+                $em->flush();
+                $em->flush();
+
 
                 return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
             }
 
+
             return $this->render('@Reservation/reservation/new.html.twig', array(
                 'reservation' => $reservation,
                 'form' => $form->createView(),
+                'colis' => $colis,
+                'form1' => $form1->createView(),
+
             ));
         }
 
@@ -195,6 +219,7 @@ class ReservationController extends Controller
 
                 if ($form->isSubmitted() && $form->isValid()) {
                     $em = $this->getDoctrine()->getManager();
+                    $reservationBusiness->setUserEntreprise($this->getUser());
                     $em->persist($reservationBusiness);
                     $em->flush();
 
@@ -207,6 +232,13 @@ class ReservationController extends Controller
                 ));
             }
         return $this->render('base.html.twig');
+
+    }
+
+
+    public function clientAction()
+    {
+        $user=$this->getUser();
 
     }
 

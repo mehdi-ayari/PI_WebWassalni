@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
 {% block content %}
     <br>
     <section class="banner-area relative" id="home">
@@ -27,15 +28,16 @@
                             {{ form_start(form) }}
 
                             <div class="key">
-                                <label >Destination : </label>
+                                <label >Destination :</label>
                                 {{ form_widget(form.destination) }}
                                 {{ form_errors(form.destination) }}
                                 <div class="clearfix"></div>
                             </div>
 
                             <br>
+
                             <div class="key">
-                                <label >Prix :   </label>
+                                <label >Prix :</label>
                                 {{ form_widget(form.prix) }}
                                 {{ form_errors(form.prix) }}
                                 <div class="clearfix"></div>
@@ -52,9 +54,9 @@
                             <div class="key">
                                 <label >Objet :</label>
                                 <center>
-                                {{ form_widget(form.objet) }}
-                                {{ form_errors(form.objet) }}
-                                <div class="clearfix"></div>
+                                    {{ form_widget(form.objet) }}
+                                    {{ form_errors(form.objet) }}
+                                    <div class="clearfix"></div>
                                 </center>
                             </div>
                             <br>
@@ -67,26 +69,35 @@
                                 </center>
                             </div>
                             <br>
-
                             <div class="key">
-                                <label >colis :</label>
+                                <label >contenu :</label>
                                 <center>
-                                    {{ form_widget(form.idColis) }}
-                                    {{ form_errors(form.idColis) }}
+                                    {{ form_widget(form1.contenu) }}
+                                    {{ form_errors(form1.contenu) }}
                                     <div class="clearfix"></div>
                                 </center>
                             </div>
                             <br>
-
+                            <div class="key">
+                                <label >poids :</label>
+                                <center>
+                                    {{ form_widget(form1.poids) }}
+                                    {{ form_errors(form1.poids) }}
+                                    <div class="clearfix"></div>
+                                </center>
+                            </div>
+                            <br>
                             <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Reserver</button>
 
                             <br>
                             <div>
                                 <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('reservation_index') }}"; value="Historique" />
                             </div>
+                            {{ form_end(form) }}
                         </div>
-                    {{ form_end(form) }}
+
                 </div>
+
             </div>
         </div>
     </section>

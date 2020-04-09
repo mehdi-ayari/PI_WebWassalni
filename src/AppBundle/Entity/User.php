@@ -87,18 +87,8 @@ class User extends BaseUser
     /** @ORM\Column(type="string", columnDefinition="ENUM('client', 'administrateur', 'chauffeur', 'entreprise')", nullable=false ) */
     private $role;
 
-    /**
-     * User constructor.
-     * @param string $nom
-     * @param string $prenom
-     * @param string $mail
-     * @param int $telephone
-     * @param string $adresse
-     * @param bool $etat
-     * @param int $nbrEmp
-     * @param string $mdp
-     * @param $role
-     */
+
+
 
     public function setRole($role)
     {

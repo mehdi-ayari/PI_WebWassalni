@@ -26,7 +26,7 @@ class ColisController extends Controller
 
         $colis = $em->getRepository('ReservationBundle:Colis')->findAll();
 
-        return $this->render('colis/index.html.twig', array(
+        return $this->render('@Reservation/colis/index.html.twig', array(
             'colis' => $colis,
         ));
     }
@@ -39,7 +39,7 @@ class ColisController extends Controller
      */
     public function newAction(Request $request)
     {
-        $coli = new Coli();
+        $coli = new Colis();
         $form = $this->createForm('ReservationBundle\Form\ColisType', $coli);
         $form->handleRequest($request);
 
@@ -51,7 +51,7 @@ class ColisController extends Controller
             return $this->redirectToRoute('colis_show', array('idColis' => $coli->getIdcolis()));
         }
 
-        return $this->render('colis/new.html.twig', array(
+        return $this->render('@Reservation/colis/new.html.twig', array(
             'coli' => $coli,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class ColisController extends Controller
     {
         $deleteForm = $this->createDeleteForm($coli);
 
-        return $this->render('colis/show.html.twig', array(
+        return $this->render('@Reservation/colis/show.html.twig', array(
             'coli' => $coli,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class ColisController extends Controller
             return $this->redirectToRoute('colis_edit', array('idColis' => $coli->getIdcolis()));
         }
 
-        return $this->render('colis/edit.html.twig', array(
+        return $this->render('@Reservation/colis/edit.html.twig', array(
             'coli' => $coli,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

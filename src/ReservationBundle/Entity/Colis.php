@@ -83,5 +83,10 @@ class Colis
         $this->contenu = $contenu;
     }
 
+    public function __toString()
+    {
+        return (string) $this->poids;
+    }
+
 }
 

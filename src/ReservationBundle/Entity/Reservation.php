@@ -4,6 +4,8 @@ namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User;
+use ReservationBundle\Entity\Colis;
+
 
 
 /**
@@ -81,6 +83,8 @@ class Reservation
 
     /** @ORM\Column(type="string", columnDefinition="ENUM('Taxi', 'Privée','camion')", nullable=false) */
     private $typeReservation;
+
+
 
     /**
      * Reservation constructor.

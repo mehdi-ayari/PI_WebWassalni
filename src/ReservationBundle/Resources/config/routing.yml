@@ -45,3 +45,19 @@ showbusiness:
 editbusiness:
     path:     /reservationbusiness_edit
     defaults: { _controller: ReservationBundle:ReservationBusiness:edit }
+
+newcolis:
+    path:     /colis_index
+    defaults: { _controller: ReservationBundle:Colis:index }
+
+indexcolis:
+    path:     /colis_new
+    defaults: { _controller: ReservationBundle:Colis:new }
+
+showcolis:
+    path:     /colis_show/{idColis}
+    defaults: { _controller: ReservationBundle:Colis:show }
+
+editcolis:
+    path:     /colis_edit
+    defaults: { _controller: ReservationBundle:Colis:edit }
