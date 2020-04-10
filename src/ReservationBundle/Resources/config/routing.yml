@@ -61,3 +61,15 @@ showcolis:
 editcolis:
     path:     /colis_edit
     defaults: { _controller: ReservationBundle:Colis:edit }
+
+listereservations:
+    path:   /listereservations
+    defaults: { _controller: ReservationBundle:Admin:afficherlistereservations}
+
+listeusers:
+    path:   /listeusers
+    defaults: { _controller: ReservationBundle:Admin:afficherlisteusers}
+
+listebusiness:
+    path:   /listebusiness
+    defaults: { _controller: ReservationBundle:Admin:afficherlistebusiness}

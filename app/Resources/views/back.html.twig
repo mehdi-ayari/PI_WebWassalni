@@ -27,17 +27,17 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+ <div class="wrapper">
 
-
+     {% block tool %}
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href=" class="brand-link">
+        <a href="" class="brand-link">
         <img src="{{asset('img/wassalni.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">Wassalni</span>
         </a>
 
         <!-- Sidebar -->
@@ -76,7 +76,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link active">
+                                <a href="{{ path('listeusers') }}" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Liste Utilisateurs</p>
                                 </a>
@@ -94,7 +94,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link active">
+                                <a href="{{ path('listereservations') }}" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Liste Reservations</p>
                                 </a>
@@ -112,7 +112,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link active">
+                                <a href="{{ path('listebusiness') }}" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Liste Reservations Business</p>
                                 </a>
@@ -120,14 +120,29 @@
 
                         </ul>
                     </li>
-
+                </ul>
             </nav>
             <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
     </aside>
+ </div>
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+     <!-- Content Header (Page header) -->
+     <div class="content-header">
+         <div class="container-fluid">
+             <div class="row mb-2">
 
 
+             </div><!-- /.row -->
+         </div><!-- /.container-fluid -->
+     </div>
+     <!-- /.content-header -->
+ {% endblock %}
+ {% block content %}
+ {% endblock %}
+{% block footer %}
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
@@ -136,13 +151,13 @@
             <b>Version</b> 3.0.4
         </div>
     </footer>
-
+{% endblock %}
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
-</div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->
