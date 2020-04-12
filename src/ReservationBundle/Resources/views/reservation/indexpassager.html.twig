@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center>
+        <div class="spec ">
+            <h3>Votre Historique des Reservations</h3>
+            <div class="ser-t">
+                <b></b>
+                <span><i></i></span>
+                <b class="line"></b>
+            </div>
+        </div>
+        <br>
+        <br>
+    </center>
+    <div class="bs-docs-example">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Date Reservation</th>
+                <th>Prix</th>
+                <th>Type Reservation</th>
+                <th>Objet</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                {% if user.id == idconnected  %}
+                    {% for reservation in reservations %}
+                        {% if user == reservation.userClient  %}
+                            <tr>
+                                <td>{{ reservation.destination }}</td>
+                                <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{{ reservation.prix }}</td>
+                                <td>{{ reservation.typeReservation }}</td>
+                                <td>{{ reservation.objet }}</td>
+                                <td>
+                                    <ul>
+                                        <li class="label label-info" > <a style="color:blue"  href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a></li>
+                                        <li class="label label-default"><a style="color: blue" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <center>
+        <div>
+            <input type=button onclick=window.location.href="{{ path('rootpassager') }}"; value="Créer une Reservation" />
+        </div>
+    </center>
+
+{% endblock %}

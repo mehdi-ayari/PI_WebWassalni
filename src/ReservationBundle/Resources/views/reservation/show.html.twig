@@ -35,21 +35,29 @@
             <th>Objet</th>
             <td>{{ reservation.objet }}</td>
         </tr>
+        <tr>
+            <th>Contenu</th>
+            <td>{{ coli.contenu }}</td>
+        </tr>
+        <tr>
+            <th>Poids</th>
+            <td>{{ coli.poids }}</td>
+        </tr>
+
         </tbody>
     </table>
 
     <ul>
         <div>
-            <input type=button onclick=window.location.href="{{ path('reservation_index') }}"; value="Retour au Historique" />
+            <input type=button onclick=window.location.href="{{ path('colis_index') }}"; value="Retour au Historique" />
         </div>
         <div>
-            <input type=button onclick=window.location.href="{{ path('reservation_edit', { 'id': reservation.id }) }}"; value="Editer" />
+            <input type=button onclick=window.location.href="{{ path('colis_edit', { 'idColis': coli.idColis }) }}"; value="Editer" />
         </div>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
+        <div>
+            <input type=button onclick=window.location.href="{{ path('colis_delete',{'idColis':reservation.id}) }}"; value="Supprimer" />
+        </div>
+
     </ul>
     </center>
 {% endblock %}

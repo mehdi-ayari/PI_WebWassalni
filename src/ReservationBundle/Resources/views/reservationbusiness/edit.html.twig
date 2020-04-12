@@ -2,27 +2,90 @@
 
 {% block content %}
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1>Reservationbusiness edit</h1>
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row fullscreen d-flex align-items-center justify-content-between">
+                <div class="banner-content col-lg-6 col-md-6 ">
+                    <h6 class="text-white ">Need a ride? just call</h6>
+                    <h1 class="text-uppercase">
+                        911 999 911
+                    </h1>
+                    <p class="pt-10 pb-10 text-white">
+                        Whether you enjoy city breaks or extended holidays in the sun, you can always improve your travel experiences by staying in a small.
+                    </p>
+                    <a href="#" class="primary-btn text-uppercase">Call for taxi</a>
+                </div>
+                <div class="col-lg-4  col-md-6 header-right">
+                    <br>
+                    <br>
+                    <br><br>
+                    <br>
+                    <br>
+                    <h4 class="pb-30">Reserver Maintenant</h4>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Editer" />
-    {{ form_end(edit_form) }}
+                    <div class="from-group">
+                        {{ form_start(edit_form) }}
 
-    <ul>
-        <div>
-            <input type=button onclick=window.location.href="{{ path('reservationbusiness_index') }}"; value="Retour au Historique" />
+                        <div class="key">
+                            <label >Date depart :</label>
+                            <center>
+                                {{ form_widget(edit_form.dateDepart) }}
+                                {{ form_errors(edit_form.dateDepart) }}
+                                <div class="clearfix"></div>
+                            </center>
+                        </div>
+                        <div class="key">
+                            <label >Point depart :</label>
+                            <center>
+                                {{ form_widget(edit_form.pointDepart) }}
+                                {{ form_errors(edit_form.pointDepart) }}
+                                <div class="clearfix"></div>
+                            </center>
+                        </div>
+                        <br>
+                        <div class="key">
+                            <label >Destination :   </label>
+                            {{ form_widget(edit_form.destination) }}
+                            {{ form_errors(edit_form.destination) }}
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="key">
+                            <label >Nom client :</label>
+                            <center>
+                                {{ form_widget(edit_form.nomClientEntreprise) }}
+                                {{ form_errors(edit_form.nomClientEntreprise) }}
+                                <div class="clearfix"></div>
+                            </center>
+                        </div>
+                        <br>
+                        <div class="key">
+                            <label >Prenom client :</label>
+                            <center>
+                                {{ form_widget(edit_form.prenonClientEntreprise) }}
+                                {{ form_errors(edit_form.prenonClientEntreprise) }}
+                                <div class="clearfix"></div>
+                            </center>
+                        </div>
+                        <br>
+
+
+
+                        <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Reserver</button>
+
+                        <br>
+                        <div>
+                            <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('reservationbusiness_index') }}"; value="Historique" />
+                        </div>
+                    </div>
+                    <li>
+                        {{ form_start(delete_form) }}
+                        <input type="submit" class="btn btn-default btn-lg btn-block text-center text-uppercase" value="Supprimer">
+                        {{ form_end(delete_form) }}
+                    </li>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
         </div>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    </section>
 {% endblock %}

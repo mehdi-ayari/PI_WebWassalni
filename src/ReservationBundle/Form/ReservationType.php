@@ -26,14 +26,7 @@ class ReservationType extends AbstractType
                     'camion'=>'camion',
                 ],
                 'required' =>true])
-            ->add('objet',choiceType::class,[
-                'choices'=>[
-                    'selectionner Objet'=>false,
-                    'passager'=>'passager',
-                    'colis'=>'colis',
 
-                ],
-                'required' =>true])
             ->add('userChauffeur');
 
 

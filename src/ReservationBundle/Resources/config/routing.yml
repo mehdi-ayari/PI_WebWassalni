@@ -23,12 +23,16 @@ edit:
     defaults: { _controller: ReservationBundle:Reservation:edit }
 
 delete:
-    path:     /reservation_delete
+    path:     /reservation_delete/{id}
     defaults: { _controller: ReservationBundle:Reservation:delete }
 
 root:
     path:     /root
     defaults: { _controller: ReservationBundle:Reservation:root }
+
+rootpassager:
+    path:     /rootpassager
+    defaults: { _controller: ReservationBundle:Reservation:rootpassager }
 
 newbusiness:
     path:     /reservationbusiness_new
@@ -59,8 +63,12 @@ showcolis:
     defaults: { _controller: ReservationBundle:Colis:show }
 
 editcolis:
-    path:     /colis_edit
+    path:     /colis_edit/{idColis}
     defaults: { _controller: ReservationBundle:Colis:edit }
+
+deletecolis:
+    path:     /colis_delete/{idColis}
+    defaults: { _controller: ReservationBundle:Colis:delete }
 
 listereservations:
     path:   /listereservations
@@ -73,3 +81,7 @@ listeusers:
 listebusiness:
     path:   /listebusiness
     defaults: { _controller: ReservationBundle:Admin:afficherlistebusiness}
+
+deletecolisss:
+    path:   /delete/{id}
+    defaults: { _controller: ReservationBundle:Colis:deleteColis}

@@ -29,6 +29,8 @@
                 <th>Prix</th>
                 <th>Type Reservation</th>
                 <th>Objet</th>
+                <th>Contenu</th>
+                <th>Poids</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -37,19 +39,25 @@
                 {% if user.id == idconnected  %}
                     {% for reservation in reservations %}
                         {% if user == reservation.userClient  %}
-                            <tr>
-                                <td>{{ reservation.destination }}</td>
-                                <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                <td>{{ reservation.prix }}</td>
-                                <td>{{ reservation.typeReservation }}</td>
-                                <td>{{ reservation.objet }}</td>
-                                <td>
-                                    <ul>
-                                        <li class="label label-info" > <a style="color:blue"  href="{{ path('reservation_show', { 'id': reservation.id }) }}">show</a></li>
-                                        <li class="label label-default"><a style="color: blue" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a></li>
-                                    </ul>
-                                </td>
-                            </tr>
+                                {% for coli in colis %}
+                                    {% if reservation.idColis == coli  %}
+                                        <tr>
+                                        <td>{{ reservation.destination }}</td>
+                                        <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        <td>{{ reservation.prix }}</td>
+                                        <td>{{ reservation.typeReservation }}</td>
+                                        <td>{{ reservation.objet }}</td>
+                                        <td>{{ coli.contenu }}</td>
+                                        <td>{{ coli.poids }}</td>
+                                            <td>
+                                                <ul>
+                                                    <li class="label label-info" > <a style="color:blue"  href="{{ path('colis_show', { 'idColis': coli.idColis }) }}">show</a></li>
+                                                    <li class="label label-default"><a style="color: blue" href="{{ path('colis_edit',{ 'idColis': coli.idColis }) }}">edit</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
                         {% endif %}
                     {% endfor %}
                 {% endif %}

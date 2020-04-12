@@ -35,7 +35,7 @@ class ReservationController extends Controller
         $reservations = $em->getRepository('ReservationBundle:Reservation')->findAll();
         $idconnected = $this->getUser()->getId();
         $users = $em->getRepository('AppBundle:User')->findAll();
-        return $this->render('@Reservation/reservation/index.html.twig', array(
+        return $this->render('@Reservation/reservation/indexpassager.html.twig', array(
             'reservations' => $reservations, 'idconnected'=>$idconnected, 'users'=>$users
         ));
     }
@@ -62,7 +62,7 @@ class ReservationController extends Controller
             return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
         }
 
-        return $this->render('@Reservation/reservation/new.html.twig', array(
+        return $this->render('@Reservation/reservation/newpassager.html.twig', array(
             'reservation' => $reservation,
             'form' => $form->createView(),
         ));
@@ -78,7 +78,7 @@ class ReservationController extends Controller
     {
         $deleteForm = $this->createDeleteForm($reservation);
 
-        return $this->render('@Reservation/reservation/show.html.twig', array(
+        return $this->render('@Reservation/reservation/showpassager.html.twig', array(
             'reservation' => $reservation,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -102,7 +102,7 @@ class ReservationController extends Controller
             return $this->redirectToRoute('reservation_edit', array('id' => $reservation->getId()));
         }
 
-        return $this->render('@Reservation/reservation/edit.html.twig', array(
+        return $this->render('@Reservation/reservation/editpassager.html.twig', array(
             'reservation' => $reservation,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -112,19 +112,17 @@ class ReservationController extends Controller
     /**
      * Deletes a reservation entity.
      *
-     * @Route("/{id}", name="reservation_delete")
+     * @Route("/{id}/delete", name="reservation_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Reservation $reservation)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($reservation);
-        $form->handleRequest($request);
+        $form = $this->getDoctrine()->getRepository(Reservation::class)->find($id);
+        $em=$this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($reservation);
-            $em->flush();
-        }
+        $em->remove($form);
+
+        $em->flush();
 
         return $this->redirectToRoute('reservation_index');
     }
@@ -172,33 +170,22 @@ class ReservationController extends Controller
             $form1 = $this->createForm('ReservationBundle\Form\ColisType', $colis);
             $form1->handleRequest($request1);
 
-            $id=28;
 
-           /* if ($form1->isSubmitted() && $form1->isValid() && $form->isSubmitted() && $form->isValid()) {
-                $em1 = $this->getDoctrine()->getManager();
-                $em = $this->getDoctrine()->getManager();
-                $reservation->setUserClient($this->getUser());
-                $em->persist($reservation);
-                $em->flush();
-                $em1->persist($colis);
-                $em1->flush();
-                return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
-
-            }*/
 
             if ($form->isSubmitted() && $form->isValid()) {
-                $id=$id+1;
                 $em = $this->getDoctrine()->getManager();
                 $reservation->setUserClient($this->getUser());
-                $en=$em->getRepository('ReservationBundle:Colis')->find($id);
-                $reservation->setIdColis($en);
-                $em->persist($reservation);
+                $reservation->setObjet("colis");
                 $em->persist($colis);
                 $em->flush();
+                $id=$colis->getIdColis();
+                $c=$em->getRepository('ReservationBundle:Colis')->find($id);
+                $reservation->setIdColis($c);
+                $em->persist($reservation);
                 $em->flush();
 
 
-                return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
+                return $this->redirectToRoute('colis_show', array('id' => $reservation->getId(),'idColis'=>$colis->getIdColis()));
             }
 
 
@@ -235,12 +222,66 @@ class ReservationController extends Controller
 
     }
 
-
-    public function clientAction()
+    public function rootpassagerAction(Request $request)
     {
-        $user=$this->getUser();
+        $clientconnected = $this->container->get('security.authorization_checker')->isGranted('ROLE_CLIENT');
+        $entrepriseconnected = $this->container->get('security.authorization_checker')->isGranted('ROLE_ENTREPRISE');
+
+
+        if ($clientconnected == true)
+        {
+            $reservation =new Reservation();
+
+            $form = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
+            $form->handleRequest($request);
+
+
+
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $reservation->setUserClient($this->getUser());
+                $reservation->setObjet("passager");
+                $em->persist($reservation);
+                $em->flush();
+
+
+                return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
+            }
+
+
+            return $this->render('@Reservation/reservation/newpassager.html.twig', array(
+                'reservation' => $reservation,
+                'form' => $form->createView(),
+
+
+            ));
+        }
+
+        elseif ($entrepriseconnected == true)
+        {
+            $reservationBusiness = new Reservationbusiness();
+            $form = $this->createForm('ReservationBundle\Form\ReservationBusinessType', $reservationBusiness);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $reservationBusiness->setUserEntreprise($this->getUser());
+                $em->persist($reservationBusiness);
+                $em->flush();
+
+                return $this->redirectToRoute('reservationbusiness_show', array('idResBusiness' => $reservationBusiness->getIdresbusiness()));
+            }
+
+            return $this->render('@Reservation/reservationbusiness/new.html.twig', array(
+                'reservationBusiness' => $reservationBusiness,
+                'form' => $form->createView(),
+            ));
+        }
+        return $this->render('base.html.twig');
 
     }
+
 
 
 }

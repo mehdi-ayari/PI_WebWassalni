@@ -42,10 +42,14 @@
                 <a href=""><img src="{{ asset('img/wassalni.png')}}" alt="" title="" /></a>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-has-children"><a href="{{ path('root') }}">Reserver votre chauffeur</a>
+                        <li class="menu-has-children"><a href="">Reserver votre chauffeur</a>
+                            <ul>
+                                <li><a href="{{ path('rootpassager') }}">Passager</a></li>
+                                <li><a href="{{ path('root') }}">Colis</a></li>
+                            </ul>
                         </li>
                         <li><a href="">Actualités</a></li>
-                        <li><a href="">Reclamer</a></li>
+                        <li><a href="../../../src/ReservationBundle/Resources/views/Map/map.html.twig">Reclamer</a></li>
                         <li><a href="">Voyage</a></li>
                         <li><a href="">Contact</a></li>
                         <li><a href="">Promotion</a></li>

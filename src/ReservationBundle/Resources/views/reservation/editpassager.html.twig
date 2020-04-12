@@ -26,12 +26,11 @@
 
                     <div class="from-group">
                         {{ form_start(edit_form) }}
-                        {{ form_start(edit_form1) }}
 
                         <div class="key">
                             <label >Destination :</label>
-                            {{ form_widget(edit_form1.destination) }}
-                            {{ form_errors(edit_form1.destination) }}
+                            {{ form_widget(edit_form.destination) }}
+                            {{ form_errors(edit_form.destination) }}
                             <div class="clearfix"></div>
                         </div>
 
@@ -39,41 +38,24 @@
 
                         <div class="key">
                             <label >Prix :</label>
-                            {{ form_widget(edit_form1.prix) }}
-                            {{ form_errors(edit_form1.prix) }}
+                            {{ form_widget(edit_form.prix) }}
+                            {{ form_errors(edit_form.prix) }}
                             <div class="clearfix"></div>
                         </div>
                         <div class="key">
                             <label >Type Reservation :</label>
                             <center>
-                                {{ form_widget(edit_form1.typeReservation) }}
-                                {{ form_errors(edit_form1.typeReservation) }}
+                                {{ form_widget(edit_form.typeReservation) }}
+                                {{ form_errors(edit_form.typeReservation) }}
                                 <div class="clearfix"></div>
                             </center>
                         </div>
                         <br>
-
                         <div class="key">
                             <label >Votre chauffeur :</label>
                             <center>
-                                {{ form_widget(edit_form1.userChauffeur) }}
-                                {{ form_errors(edit_form1.userChauffeur) }}
-                                <div class="clearfix"></div>
-                            </center>
-                        </div>
-                        <div class="key">
-                            <label >Contenu :</label>
-                            <center>
-                                {{ form_widget(edit_form.contenu) }}
-                                {{ form_errors(edit_form.contenu) }}
-                                <div class="clearfix"></div>
-                            </center>
-                        </div>
-                        <div class="key">
-                            <label >Poids :</label>
-                            <center>
-                                {{ form_widget(edit_form.poids) }}
-                                {{ form_errors(edit_form.poids) }}
+                                {{ form_widget(edit_form.userChauffeur) }}
+                                {{ form_errors(edit_form.userChauffeur) }}
                                 <div class="clearfix"></div>
                             </center>
                         </div>
@@ -83,13 +65,13 @@
 
                         <br>
                         {{ form_end(edit_form) }}
-                        {{ form_end(edit_form1) }}
+
                         <div>
-                            <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('colis_index') }}"; value="Historique" />
+                            <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('reservation_index') }}"; value="Historique" />
                         </div>
                         <br>
                         <div>
-                            <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('colis_delete',{'idColis':reservation.id}) }}"; value="Supprimer" />
+                            <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('reservation_delete',{ 'id':reservation.id }) }}"; value="Supprimer" />
                         </div>
 
                     </div>

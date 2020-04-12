@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block content %}
     <br>
     <section class="banner-area relative" id="home">
@@ -50,15 +49,7 @@
                                 <div class="clearfix"></div>
                                 </center>
                             </div>
-                            <br>
-                            <div class="key">
-                                <label >Objet :</label>
-                                <center>
-                                    {{ form_widget(form.objet) }}
-                                    {{ form_errors(form.objet) }}
-                                    <div class="clearfix"></div>
-                                </center>
-                            </div>
+
                             <br>
                             <div class="key">
                                 <label >Votre chauffeur :</label>
@@ -69,7 +60,8 @@
                                 </center>
                             </div>
                             <br>
-                            <div class="key">
+                            <div id="colis">
+                            <div class="key" >
                                 <label >contenu :</label>
                                 <center>
                                     {{ form_widget(form1.contenu) }}
@@ -86,12 +78,13 @@
                                     <div class="clearfix"></div>
                                 </center>
                             </div>
+                            </div>
                             <br>
                             <button class="btn btn-default btn-lg btn-block text-center text-uppercase">Reserver</button>
 
                             <br>
                             <div>
-                                <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('reservation_index') }}"; value="Historique" />
+                                <input type=button class="btn btn-default btn-lg btn-block text-center text-uppercase" onclick=window.location.href="{{ path('colis_index') }}"; value="Historique" />
                             </div>
                             {{ form_end(form) }}
                         </div>

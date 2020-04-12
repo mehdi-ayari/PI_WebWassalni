@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center>
+        <h1>Votre Reservation</h1>
+        <table>
+            <tbody>
+
+            <tr>
+                <th>Destination :</th>
+                <td>{{ reservation.destination }}</td>
+            </tr>
+            <tr>
+                <th>Datereservation</th>
+                <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ reservation.prix }}</td>
+            </tr>
+            <tr>
+                <th>Typereservation</th>
+                <td>{{ reservation.typeReservation }}</td>
+            </tr>
+            <tr>
+                <th>Objet</th>
+                <td>{{ reservation.objet }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <div>
+                <input type=button onclick=window.location.href="{{ path('reservation_index') }}"; value="Retour au Historique" />
+            </div>
+            <div>
+                <input type=button onclick=window.location.href="{{ path('reservation_edit', { 'id': reservation.id }) }}"; value="Editer" />
+            </div>
+            <div>
+                <input type=button onclick=window.location.href="{{ path('reservation_delete',{ 'id':reservation.id }) }}"; value="Supprimer" />
+            </div>
+
+        </ul>
+    </center>
+{% endblock %}
