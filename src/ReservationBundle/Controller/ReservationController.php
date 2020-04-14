@@ -176,6 +176,20 @@ class ReservationController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $reservation->setUserClient($this->getUser());
                 $reservation->setObjet("colis");
+                $dest=$form->get('destination')->getData();
+                $type=$form->get('typeReservation')->getData();
+                $date=new \DateTime('now');
+                $string=$date->format("D, d M Y H:i:s O");
+                $date = explode(" ", $string);
+                $latlong=$this->lat_longAction($dest);
+                $lat2=36.8990112;
+                $lon2=10.1894805;
+                $lat1=$latlong['lat'];
+                $lon1=$latlong['lon'];
+                $distance=$this->distanceAction($lat1,$lon1,$lat2,$lon2,'K');
+                $distance=$distance*1.3;
+                $prix=$this->calcul_prix_Action($type,$distance,$date[4]);
+                $reservation->setPrix($prix);
                 $em->persist($colis);
                 $em->flush();
                 $id=$colis->getIdColis();
@@ -242,6 +256,20 @@ class ReservationController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $reservation->setUserClient($this->getUser());
                 $reservation->setObjet("passager");
+                $dest=$form->get('destination')->getData();
+                $type=$form->get('typeReservation')->getData();
+                $date=new \DateTime('now');
+                $string=$date->format("D, d M Y H:i:s O");
+                $date = explode(" ", $string);
+                $latlong=$this->lat_longAction($dest);
+                $lat2=36.8990112;
+                $lon2=10.1894805;
+                $lat1=$latlong['lat'];
+                $lon1=$latlong['lon'];
+                $distance=$this->distanceAction($lat1,$lon1,$lat2,$lon2,'K');
+                $distance=$distance*1.3;
+                $prix=$this->calcul_prix_Action($type,$distance,$date[4]);
+                $reservation->setPrix($prix);
                 $em->persist($reservation);
                 $em->flush();
 
@@ -282,6 +310,106 @@ class ReservationController extends Controller
 
     }
 
+    function lat_longAction($address)
+    {
+       if($address=="centre ville,Tunis")
+       {
+           $lat=36.8004904;
+           $lon=10.185332118993045;
+           $array = array('lat'=> $lat ,'lon'=>$lon);
+           return $array;
+       }
+        if($address=="Ariana")
+        {
+            $lat=36.9685735;
+            $lon=10.1219855;
+            $array = array('lat'=> $lat ,'lon'=>$lon);
+            return $array;
+        }
+        if($address=="Ben arous")
+        {
+            $lat=36.7718;
+            $lon=10.2386203;
+            $array = array('lat'=> $lat ,'lon'=>$lon);
+            return $array;
+        }
+        if($address=="Bardo")
+        {
+            $lat=36.8134113;
+            $lon=10.13219109;
+            $array = array('lat'=> $lat ,'lon'=>$lon);
+            return $array;
+        }
+        if($address=="Carthage")
+        {
+            $lat=36.8577565;
+            $lon=10.32821822;
+            $array = array('lat'=> $lat ,'lon'=>$lon);
+            return $array;
+        }
+        if($address=="Mourouj")
+        {
+            $lat=36.719825;
+            $lon=10.21923624;
+            $array = array('lat'=> $lat ,'lon'=>$lon);
+            return $array;
+        }
+        if($address=="Megrine")
+        {
+            $lat=36.77179995;
+            $lon=10.23862035;
+            $array = array('lat'=> $lat ,'lon'=>$lon);
+            return $array;
+        }
+
+    }
+
+    function distanceAction($lat1, $lon1, $lat2, $lon2, $unit) {
+        if (($lat1 == $lat2) && ($lon1 == $lon2)) {
+            return 0;
+        }
+        else {
+            $theta = $lon1 - $lon2;
+            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            $unit = strtoupper($unit);
+
+            if ($unit == "K") {
+                return ($miles * 1.609344);
+            } else if ($unit == "N") {
+                return ($miles * 0.8684);
+            } else {
+                return $miles;
+            }
+        }
+    }
+
+    function calcul_prix_Action($type,$distance,$date)
+    {
+
+        if ($type=="Taxi" && $date<"21:00:00" )
+        {
+            return 540+(450*$distance);
+        }
+        if ($type=="Taxi" && $date>"21:00:00" )
+        {
+            return 900+(500*$distance);
+        }
+        if ($type=="Privée" && $date<"21:00:00")
+        {
+            return 1000+(600*$distance);
+        }
+        if ($type=="Privée" && $date>"21:00:00")
+        {
+            return 1500+(650*$distance);
+        }
+        if ($type=="camion" && $date>"21:00:00")
+        {
+            return 4500+(2100*$distance);
+        }
+    }
 
 
 }

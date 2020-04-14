@@ -16,8 +16,19 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('destination')
-            ->add('prix')
+            ->add('destination' ,choiceType::class,[
+                'choices'=>[
+                    'selectionner votre destination'=>false,
+                    'centre ville,Tunis'=>'centre ville,Tunis',
+                    'Ariana'=>'Ariana',
+                    'Megrine'=>'Megrine',
+                    'Mourouj'=>'Mourouj',
+                    'Bardo'=>'Bardo',
+                    'Carthage'=>'Carthage',
+                    'Ben arous'=>'Ben arous',
+                ],
+                'required'=>true])
+
             ->add('typeReservation',choiceType::class,[
                 'choices'=>[
                     'selectionner votre voiture'=>false,
