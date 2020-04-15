@@ -85,3 +85,15 @@ listebusiness:
 deletecolisss:
     path:   /delete/{id}
     defaults: { _controller: ReservationBundle:Colis:deleteColis}
+
+traiterbusiness:
+    path:   /traiter/{idResBusiness}
+    defaults: { _controller: ReservationBundle:Admin:traitement}
+
+convertirbusiness:
+    path:   /convertir/{idResBusiness}/{prix}/{chauffeur}
+    defaults: { _controller: ReservationBundle:Admin:convertir}
+
+
+
+

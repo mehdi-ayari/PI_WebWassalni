@@ -51,8 +51,7 @@ class RegistrationFormType extends AbstractType
             ',
                 'choices'=>array('Client'=>'ROLE_CLIENT',
                     'Chauffeur'=>'ROLE_CHAUFFEUR',
-                    'Entreprise'=>'ROLE_ENTREPRISE',
-                    'Admin'=>'ROLE_ADMIN'),
+                    'Entreprise'=>'ROLE_ENTREPRISE'),
                 'required' => true, 'multiple'=> true,))
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', RepeatedType::class, array(

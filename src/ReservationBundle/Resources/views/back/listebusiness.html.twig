@@ -17,7 +17,7 @@
                             <option value="50">50</option><option value="100">100</option>
                         </select> </label></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter">
                     <label>Recherche<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label>
-                </div></div></div><div class="row"><div class="col-sm-12">
+                </div></div></div><div class="row">< class="col-sm-12">
                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -34,6 +34,9 @@
                     <tbody>
 
                     {% for reservation in reservations %}
+                    <script>
+                        var i=1;
+                    </script>
                     <tr role="row" class="odd">
                         <td class="sorting_1">{{ reservation.idResBusiness }}</td>
                         <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -48,8 +51,11 @@
                         {#<td>#}
                         <td><a type="button" class="btn btn-block btn-danger btn-lg" href="{{ absolute_url(asset('') )
                             }}reservation/delete/{{ reservation.idResBusiness }}">Supprimer</a></td>
-
-
+                        <td>
+                        <div>
+                            <input type=button class="btn btn-block btn-danger btn-lg" onclick=window.location.href="{{ asset('app_dev.php/Reservation/traiter/'~reservation.idResBusiness) }}"; value="Traiter" />
+                        </div>
+                        </td>
                     </tr></tbody>
                     {% endfor %}
                 </table>
