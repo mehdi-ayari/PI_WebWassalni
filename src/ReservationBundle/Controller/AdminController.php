@@ -86,7 +86,7 @@ class AdminController extends Controller
             'form'=>$form->createView()
         ));
 
-        $filename = 'myFirstSnappyPDF';
+        $filename = 'Traitement';
         return new Response(
             $snappy->getOutputFromHtml($html),
             200,
