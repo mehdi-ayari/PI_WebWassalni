@@ -242,6 +242,22 @@ class User extends BaseUser
         $this->mdp = $mdp;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
 
 }
 

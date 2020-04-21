@@ -36,3 +36,15 @@ services:
     redirect.after.login:
         class: AppBundle\Redirection\AfterLoginRedirection
         arguments: ["@router"]
+
+    ReservationBundle.businessListener:
+        class: ReservationBundle\Listener\businessListener
+        tags:
+            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadEvents }
+        arguments: ['@doctrine.orm.entity_manager']
+
+
+
+
+
+

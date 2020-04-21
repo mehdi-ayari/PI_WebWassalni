@@ -29,6 +29,19 @@ class ReservationType extends AbstractType
                 ],
                 'required'=>true])
 
+            ->add('pointdepart' ,choiceType::class,[
+                'choices'=>[
+                    'selectionner votre destination'=>false,
+                    'centre ville,Tunis'=>'centre ville,Tunis',
+                    'Ariana'=>'Ariana',
+                    'Megrine'=>'Megrine',
+                    'Mourouj'=>'Mourouj',
+                    'Bardo'=>'Bardo',
+                    'Carthage'=>'Carthage',
+                    'Ben arous'=>'Ben arous',
+                ],
+                'required'=>true])
+
             ->add('typeReservation',choiceType::class,[
                 'choices'=>[
                     'selectionner votre voiture'=>false,

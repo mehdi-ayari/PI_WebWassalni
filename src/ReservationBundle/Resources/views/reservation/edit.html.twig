@@ -29,6 +29,15 @@
                         {{ form_start(edit_form1) }}
 
                         <div class="key">
+                            <label >Point Depart :</label>
+                            {{ form_widget(edit_form1.pointdepart) }}
+                            {{ form_errors(edit_form1.pointdepart) }}
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <br>
+
+                        <div class="key">
                             <label >Destination :</label>
                             {{ form_widget(edit_form1.destination) }}
                             {{ form_errors(edit_form1.destination) }}
@@ -37,12 +46,7 @@
 
                         <br>
 
-                        <div class="key">
-                            <label >Prix :</label>
-                            {{ form_widget(edit_form1.prix) }}
-                            {{ form_errors(edit_form1.prix) }}
-                            <div class="clearfix"></div>
-                        </div>
+
                         <div class="key">
                             <label >Type Reservation :</label>
                             <center>

@@ -24,6 +24,7 @@
         <table class="table">
             <thead>
             <tr>
+                <th>Point Depart</th>
                 <th>Destination</th>
                 <th>Date Reservation</th>
                 <th>Prix</th>
@@ -42,6 +43,7 @@
                                 {% for coli in colis %}
                                     {% if reservation.idColis == coli  %}
                                         <tr>
+                                        <td>{{ reservation.pointdepart }}</td>
                                         <td>{{ reservation.destination }}</td>
                                         <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
                                         <td>{{ reservation.prix }}</td>

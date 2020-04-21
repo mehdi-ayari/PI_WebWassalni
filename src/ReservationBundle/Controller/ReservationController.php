@@ -28,15 +28,28 @@ class ReservationController extends Controller
      * @Route("/", name="reservation_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository('ReservationBundle:Reservation')->findAll();
+        $dql= "SELECT bp FROM ReservationBundle:Reservation bp ";
+        $query = $em->CreateQuery($dql);
         $idconnected = $this->getUser()->getId();
         $users = $em->getRepository('AppBundle:User')->findAll();
+        /**
+         * @var $paginator Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result= $paginator->paginate(
+            $query,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',5)
+        );
         return $this->render('@Reservation/reservation/indexpassager.html.twig', array(
-            'reservations' => $reservations, 'idconnected'=>$idconnected, 'users'=>$users
+            'reservations' => $result,
+            'idconnected'=>$idconnected,
+            'users'=>$users
         ));
     }
 
@@ -177,13 +190,15 @@ class ReservationController extends Controller
                 $reservation->setUserClient($this->getUser());
                 $reservation->setObjet("colis");
                 $dest=$form->get('destination')->getData();
+                $depart=$form->get('pointdepart')->getData();
                 $type=$form->get('typeReservation')->getData();
                 $date=new \DateTime('now');
                 $string=$date->format("D, d M Y H:i:s O");
                 $date = explode(" ", $string);
                 $latlong=$this->lat_longAction($dest);
-                $lat2=36.8990112;
-                $lon2=10.1894805;
+                $latlong1=$this->lat_longAction($depart);
+                $lat2=$latlong1['lat'];
+                $lon2=$latlong1['lon'];
                 $lat1=$latlong['lat'];
                 $lon1=$latlong['lon'];
                 $distance=$this->distanceAction($lat1,$lon1,$lat2,$lon2,'K');
@@ -221,6 +236,7 @@ class ReservationController extends Controller
                 if ($form->isSubmitted() && $form->isValid()) {
                     $em = $this->getDoctrine()->getManager();
                     $reservationBusiness->setUserEntreprise($this->getUser());
+                    $reservationBusiness->setEtat(0);
                     $em->persist($reservationBusiness);
                     $em->flush();
 
@@ -257,13 +273,15 @@ class ReservationController extends Controller
                 $reservation->setUserClient($this->getUser());
                 $reservation->setObjet("passager");
                 $dest=$form->get('destination')->getData();
+                $depart=$form->get('pointdepart')->getData();
                 $type=$form->get('typeReservation')->getData();
                 $date=new \DateTime('now');
                 $string=$date->format("D, d M Y H:i:s O");
                 $date = explode(" ", $string);
                 $latlong=$this->lat_longAction($dest);
-                $lat2=36.8990112;
-                $lon2=10.1894805;
+                $latlong1=$this->lat_longAction($depart);
+                $lat2=$latlong1['lat'];
+                $lon2=$latlong1['lon'];
                 $lat1=$latlong['lat'];
                 $lon1=$latlong['lon'];
                 $distance=$this->distanceAction($lat1,$lon1,$lat2,$lon2,'K');
@@ -295,6 +313,7 @@ class ReservationController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $reservationBusiness->setUserEntreprise($this->getUser());
+                $reservationBusiness->setEtat(0);
                 $em->persist($reservationBusiness);
                 $em->flush();
 
@@ -391,11 +410,11 @@ class ReservationController extends Controller
 
         if ($type=="Taxi" && $date<"21:00:00" )
         {
-            return 540+(450*$distance);
+            return 450+(400*$distance);
         }
         if ($type=="Taxi" && $date>"21:00:00" )
         {
-            return 900+(500*$distance);
+            return 700+(500*$distance);
         }
         if ($type=="Privée" && $date<"21:00:00")
         {
@@ -408,6 +427,10 @@ class ReservationController extends Controller
         if ($type=="camion" && $date>"21:00:00")
         {
             return 4500+(2100*$distance);
+        }
+        if ($type=="camion" && $date<"21:00:00")
+        {
+            return 3500+(1800*$distance);
         }
     }
 

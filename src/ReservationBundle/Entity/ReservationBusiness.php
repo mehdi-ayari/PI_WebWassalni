@@ -57,6 +57,13 @@ class ReservationBusiness
     private $prenonClientEntreprise;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="etat", type="boolean", nullable=true)
+     */
+    private $etat;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="point_depart", type="string", length=50, nullable=false)
@@ -207,6 +214,22 @@ class ReservationBusiness
     public function setUserEntreprise($userEntreprise)
     {
         $this->userEntreprise = $userEntreprise;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param bool $etat
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
     }
 
 

@@ -20,6 +20,10 @@
                 <td>{{ reservation.destination }}</td>
             </tr>
             <tr>
+                <th>Point Depart :</th>
+                <td>{{ reservation.pointdepart }}</td>
+            </tr>
+            <tr>
                 <th>Datereservation</th>
                 <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>

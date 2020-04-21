@@ -94,6 +94,8 @@ convertirbusiness:
     path:   /convertir/{idResBusiness}/{prix}/{chauffeur}
     defaults: { _controller: ReservationBundle:Admin:convertir}
 
-
+calendrier:
+    path:   /calendrier
+    defaults: { _controller: ReservationBundle:Admin:calendrier}
 
 

@@ -12,33 +12,66 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends Controller
 {
-    public function afficherlistereservationsAction()
+    public function afficherlistereservationsAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository('ReservationBundle:Reservation')->findAll();
+        $dql= "SELECT bp FROM ReservationBundle:Reservation bp ";
+        $query = $em->CreateQuery($dql);
+        /**
+         * @var $paginator Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result= $paginator->paginate(
+            $query,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',5)
+        );
         return $this->render('@Reservation/back/listereservations.html.twig', array(
-            'reservations' => $reservations
+            'reservations' => $result
         ));
     }
 
-    public function afficherlisteusersAction()
+    public function afficherlisteusersAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->findAll();
+        $dql= "SELECT bp FROM AppBundle:User bp ";
+        $query = $em->CreateQuery($dql);
+        /**
+         * @var $paginator Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result= $paginator->paginate(
+            $query,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',5)
+        );
         return $this->render('@Reservation/back/listeusers.html.twig', array(
-            'users' => $users
+            'users' => $result
         ));
     }
 
-    public function afficherlistebusinessAction()
+    public function afficherlistebusinessAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository('ReservationBundle:ReservationBusiness')->findAll();
+        $dql= "SELECT bp FROM ReservationBundle:ReservationBusiness bp ";
+        $query = $em->CreateQuery($dql);
+        /**
+         * @var $paginator Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result= $paginator->paginate(
+            $query,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',5)
+        );
         return $this->render('@Reservation/back/listebusiness.html.twig', array(
-            'reservations' => $reservations
+            'reservations' => $result
         ));
     }
 
@@ -72,6 +105,8 @@ class AdminController extends Controller
         $form = $this->createForm('ReservationBundle\Form\ReservationType', $res);
         $users = $em->getRepository('AppBundle:User')->findAll();
         $reservations = $em->getRepository('ReservationBundle:ReservationBusiness')->find($idResBusiness);
+        $qb=$em->createQuery('Update ReservationBundle:ReservationBusiness r SET r.etat=1 where r.idResBusiness=:id')
+            ->setParameter('id',$idResBusiness)->execute();
         $date=$reservations->getDateReservation();
         $string=$date->format("D, d M Y H:i:s O");
         $date1=$reservations->getDateDepart();
@@ -98,6 +133,10 @@ class AdminController extends Controller
 
     }
 
+    public function calendrierAction()
+    {
+        return $this->render('@Reservation/back/calendar.html.twig');
+    }
 
 
 

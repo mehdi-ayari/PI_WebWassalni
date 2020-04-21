@@ -33,6 +33,13 @@ class Reservation
     private $destination;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="point_depart", type="string", length=50)
+     */
+    private $pointdepart;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_reservation", type="datetime", nullable=false)
@@ -258,6 +265,24 @@ class Reservation
     {
         $this->idColis = $idColis;
     }
+
+    /**
+     * @return string
+     */
+    public function getPointdepart()
+    {
+        return $this->pointdepart;
+    }
+
+    /**
+     * @param string $pointdepart
+     */
+    public function setPointdepart($pointdepart)
+    {
+        $this->pointdepart = $pointdepart;
+    }
+
+
 
 
 

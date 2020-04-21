@@ -27,6 +27,15 @@
                             {{ form_start(form) }}
 
                             <div class="key">
+                                <label >Point Depart :</label>
+                                {{ form_widget(form.pointdepart) }}
+                                {{ form_errors(form.pointdepart) }}
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <br>
+
+                            <div class="key">
                                 <label >Destination :</label>
                                 {{ form_widget(form.destination) }}
                                 {{ form_errors(form.destination) }}
