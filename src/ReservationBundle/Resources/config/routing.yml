@@ -98,4 +98,11 @@ calendrier:
     path:   /calendrier
     defaults: { _controller: ReservationBundle:Admin:calendrier}
 
+all:
+    path:   /all
+    defaults: { _controller: ReservationBundle:Reservation:all}
+
+ajouter:
+    path:   /ajouter
+    defaults: { _controller: ReservationBundle:Reservation:ajouter}
 

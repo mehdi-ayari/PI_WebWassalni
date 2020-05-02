@@ -8,9 +8,13 @@ use ReservationBundle\Entity\Colis;
 use ReservationBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ReservationBundle\Entity\ReservationBusiness;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Security\Core\Security;
 
@@ -30,13 +34,15 @@ class ReservationController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $objet="passager";
         $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $reservations = $em->getRepository('ReservationBundle:Reservation')->findBy(array('userClient'=>$user,'objet'=>$objet));
+        $dql= "SELECT bp FROM ReservationBundle:Reservation bp WHERE bp.userClient =?0 and bp.objet=?1";
+        $query=$em->createQuery($dql)->setParameter(0,$user)->setParameter(1,$objet) ;
+       // $query = $em->CreateQuery($dql);
 
-        $reservations = $em->getRepository('ReservationBundle:Reservation')->findAll();
-        $dql= "SELECT bp FROM ReservationBundle:Reservation bp ";
-        $query = $em->CreateQuery($dql);
-        $idconnected = $this->getUser()->getId();
-        $users = $em->getRepository('AppBundle:User')->findAll();
+
         /**
          * @var $paginator Knp\Component\Pager\Paginator
          */
@@ -48,9 +54,37 @@ class ReservationController extends Controller
         );
         return $this->render('@Reservation/reservation/indexpassager.html.twig', array(
             'reservations' => $result,
-            'idconnected'=>$idconnected,
-            'users'=>$users
         ));
+    }
+
+    public function allAction()
+    {
+        $objet="passager";
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $reservations = $em->getRepository('ReservationBundle:Reservation')->findBy(array('userClient'=>$user,'objet'=>$objet));
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($reservations);
+        return new JsonResponse($formatted);
+    }
+
+    public function ajouterAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reservation=new Reservation();
+        $reservation->setDestination($request->get('destination'));
+        $reservation->setPointdepart($request->get('pointdepart'));
+        $reservation->setPrix($request->get('prix'));
+        $reservation->setObjet($request->get('objet'));
+        $reservation->setDateReservation($request->get('datereservation'));
+        $reservation->setTypeReservation($request->get('typereservation'));
+        $reservation->setUserClient($request->get('client'));
+        $reservation->setUserChauffeur($request->get('chauffeur'));
+        $em->persist($reservation);
+        $em->flush();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
     }
 
     /**

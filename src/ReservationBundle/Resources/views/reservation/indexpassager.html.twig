@@ -34,10 +34,9 @@
             </tr>
             </thead>
             <tbody>
-            {% for user in users %}
-                {% if user.id == idconnected  %}
+
                     {% for reservation in reservations %}
-                        {% if user == reservation.userClient  %}
+
                             <tr>
                                 <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d H:i:s') }}{% endif %}</td>
                                 <td>{{ reservation.pointdepart }}</td>
@@ -52,9 +51,7 @@
                                     </ul>
                                 </td>
                             </tr>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
+
             {% endfor %}
             </tbody>
         </table>
