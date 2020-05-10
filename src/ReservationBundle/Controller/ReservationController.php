@@ -17,6 +17,8 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
 
 
 /**
@@ -59,27 +61,30 @@ class ReservationController extends Controller
 
     public function allAction()
     {
-        $objet="passager";
         $em = $this->getDoctrine()->getManager();
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $reservations = $em->getRepository('ReservationBundle:Reservation')->findBy(array('userClient'=>$user,'objet'=>$objet));
-        $serializer=new Serializer([new ObjectNormalizer()]);
-        $formatted= $serializer->normalize($reservations);
-        return new JsonResponse($formatted);
+        $categories = $em->getRepository('ReservationBundle:Reservation')->findAll();
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+        $jsonContent = $serializer->serialize($categories, 'json');
+        echo $jsonContent;
+        return new Response($jsonContent);
     }
 
     public function ajouterAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $reservation=new Reservation();
+        $user = $em->getRepository('AppBundle:User')->find(1);
+        $chauffeur=$em->getRepository('AppBundle:User')->find($request->get('userChauffeur'));
         $reservation->setDestination($request->get('destination'));
         $reservation->setPointdepart($request->get('pointdepart'));
+        $reservation->setDateReservation(new \DateTime('now'));
+        $reservation->setTypeReservation($request->get('typeReservation'));
         $reservation->setPrix($request->get('prix'));
         $reservation->setObjet($request->get('objet'));
-        $reservation->setDateReservation($request->get('datereservation'));
-        $reservation->setTypeReservation($request->get('typereservation'));
-        $reservation->setUserClient($request->get('client'));
-        $reservation->setUserChauffeur($request->get('chauffeur'));
+        $reservation->setUserClient($user);
+        $reservation->setUserChauffeur($chauffeur);
         $em->persist($reservation);
         $em->flush();
         $serializer=new Serializer([new ObjectNormalizer()]);

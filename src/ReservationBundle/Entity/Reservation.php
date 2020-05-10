@@ -282,9 +282,10 @@ class Reservation
         $this->pointdepart = $pointdepart;
     }
 
-
-
-
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+    }
 
 
 }

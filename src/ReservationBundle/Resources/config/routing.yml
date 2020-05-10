@@ -106,3 +106,6 @@ ajouter:
     path:   /ajouter
     defaults: { _controller: ReservationBundle:Reservation:ajouter}
 
+allusers:
+    path:   /allusers
+    defaults: { _controller: AppBundle:Default:allusers}
