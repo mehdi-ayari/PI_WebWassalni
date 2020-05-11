@@ -109,3 +109,11 @@ ajouter:
 allusers:
     path:   /allusers
     defaults: { _controller: AppBundle:Default:allusers}
+
+allbusiness:
+    path:   /allbusiness
+    defaults: { _controller: ReservationBundle:ReservationBusiness:allbusiness}
+
+ajouterbusiness:
+    path:   /ajouterbusiness
+    defaults: { _controller: ReservationBundle:ReservationBusiness:ajouterbusiness}

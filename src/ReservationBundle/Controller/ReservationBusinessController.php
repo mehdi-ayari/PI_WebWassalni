@@ -2,10 +2,18 @@
 
 namespace ReservationBundle\Controller;
 
+use ReservationBundle\Entity\Reservation;
 use ReservationBundle\Entity\ReservationBusiness;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Reservationbusiness controller.
@@ -60,6 +68,38 @@ class ReservationBusinessController extends Controller
             'reservationBusiness' => $reservationBusiness,
             'form' => $form->createView(),
         ));
+    }
+
+    public function allbusinessAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('ReservationBundle:ReservationBusiness')->findAll();
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+        $jsonContent = $serializer->serialize($categories, 'json');
+        echo $jsonContent;
+        return new Response($jsonContent);
+    }
+
+    public function ajouterbusinessAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reservation=new ReservationBusiness();
+        $user = $em->getRepository('AppBundle:User')->find(4);
+        $reservation->setDestination($request->get('destination'));
+        $reservation->setPointdepart($request->get('pointDepart'));
+        $reservation->setDateReservation(new \DateTime('now'));
+        $reservation->setPrenonClientEntreprise($request->get('prenonClientEntreprise'));
+        $reservation->setNomClientEntreprise($request->get('nomClientEntreprise'));
+        $reservation->setDateDepart($request->get('dateDepart'));
+        $reservation->setUserEntreprise($user);
+
+        $em->persist($reservation);
+        $em->flush();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
     }
 
     /**
