@@ -1,0 +1,24 @@
+reclamationvoyage_index:
+    path:     /
+    defaults: { _controller: "VoyageBundle:ReclamationVoyage:index" }
+    methods:  GET
+
+reclamationvoyage_show:
+    path:     /{idReclamationVoyage}/show
+    defaults: { _controller: "VoyageBundle:ReclamationVoyage:show" }
+    methods:  GET
+
+reclamationvoyage_new:
+    path:     /{idVoyage}/new
+    defaults: { _controller: "VoyageBundle:ReclamationVoyage:new" }
+    methods:  [GET, POST]
+
+reclamationvoyage_edit:
+    path:     /{idReclamationVoyage}/edit
+    defaults: { _controller: "VoyageBundle:ReclamationVoyage:edit" }
+    methods:  [GET, POST]
+
+reclamationvoyage_delete:
+    path:     /{idReclamationVoyage}/delete
+    defaults: { _controller: "VoyageBundle:ReclamationVoyage:delete" }
+    methods:  DELETE

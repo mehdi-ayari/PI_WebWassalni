@@ -22,6 +22,10 @@ class AppKernel extends Kernel
             new PromotionBundle\PromotionBundle(),
             new ReclamationBundle\ReclamationBundle(),
             new VoyageBundle\VoyageBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
+            new Cron\CronBundle\CronCronBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

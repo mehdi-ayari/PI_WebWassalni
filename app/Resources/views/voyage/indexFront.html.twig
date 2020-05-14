@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div style="background-image: url('img_girl.jpg');">
+
+<section class="home-about-area section-gap">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-6 about-right">
+
+
+
+                                            {% for reservation in reservations %}
+                                                {% for voyage in voyagesD %}
+
+                                                    {% if voyage.reservationRes ==reservation %}
+                                                        {% if voyage.reservationRes.userClient==idconnected %}
+
+                                                    <tr>
+                                                        <h1>Voyage : {{ app.user }}</h1>
+                                                        <h4>distance : {{ voyage.distance }} metres</h4>
+                                                        <h4 id="datetime" > date : {{ voyage.dateVoyage|date('d/m/Y H:i:s') }}</h4>
+                                                        <h4> reservation : {{ reservation.destination }}</h4>
+                                                        <td>
+                                                            <ul>
+                                                                <li>
+                                                                    <a class="text-uppercase primary-btn" href="{{ path('reclamationvoyage_new', { 'idVoyage': voyage.idVoyage }) }}">Reclamation</a>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                            <p>-------------------------------------------------------------------</p>
+
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+
+            {% for reservation in reservations %}
+                {% for voyage in voyages %}
+
+                    {% if voyage.reservationRes ==reservation %}
+                        {% if voyage.reservationRes.userClient==idconnected %}
+
+                            <tr>
+                                <h1>Voyage : {{ app.user }}</h1>
+                                <h4>distance : {{ voyage.distance }} metres</h4>
+                                <h4><p id="datetime" > date : {{ voyage.dateVoyage|date('d/m/Y H:i:s') }}</p></h4>
+                                <h4> reservation : {{ reservation.destination }}</h4>
+                                <td>
+                                    <form id="Annuler" action="/src/VoyageBundle/Controller/VoyageController.php" method="POST">
+                                    <ul>
+                                        <li>
+                                            <input type="submit" value="Annuler" name="Annuler" id="Annuler" form="Annuler" class="text-uppercase primary-btn" href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}">
+                                        </li>
+                                        <br>
+                                        <li>
+                                            <a class="text-uppercase primary-btn" href="{{ path('voyage_map', { 'idVoyage': voyage.idVoyage }) }}" target=_blank >ViewMap</a>
+                                        </li>
+
+                                    </ul>
+                                    </form>
+                                </td>
+                            </tr>
+                            <p>-------------------------------------------------------------------</p>
+
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+            {% endfor %}
+
+
+        </div></div></section></div>
+
+{% endblock %}

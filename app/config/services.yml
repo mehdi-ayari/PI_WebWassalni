@@ -33,3 +33,30 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    redirect.after.login:
+        class: AppBundle\Redirection\AfterLoginRedirection
+        arguments: ["@router"]
+
+    voyage.voyage_controller:
+        class: VoyageBundle\Controller\VoyageController
+
+    twilio.client:
+        class: Twilio\Rest\Client
+        arguments: ['%twilio_sid%', '%twilio_token%']
+
+    # Add an alias for the twilio.client service
+    Twilio\Rest\Client: '@twilio.client'
+
+    voyage.Voyage.new:
+        class: VoyageBundle\Command\VoyageSmsCommand
+        tags:
+            - { name: 'consoel.command' , command: 'Voyage:sms' }
+
+    app.chart.data:
+        class: AppBundle\Chart\ChartData
+        arguments: ['@doctrine.orm.entity_manager']
+
+    app.chart:
+        class: AppBundle\Chart\Chart
+        arguments: ['@app.chart.data']
+

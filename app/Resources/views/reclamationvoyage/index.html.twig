@@ -1,0 +1,49 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-7 connectedSortable">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">
+
+    <h1>Reclamation voyages list</h1>
+                                <div class="card-body table-responsive p-0">
+
+                                </div><table class="table table-striped table-valign-middle">
+        <thead>
+            <tr>
+                <th>Idreclamationvoyage</th>
+                <th>Titre</th>
+                <th>Commentaire</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamationVoyage in reclamationVoyages %}
+            <tr>
+                <td><a href="{{ path('reclamationvoyage_show', { 'idReclamationVoyage': reclamationVoyage.idReclamationVoyage }) }}">{{ reclamationVoyage.idReclamationVoyage }}</a></td>
+                <td>{{ reclamationVoyage.titre }}</td>
+                <td>{{ reclamationVoyage.commentaire }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <form name="form" method="post" action="{{ path('reclamationvoyage_delete', { 'idReclamationVoyage': reclamationVoyage.idReclamationVoyage }) }}"><input type="hidden" name="_method" value="DELETE">
+                                <input type="submit" value="Delete">
+                                <input type="hidden" id="form__token" name="form[_token]" value="QbOI7Im5dVDOWs6dkKx7UivDqjf-Sv8BWM7z4WFCTfQ"></form>
+                        </li>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table></h3></div></div></section></div></div></section></div>
+
+{% endblock %}

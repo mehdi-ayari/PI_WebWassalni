@@ -46,7 +46,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
     {
         $this->namespace = '' === $namespace ? '' : CacheItem::validateKey($namespace).static::NS_SEPARATOR;
         if (null !== $this->maxIdLength && \strlen($namespace) > $this->maxIdLength - 24) {
-            throw new InvalidArgumentException(sprintf('Namespace must be %d chars max, %d given ("%s")', $this->maxIdLength - 24, \strlen($namespace), $namespace));
+            throw new InvalidArgumentException(sprintf('Namespace must be %d chars max, %d given ("%s").', $this->maxIdLength - 24, \strlen($namespace), $namespace));
         }
         $this->createCacheItem = \Closure::bind(
             static function ($key, $value, $isHit) use ($defaultLifetime) {
@@ -133,7 +133,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
     public static function createConnection($dsn, array $options = [])
     {
         if (!\is_string($dsn)) {
-            throw new InvalidArgumentException(sprintf('The %s() method expect argument #1 to be string, %s given.', __METHOD__, \gettype($dsn)));
+            throw new InvalidArgumentException(sprintf('The "%s()" method expect argument #1 to be string, "%s" given.', __METHOD__, \gettype($dsn)));
         }
         if (0 === strpos($dsn, 'redis://')) {
             return RedisAdapter::createConnection($dsn, $options);
@@ -142,7 +142,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
             return MemcachedAdapter::createConnection($dsn, $options);
         }
 
-        throw new InvalidArgumentException(sprintf('Unsupported DSN: %s.', $dsn));
+        throw new InvalidArgumentException(sprintf('Unsupported DSN: "%s".', $dsn));
     }
 
     /**

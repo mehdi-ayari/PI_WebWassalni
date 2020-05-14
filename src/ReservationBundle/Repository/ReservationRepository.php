@@ -2,6 +2,8 @@
 
 namespace ReservationBundle\Repository;
 
+use VoyageBundle\Entity\Voyage;
+
 /**
  * ReservationRepository
  *

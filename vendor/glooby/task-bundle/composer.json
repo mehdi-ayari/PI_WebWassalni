@@ -1,0 +1,28 @@
+{
+    "name": "glooby/task-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Scheduling of tasks for symfony made simple",
+    "keywords": ["cron", "symfony", "scheduler", "task", "bundle", "glooby"],
+    "homepage": "https://www.glooby.se",
+    "authors": [
+        {
+            "name": "Emil Kilhage",
+            "email": "emil.kilhage@glooby.com",
+            "homepage": "https://www.glooby.se"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Glooby\\TaskBundle\\": "src/" }
+    },
+    "require": {
+        "php": ">=5.5",
+        "symfony/framework-bundle": "~3.0",
+        "doctrine/orm": "~2.4",
+        "mtdowling/cron-expression": "~1.0"
+    },
+    "require-dev": {
+        "phpspec/prophecy": "~1.5",
+        "satooshi/php-coveralls": "dev-master"
+    }
+}

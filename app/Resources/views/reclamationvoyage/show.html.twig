@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Reclamationvoyage</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idreclamationvoyage</th>
+                <td>{{ reclamationVoyage.idReclamationVoyage }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ reclamationVoyage.titre }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ reclamationVoyage.commentaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reclamationvoyage_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reclamationvoyage_edit', { 'idReclamationVoyage': reclamationVoyage.idReclamationVoyage }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

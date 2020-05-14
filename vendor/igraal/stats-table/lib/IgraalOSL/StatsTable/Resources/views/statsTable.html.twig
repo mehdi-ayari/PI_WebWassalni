@@ -1,0 +1,30 @@
+<table class="stats-table">
+    <thead>
+    <tr>
+        {% for key, name in headers %}
+            <th class="stats-table-{{ key }}">
+                {% if metaData[key].description is defined %}<abbr title="{{ metaData[key].description }}">{% endif %}
+                    {{ name }}
+                    {% if metaData[key].description is defined %}</abbr>{% endif %}
+            </th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for line in data %}
+        <tr>
+            {% for key, value in line %}
+                <td class="stats-table-{{ key }}">{{ value }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+
+    <tfoot>
+    <tr>
+        {% for key, value in aggregations %}
+            <th class="stats-table-{{ key }}">{{ value }}</th>
+        {% endfor %}
+    </tr>
+    </tfoot>
+</table>

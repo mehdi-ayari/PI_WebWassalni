@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <center>
+<section class="home-about-area section-gap">
+    <div class="col-lg-4  col-md-6 header-right">
+    <h2>Reclamer voyage</h2><br>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <center><input type="submit" value="Create" /></center>
+    {{ form_end(form) }}
+
+    </div>
+</section>
+    </center>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <section class="home-about-area section-gap">
+
+        <div class="row align-items-center">
+
+
+                <div class="col-lg-6 about-right">
+
+                    <h1>Voyage : {{ app.user }}</h1>
+                    <h4>id : {{ voyage.idVoyage }}</h4>
+                    <h4>Distance : {{ voyage.distance }}</h4>
+                    <h4>Date Voyage : {{ voyage.dateVoyage|date('d/m/y h:m:s') }}</h4>
+                    <h4>Destination : {{ reservation.destination }}</h4>
+
+
+                    <a class="text-uppercase primary-btn" href="{{ path('reclamationvoyage_new', { 'idVoyage': voyage.idVoyage }) }}">Reclamation</a>
+                </div>
+
+        </div>
+
+{% endblock %}
+
+

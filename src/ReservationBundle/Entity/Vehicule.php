@@ -52,7 +52,7 @@ class Vehicule
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_chauffeur", referencedColumnName="id")
      * })

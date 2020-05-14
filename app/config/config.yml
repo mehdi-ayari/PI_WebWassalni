@@ -12,10 +12,14 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    photos_directory: '%kernel.root_dir%/../../images/uploads'
+    twilio_sid: AC16fce352cd301d805ce075ba4b7969d0
+    twilio_token: 90023e188332683906bd451a7a227703
+    twilio_number: '+14157544698'
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -65,6 +69,7 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
@@ -76,3 +81,16 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:                               # this lines
+        mailer: fos_user.mailer.twig_swift
+    from_email:
+        address: "jawhar.chaouch@esprit.tn"
+        sender_name: "Me"
+
+cmen_google_charts:
+    version: "current"

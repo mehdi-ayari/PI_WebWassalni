@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+<section class="home-about-area section-gap">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-6 about-right">
+
+
+        <h1>Voyage</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idvoyage</th>
+                <td>{{ voyage.idVoyage }}</td>
+            </tr>
+            <tr>
+                <th>Distance</th>
+                <td>{{ voyage.distance }}</td>
+            </tr>
+            <tr>
+                <th>Datevoyage</th>
+                <td>{{ voyage.dateVoyage|date('d/m/y h:m:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('voyage_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('voyage_edit', { 'idVoyage': voyage.idVoyage }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+
+        </div></div></section>
+{% endblock %}
