@@ -98,22 +98,34 @@ calendrier:
     path:   /calendrier
     defaults: { _controller: ReservationBundle:Admin:calendrier}
 
-all:
+alljson:
     path:   /all
     defaults: { _controller: ReservationBundle:Reservation:all}
 
-ajouter:
+ajouterjson:
     path:   /ajouter
     defaults: { _controller: ReservationBundle:Reservation:ajouter}
 
-allusers:
+modifierjson:
+    path:   /modifier
+    defaults: { _controller: ReservationBundle:Reservation:modifier}
+
+allusersjson:
     path:   /allusers
     defaults: { _controller: AppBundle:Default:allusers}
 
-allbusiness:
+allbusinessjson:
     path:   /allbusiness
     defaults: { _controller: ReservationBundle:ReservationBusiness:allbusiness}
 
-ajouterbusiness:
+ajouterbusinessjson:
     path:   /ajouterbusiness
     defaults: { _controller: ReservationBundle:ReservationBusiness:ajouterbusiness}
+
+supprimerbusinessjson:
+    path:   /supprimerbusiness
+    defaults: { _controller: ReservationBundle:ReservationBusiness:supprimerbusiness}
+
+modifierbusinessjson:
+    path:   /modifierbus
+    defaults: { _controller: ReservationBundle:ReservationBusiness:modifierbusiness}

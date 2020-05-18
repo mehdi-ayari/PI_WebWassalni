@@ -92,13 +92,66 @@ class ReservationBusinessController extends Controller
         $reservation->setDateReservation(new \DateTime('now'));
         $reservation->setPrenonClientEntreprise($request->get('prenonClientEntreprise'));
         $reservation->setNomClientEntreprise($request->get('nomClientEntreprise'));
-        $reservation->setDateDepart($request->get('dateDepart'));
+        $reservation->setEtat($request->get('etat'));
+        $datedepart=$request->get('dateDepart');
+        $date = new \DateTime($datedepart);
+        $reservation->setDateDepart($date);
         $reservation->setUserEntreprise($user);
 
         $em->persist($reservation);
         $em->flush();
         $serializer=new Serializer([new ObjectNormalizer()]);
         $formatted= $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
+    }
+
+    public function supprimerbusinessAction(Request $request)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $business = $em->getRepository('ReservationBundle:ReservationBusiness')->find($request->get('idResBusiness'));
+        $em->remove($business);
+
+        $em->flush();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($business);
+        return new JsonResponse($formatted);
+    }
+
+    public function modifierbusinessAction (Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $reservation = $em->getRepository('ReservationBundle:ReservationBusiness')->find($request->get('idResBusiness'));
+        $user = $em->getRepository('AppBundle:User')->find(4);
+        $reservation->setUserEntreprise($user);
+
+        if ($request->get('destination')!=null ){
+            $reservation->setDestination($request->get('destination'));}
+
+        if($request->get('pointDepart') !=null){
+            $reservation->setPointDepart($request->get('pointDepart'));
+
+        }
+
+        if($request->get('nomClientEntreprise') !=null){
+            $reservation->setNomClientEntreprise($request->get('nomClientEntreprise'));
+
+        }
+        if($request->get('prenonClientEntreprise') !=null){
+            $reservation->setPrenonClientEntreprise($request->get('prenonClientEntreprise'));
+
+        }
+        if($request->get('dateDepart') !=null){
+            $datedepart=$request->get('dateDepart');
+            $date = new \DateTime($datedepart);
+            $reservation->setDateDepart($date);
+
+        }
+
+        $em->persist($reservation);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reservation);
         return new JsonResponse($formatted);
     }
 

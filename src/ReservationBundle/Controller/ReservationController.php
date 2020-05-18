@@ -62,11 +62,11 @@ class ReservationController extends Controller
     public function allAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('ReservationBundle:Reservation')->findAll();
+        $reservations = $em->getRepository('ReservationBundle:Reservation')->findAll();
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers, $encoders);
-        $jsonContent = $serializer->serialize($categories, 'json');
+        $jsonContent = $serializer->serialize($reservations, 'json');
         echo $jsonContent;
         return new Response($jsonContent);
     }
@@ -75,6 +75,7 @@ class ReservationController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $reservation=new Reservation();
+        $colis=new Colis();
         $user = $em->getRepository('AppBundle:User')->find(1);
         $chauffeur=$em->getRepository('AppBundle:User')->find($request->get('userChauffeur'));
         $reservation->setDestination($request->get('destination'));
@@ -85,11 +86,79 @@ class ReservationController extends Controller
         $reservation->setObjet($request->get('objet'));
         $reservation->setUserClient($user);
         $reservation->setUserChauffeur($chauffeur);
+        $objet=$request->get('objet');
+        if ($objet=="colis")
+        {
+            $colis->setContenu($request->get('contenu'));
+            $colis->setPoids($request->get('poids'));
+            $em->persist($colis);
+            $em->flush();
+            $id=$colis->getIdColis();
+            $c=$em->getRepository('ReservationBundle:Colis')->find($id);
+            $reservation->setIdColis($c);
+        }
         $em->persist($reservation);
         $em->flush();
         $serializer=new Serializer([new ObjectNormalizer()]);
         $formatted= $serializer->normalize($reservation);
         return new JsonResponse($formatted);
+    }
+
+    public function supprimerAction($id)
+    {
+        $form = $this->getDoctrine()->getRepository(Reservation::class)->find($id);
+        $em=$this->getDoctrine()->getManager();
+
+        $em->remove($form);
+
+        $em->flush();
+
+        return $this->redirectToRoute('reservation_index');
+    }
+
+    public function modifierAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reservation = $em->getRepository('ReservationBundle:Reservation')->find($request->get('id'));
+        $user = $em->getRepository('AppBundle:User')->find(1);
+        $reservation->setUserClient($user);
+
+        if ($request->get('destination')!=null ){
+            $reservation->setDestination($request->get('destination'));}
+
+        if($request->get('pointdepart') !=null){
+            $reservation->setPointdepart($request->get('pointdepart'));
+
+        }
+
+        if($request->get('typeReservation') !=null){
+            $reservation->setTypeReservation($request->get('typeReservation'));
+
+        }
+        if($request->get('objet') !=null){
+            $reservation->setObjet($request->get('objet'));
+
+        }
+        if($request->get('userChauffeur') !=null){
+            $chauffeur=$em->getRepository('AppBundle:User')->find($request->get('userChauffeur'));
+            $reservation->setUserChauffeur($chauffeur);
+
+        }
+        if($request->get('prix') !=null){
+            $reservation->setPrix($request->get('prix'));
+
+        }
+
+
+
+
+
+        $em->persist($reservation);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reservation);
+        return new JsonResponse($formatted);
+
     }
 
     /**
