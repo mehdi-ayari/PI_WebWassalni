@@ -139,5 +139,29 @@ class AdminController extends Controller
     }
 
 
+    public function mailAction(Request $request)
+    {
+
+        $username='debbopi@gmail.com';
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Confirmation reservation entreprise ')
+            ->setFrom($username)
+            ->setTo("mehdi.ayari@esprit.tn")
+            //->setBody(
+              //  $this->renderView(
+                //    '@GererEntrepot/entrepot/email.html.twig',array(
+                  //      "nom" => $nom,"prenom"=>$prenom)
+                //),
+              //  'text/html'
+
+           // );
+            ->setBody('Merci pour votre confiance voici un fichier PDF qui confirme votre Reservation avec plus de details')
+            ->attach(\Swift_Attachment::fromPath('C:\Users\Mahdi\Desktop\Traitement.pdf'));
+
+        $this->get('mailer')->send($message);
+
+        return $this->render('@Reservation/back/calendar.html.twig');
+    }
+
 
 }

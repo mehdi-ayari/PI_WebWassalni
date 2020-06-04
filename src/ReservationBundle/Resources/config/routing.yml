@@ -94,7 +94,7 @@ convertirbusiness:
     path:   /convertir/{idResBusiness}/{prix}/{chauffeur}
     defaults: { _controller: ReservationBundle:Admin:convertir}
 
-calendrier:
+calend:
     path:   /calendrier
     defaults: { _controller: ReservationBundle:Admin:calendrier}
 
@@ -109,6 +109,11 @@ ajouterjson:
 modifierjson:
     path:   /modifier
     defaults: { _controller: ReservationBundle:Reservation:modifier}
+
+supprimerjson:
+    path:   /supprimerreservation
+    defaults: { _controller: ReservationBundle:Reservation:supprimerjson}
+
 
 allusersjson:
     path:   /allusers
@@ -129,3 +134,7 @@ supprimerbusinessjson:
 modifierbusinessjson:
     path:   /modifierbus
     defaults: { _controller: ReservationBundle:ReservationBusiness:modifierbusiness}
+
+mail:
+    path: /envoyermail
+    defaults: { _controller: ReservationBundle:Admin:mail}

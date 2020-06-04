@@ -89,6 +89,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             'Composer\\CaBundle\\' => 18,
         ),
+        'A' => 
+        array (
+            'AncaRebeca\\FullCalendarBundle\\' => 30,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -259,6 +263,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         'Composer\\CaBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
+        ),
+        'AncaRebeca\\FullCalendarBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ancarebeca/full-calendar-bundle',
         ),
     );
 

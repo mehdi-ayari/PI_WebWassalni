@@ -3,6 +3,7 @@
 namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Colis
@@ -23,7 +24,11 @@ class Colis
 
     /**
      * @var float
-     *
+     *@Assert\NotBlank()
+     *@Assert\Type(
+     *     type="integer"
+     * )
+     * @Assert\Length(min=3)
      * @ORM\Column(name="poids", type="float", precision=10, scale=0, nullable=false)
      */
     private $poids;

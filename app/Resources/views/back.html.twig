@@ -27,7 +27,8 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}" />
+
 
 </head>
 
@@ -151,7 +152,7 @@
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ path('calendrier') }}" class="nav-link active">
+                                <a href="{{ path('calend') }}" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Calendrier</p>
                                 </a>
@@ -262,7 +263,10 @@
          </div><!-- /.container-fluid -->
      </section>
  {% endblock %}
-
+     {% block css %}
+{% endblock %}
+     {% block script %}
+     {% endblock %}
 {% block footer %}
     <!-- /.content-wrapper -->
     <footer class="main-footer">
@@ -315,6 +319,12 @@
 <script src="{{ asset('back/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('back/dist/js/demo.js') }}"></script>
-    </div>
+
+     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>
+
+ </div>
 </body>
 </html>

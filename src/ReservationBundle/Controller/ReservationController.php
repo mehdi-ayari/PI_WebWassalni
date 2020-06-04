@@ -71,6 +71,18 @@ class ReservationController extends Controller
         return new Response($jsonContent);
     }
 
+    public function supprimerjsonAction(Request $request)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $res = $em->getRepository('ReservationBundle:Reservation')->find($request->get('id'));
+        $em->remove($res);
+
+        $em->flush();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($res);
+        return new JsonResponse($formatted);
+    }
+
     public function ajouterAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -115,6 +127,7 @@ class ReservationController extends Controller
 
         return $this->redirectToRoute('reservation_index');
     }
+
 
     public function modifierAction(Request $request)
     {
@@ -219,7 +232,6 @@ class ReservationController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('reservation_edit', array('id' => $reservation->getId()));
         }
 

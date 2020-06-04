@@ -1,0 +1,4 @@
+ancarebeca_full_calendar_load:
+    path:     /full-calendar/load
+    defaults:
+        _controller: FullCalendarBundle:Calendar:load

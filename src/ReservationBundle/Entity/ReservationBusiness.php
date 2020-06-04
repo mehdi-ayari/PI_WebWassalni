@@ -3,6 +3,8 @@
 namespace ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * ReservationBusiness
@@ -23,10 +25,12 @@ class ReservationBusiness
 
     /**
      * @var \DateTime
-     *
+     *@Assert\NotBlank()
+     *@Assert\GreaterThanOrEqual("today")
      * @ORM\Column(name="date_depart", type="datetime", nullable=false)
      */
     private $dateDepart;
+
 
     /**
      * @var string
@@ -47,6 +51,8 @@ class ReservationBusiness
      *
      * @ORM\Column(name="nom_client_entreprise", type="string", length=20, nullable=false)
      */
+
+
     private $nomClientEntreprise;
 
     /**

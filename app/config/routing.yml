@@ -42,3 +42,6 @@ adesigns_calendar:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+ancarebeca_fullcalendar:
+    resource: "@FullCalendarBundle/Resources/config/routing.yml"

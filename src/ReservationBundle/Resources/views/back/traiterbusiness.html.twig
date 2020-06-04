@@ -378,7 +378,12 @@
 <br>
 <table>
     <tr>
-        <td><input type=button class="btn btn-block btn-danger btn-lg" href="" ; value="Envoyer"/></td>
+        {% for user in users %}
+            {% if user.role == "entreprise" %}
+
+            {% endif %}
+        {% endfor %}
+        <td> <a href="{{ asset('/PI_Webwassalni/web/app_dev.php/Reservation/envoyermail') }}"><input class="btn btn-block btn-danger btn-lg" type="submit" value="envoyer" /></a></td>
         <td><button class="btn btn-block btn-danger btn-lg" onclick="redirect({{ reservation.idResBusiness }})">Convertir en PDF</button></td>
         <script type="text/javascript">
             function redirect(res)
@@ -387,6 +392,12 @@
                 var strUser = e.options[e.selectedIndex].text;
                 var p = document.getElementById("prix").value;
                 var url = "http://localhost/PI_Webwassalni/web/app_dev.php/Reservation/convertir/"+res+"/"+p+"/"+strUser;
+                window.location.assign(url);
+            }
+            function mail(email)
+            {
+
+                var url = "http://localhost/PI_Webwassalni/web/app_dev.php/Reservation/envoyermail/"+email;
                 window.location.assign(url);
             }
         </script>
