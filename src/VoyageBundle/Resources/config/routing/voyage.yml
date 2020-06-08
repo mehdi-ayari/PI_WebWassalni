@@ -46,3 +46,7 @@ findDone_voyage:
     path:     /findDone
     defaults: { _controller: "VoyageBundle:Voyage:findDone" }
 
+loginMobile:
+    path:     /findDone
+    defaults: { _controller: "VoyageBundle:Voyage:loginMobile" }
+

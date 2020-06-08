@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div style="background-image: url('img_girl.jpg');">
+
+    <section class="home-about-area section-gap">
+
+        <div class="row align-items-center">
+
+            <form class="col-lg-6 about-right">
+                {% for reservation in reservations %}
+                {% for voyage in voyages %}
+                {% for reclamationVoyage in reclamationVoyages %}
+                {% if reclamationVoyage.idVoy == voyage %}
+                {% if voyage.reservationRes ==reservation %}
+                {% if voyage.reservationRes.userClient==idconnected %}
+                <h1>User : {{ app.user }}</h1>
+                <h4>Voyage : {{ voyage.idVoyage }}</h4>
+                <h4 id="datetime" > date voyage : {{ voyage.dateVoyage|date('d/m/Y H:i:s') }}</h4>
+                <h4>titre : {{ reclamationVoyage.titre }}</h4>
+                <h4> commentaire : {{ reclamationVoyage.commentaire }}</h4>
+                    <li>
+                        <a class="text-uppercase primary-btn" href="{{ path('reclamationvoyage_edit', { 'idReclamationVoyage': reclamationVoyage.idReclamationVoyage }) }}">Edit</a>
+                        <a class="text-uppercase primary-btn" href="{{ path('reclamationvoyage_show', { 'idReclamationVoyage': reclamationVoyage.idReclamationVoyage }) }}">Delete</a>
+                    </li>
+                    <p>-------------------------------------------------------------------</p>
+
+
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                {% endfor %}
+
+
+            </form></div></section></div>
+
+
+{% endblock %}

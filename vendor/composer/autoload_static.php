@@ -130,6 +130,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'Mgilet\\NotificationBundle\\' => 26,
             'Matrix\\' => 7,
         ),
+        'K' => 
+        array (
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
+        ),
         'J' => 
         array (
             'JMose\\CommandSchedulerBundle\\' => 29,
@@ -314,6 +318,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
         ),
+        'Knp\\Bundle\\PaginatorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+        ),
         'JMose\\CommandSchedulerBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/jmose/command-scheduler-bundle',
@@ -433,6 +441,13 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'Metadata\\' => 
             array (
                 0 => __DIR__ . '/..' . '/jms/metadata/src',
+            ),
+        ),
+        'K' => 
+        array (
+            'Knp\\Component' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-components/src',
             ),
         ),
         'J' => 

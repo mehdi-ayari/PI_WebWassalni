@@ -42,6 +42,7 @@ return array(
     'Michelf\\' => array($vendorDir . '/michelf/php-markdown/Michelf'),
     'Mgilet\\NotificationBundle\\' => array($vendorDir . '/mgilet/notification-bundle'),
     'Matrix\\' => array($vendorDir . '/markbaker/matrix/classes/src'),
+    'Knp\\Bundle\\PaginatorBundle\\' => array($vendorDir . '/knplabs/knp-paginator-bundle'),
     'JMose\\CommandSchedulerBundle\\' => array($vendorDir . '/jmose/command-scheduler-bundle'),
     'JMS\\SerializerBundle\\' => array($vendorDir . '/jms/serializer-bundle'),
     'Incenteev\\ParameterHandler\\' => array($vendorDir . '/incenteev/composer-parameter-handler'),

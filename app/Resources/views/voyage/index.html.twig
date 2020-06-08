@@ -41,8 +41,7 @@
                     <ul>
                         <li>
                             <form name="form" method="post" href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}"><input type="hidden" name="_method" value="DELETE">
-                                <input type="submit" value="Delete">
-                                <input type="hidden" id="form__token" name="form[_token]" value="QbOI7Im5dVDOWs6dkKx7UivDqjf-Sv8BWM7z4WFCTfQ"></form>
+                                <a type="button" href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}" class="btn btn-primary">Annuler</a>
                         </li>
                     </ul>
                 </td>

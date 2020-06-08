@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+<section class="home-about-area section-gap">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-6 about-right">
     <h1>Reclamationvoyage edit</h1>
 
     {{ form_start(edit_form) }}
@@ -10,12 +15,12 @@
 
     <ul>
         <li>
-            <a href="{{ path('reclamationvoyage_index') }}">Back to the list</a>
+            <a href="{{ path('voyage_indexFront') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul></div></div></section>
 {% endblock %}

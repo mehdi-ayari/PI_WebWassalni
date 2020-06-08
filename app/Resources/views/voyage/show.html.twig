@@ -29,12 +29,6 @@
 
     <ul>
         <li>
-            <a href="{{ path('voyage_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('voyage_edit', { 'idVoyage': voyage.idVoyage }) }}">Edit</a>
-        </li>
-        <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}

@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
             new Cron\CronBundle\CronCronBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

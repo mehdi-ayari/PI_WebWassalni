@@ -2,6 +2,8 @@
 
 namespace VoyageBundle\Repository;
 
+use Proxies\__CG__\VoyageBundle\Entity\ReclamationVoyage;
+
 /**
  * ReclamationVoyageRepository
  *
@@ -10,4 +12,9 @@ namespace VoyageBundle\Repository;
  */
 class ReclamationVoyageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function removeRecVoy($RecVoy)
+    {
+        $this->getEntityManager()->remove($RecVoy);
+        $this->getEntityManager()->flush();
+    }
 }

@@ -66,7 +66,6 @@ class VoyageController extends Controller
 
 
 
-
         return $this->render('voyage/index.html.twig', array(
             'voyages' => $voyages,
             'reservation'=>$Res,
@@ -124,6 +123,10 @@ class VoyageController extends Controller
                        );*/
                 }}
 
+            return $this->render('voyage/new.html.twig', array(
+                'voyage' => $voyage,
+                'reservation'=>$Res
+            ));
         } catch (NoResultException $e){
         }
 
@@ -183,7 +186,10 @@ class VoyageController extends Controller
             $em->remove($voyage);
             $em->flush();
         }
-        return $this->redirectToRoute('voyage_index');
+        if($this->getUser()->hasRole('ROLE_ADMIN')){
+        return $this->redirectToRoute('voyage_index');}
+        else{
+            return $this->redirectToRoute('voyage_indexFront');}
     }
 
 
@@ -230,6 +236,40 @@ class VoyageController extends Controller
         $formatted = $serializer->normalize($voyagesD);
         return new JsonResponse($formatted);
 
+    }
+
+    public function loginMobileAction($username, $password)
+    {
+        $user_manager = $this->get('fos_user.user_manager');
+        $factory = $this->get('security.encoder_factory');
+        $data = [
+            'type' => 'validation error',
+            'title' => 'There was a validation error',
+            'errors' => 'username or password invalide'
+        ];
+        $response = new JsonResponse($data, 400);
+        $user = $user_manager->findUserByUsername($username);
+        if (!$user)
+            return $response;
+        $encoder = $factory->getEncoder($user);
+        $bool = ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) ? "true" : "false";
+        if ($bool == "true") {
+            $role = $user->getRoles();
+            $data = array('type' => 'Login succeed',
+                'id' => $user->getId(),
+                'firstname' => $user->getFirstname(),
+                'lastname' => $user->getLastname(),
+                'email' => $user->getEmail(),
+                'image' => $user->getImage(),
+                'birthDay' => $user->getBirthDay()->format('d-m-Y'),
+                'role' => $user->getRoles(),
+                'gender' => $user->getGender());
+            $response = new JsonResponse($data, 200);
+            return $response;
+        } else {
+            return $response;
+        }
+        // return array('name' => $bool);
     }
 
 

@@ -7,17 +7,21 @@
 
     <div class="row align-items-center">
 
-        <div class="col-lg-6 about-right">
+        <form class="col-lg-6 about-right">
 
+            <a class="text-uppercase primary-btn" href="{{ path('reclamationvoyage_indexFront') }}" target=_blank >Liste des Reclamation</a><br>
+            <p>--------------------------</p>
+            <tr>
+            {% set newArray = [] %}
 
-
-                                            {% for reservation in reservations %}
+            {% for reservation in reservations %}
                                                 {% for voyage in voyagesD %}
+                                                    {% if voyage.dateVoyage|date('d/m/Y H:i:s') not in newArray %}
 
                                                     {% if voyage.reservationRes ==reservation %}
                                                         {% if voyage.reservationRes.userClient==idconnected %}
 
-                                                    <tr>
+
                                                         <h1>Voyage : {{ app.user }}</h1>
                                                         <h4>distance : {{ voyage.distance }} metres</h4>
                                                         <h4 id="datetime" > date : {{ voyage.dateVoyage|date('d/m/Y H:i:s') }}</h4>
@@ -29,8 +33,10 @@
                                                                 </li>
                                                             </ul>
                                                         </td>
-                                                    </tr>
+
                                                             <p>-------------------------------------------------------------------</p>
+                                                            {% set newArray = newArray|merge([voyage.dateVoyage|date('d/m/Y H:i:s')]) %}
+                                                        {% endif %}
 
                                                     {% endif %}
                                                 {% endif %}
@@ -39,11 +45,11 @@
 
             {% for reservation in reservations %}
                 {% for voyage in voyages %}
-
+                    {% if voyage.dateVoyage|date('d/m/Y H:i:s') not in newArray %}
                     {% if voyage.reservationRes ==reservation %}
                         {% if voyage.reservationRes.userClient==idconnected %}
 
-                            <tr>
+
                                 <h1>Voyage : {{ app.user }}</h1>
                                 <h4>distance : {{ voyage.distance }} metres</h4>
                                 <h4><p id="datetime" > date : {{ voyage.dateVoyage|date('d/m/Y H:i:s') }}</p></h4>
@@ -52,7 +58,7 @@
                                     <form id="Annuler" action="/src/VoyageBundle/Controller/VoyageController.php" method="POST">
                                     <ul>
                                         <li>
-                                            <input type="submit" value="Annuler" name="Annuler" id="Annuler" form="Annuler" class="text-uppercase primary-btn" href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}">
+                                            <a class="text-uppercase primary-btn" href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}" target=_blank >Annuler</a>
                                         </li>
                                         <br>
                                         <li>
@@ -62,16 +68,16 @@
                                     </ul>
                                     </form>
                                 </td>
-                            </tr>
-                            <p>-------------------------------------------------------------------</p>
 
+                            <p>-------------------------------------------------------------------</p>
+                            {% set newArray = newArray|merge([voyage.dateVoyage|date('d/m/Y H:i:s')]) %}
+                        {% endif %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}
 
             {% endfor %}
 
-
-        </div></div></section></div>
+        </form></div></section></div></tr>
 
 {% endblock %}
