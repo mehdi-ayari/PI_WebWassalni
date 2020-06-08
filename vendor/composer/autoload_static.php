@@ -324,6 +324,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         'Knp\\Bundle\\SnappyBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
+        ),
         'Michelf\\' =>
         array (
             0 => __DIR__ . '/..' . '/michelf/php-markdown/Michelf',
