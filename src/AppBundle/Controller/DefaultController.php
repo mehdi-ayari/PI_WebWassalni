@@ -40,6 +40,7 @@ class DefaultController extends Controller
         return $this->render('base.html.twig');
     }
 
+
     public function allusersAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -53,4 +54,5 @@ class DefaultController extends Controller
         echo $jsonContent;
         return new Response($jsonContent);
     }
+
 }

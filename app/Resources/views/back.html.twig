@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>Wassalni</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,15 +45,18 @@
              style="opacity: .8">
         </a>
 
+ 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
                 <div class="image">
                     <img src="{{ asset('img/wassalni.png') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">Mehdi Ayari</a>
+
                 </div>
             </div>
 
@@ -61,10 +65,12 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+
                     <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
+
                                 Tableau de bord
                                 <i class="right fas fa-angle-left"></i>
                             </p>
@@ -75,11 +81,13 @@
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Utilisateurs
+
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+
                                 <a href="" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Statistiques</p>
@@ -96,6 +104,8 @@
                             </li>
 
                         </ul>
+			
+
                     </li>
                     <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link active">
@@ -159,6 +169,21 @@
                             </li>
 
                         </ul>
+			<ul class="nav nav-treeview">
+			<li class="nav-item">
+                                <a href="{{ path('voyage_index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Voyage</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('reclamationvoyage_index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Reclamation Voyage</p>
+                                </a>
+                            </li>
+			</ul>
+
                     </li>
                 </ul>
             </nav>
@@ -268,20 +293,24 @@
      {% block script %}
      {% endblock %}
 {% block footer %}
+
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
+
             <b>Version</b> 3.0.4
         </div>
     </footer>
 {% endblock %}
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
+
 
 <!-- ./wrapper -->
 
@@ -289,11 +318,13 @@
 <script src="{{ asset('back/plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('back/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
+
 <script src="{{ asset('back/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('back/plugins/chart.js/Chart.min.js') }}"></script>

@@ -1,0 +1,61 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+<!-- Main content -->
+<div class="content-wrapper">
+<section class="content">
+    <div class="container-fluid">
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+<div class="card">
+    <div class="card-header border-0">
+        <h3 class="card-title">
+            Voyage
+        </h3>
+    </div>
+<div class="card-body table-responsive p-0">
+    <table class="table table-striped table-valign-middle">
+        <thead>
+            <tr>
+                <th>Idvoyage</th>
+                <th>Distance</th>
+                <th>Date voyage</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voyage in voyages %}
+            <tr>
+                <td><a href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}">{{ voyage.idVoyage }}</a></td>
+                <td>{{ voyage.distance }}</td>
+                <td>{{ voyage.dateVoyage|date('d/m/Y H:i:s') }}</td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <form name="form" method="post" href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}"><input type="hidden" name="_method" value="DELETE">
+                                <a type="button" href="{{ path('voyage_show', { 'idVoyage': voyage.idVoyage }) }}" class="btn btn-primary">Annuler</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+</div></section></div></div></section></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}

@@ -28,6 +28,9 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
+            new Cron\CronBundle\CronCronBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

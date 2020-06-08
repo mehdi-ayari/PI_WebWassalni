@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+
 </head>
 
 
@@ -36,44 +39,51 @@
 {% block header %}
     <header id="header">
         <div class="header-top">
-         <img class="menu-top" src="{{ asset('img/menu-top.png')}}" alt="">
-        <div class="container main-menu">
-            <div class="row align-items-center justify-content-between d-flex">
-                <a href=""><img src="{{ asset('img/wassalni.png')}}" alt="" title="" /></a>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-has-children"><a href="">Reserver votre chauffeur</a>
-                            <ul>
+
+            <img class="menu-top" src={{ asset ('img/menu-top.png') }} alt="">
+            <div class="container main-menu">
+                <div class="row align-items-center justify-content-between d-flex">
+                    <a href="/"><img src={{ asset ('img/wassalni.png') }} alt="" title="" /></a>
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+                            {% if app.user %}
+                            <li class="menu-active"><a>{{ app.user }}</a></li>
+                             <li>  <a href="/logout">
+                                    Log out
+                                </a></li>
+                                <li><a href="">Réserver un chauffeur</a></li>
+ 				<ul>
                                 <li><a href="{{ path('rootpassager') }}">Passager</a></li>
                                 <li><a href="{{ path('root') }}">Colis</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Actualités</a></li>
-                        <li><a href="../../../src/ReservationBundle/Resources/views/Map/map.html.twig">Reclamer</a></li>
-                        <li><a href="">Voyage</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href="">Promotion</a></li>
-                        <li><a href="">Forum</a></li>
-                        <li><a href="">About US</a></li>
-                        <li> <div>
-                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                                    <a href="{{ path('fos_user_security_logout') }}">
-                                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                    </a>
+                            	</ul>
+                                <li><a href="">Actualités</a></li>
+                                <li><a href="">Reclamer</a></li>
+                                <li><a href="{{ path('voyage_indexFront') }}">Voyage</a></li>
+                                <li><a href="">Contact</a></li>
+                                <li><a href="">Promotion</a></li>
+                                <li><a href="">Forum</a></li>
+                                <li><a href="">About US</a></li>
                                 {% else %}
                                     <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                                 {% endif %}
                             </div></li>
+                            {% else %}
+                            <li class="menu-active"><a href="/login">SignIn</a></li>
+                                <li class="menu-active"><a href="/register">Register</a></li>
+                            {% endif %}
 
-                    </ul>
-                </nav><!-- #nav-menu-container -->
+
+                        </ul>
+                    </nav><!-- #nav-menu-container -->
+                </div>
+
             </div>
         </div>
-     </div>
     </header><!-- #header -->
 
 {% endblock %}
+
+
 
 
 {% block content %}
@@ -100,6 +110,8 @@
                     <a href="{{ asset('img/g3.jpg')}}" class="img-gal"><img class="img-fluid" src="{{ asset('img/g3.jpg')}}" alt=""></a>
                     <a href="{{ asset('img/g6.jpg')}}" class="img-gal"><img class="img-fluid" src="{{ asset('img/g6.jpg')}}" alt=""></a>
                 </div>
+                <div class="class="services-area section-gap">
+            </div>
             </div>
         </div>
     </section>
@@ -109,7 +121,9 @@
     <!-- start footer Area -->
     <footer class="footer-area section-gap">
         <center>
+
             <img class="footer-wassalni" src="{{ asset('img/Logo (1).png')}}" alt="" >
+
         </center>
 
         <div class="container">
@@ -131,12 +145,15 @@
                 </p>
             </div>
         </div>
+
         <div>
         <img class="footer-bottom" src="{{ asset('img/footer-bottom.png')}}" alt="">
         </div>
+
     </footer>
     <!-- End footer Area -->
 {% endblock %}
+
 
 {% block javascripts %}
 <script src="{{ asset('js/vendor/jquery-2.2.4.min.js')}}"></script>

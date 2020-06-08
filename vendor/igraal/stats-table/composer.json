@@ -1,0 +1,30 @@
+{
+    "name": "igraal/stats-table",
+    "description": "Helper to handle stats table with multiple formatter",
+    "homepage": "https://github.com/igraal/stats-table",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["PHP", "stats", "statistics", "excel", "csv", "json", "xls"],
+    "authors": [
+        {
+            "name": "iGraal",
+            "homepage": "http://www.igraal.com/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"": "lib"}
+    },
+    "suggest": {
+        "phpoffice/phpexcel": "Allow to export to Excel file. Add phpoffice/phpexcel *@stable"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "phpmd/phpmd": "*@dev",
+        "squizlabs/php_codesniffer": "2.0.*@dev",
+        "twig/twig": "1.x@stable"
+    },
+    "require": {
+        "php": "^5.6|^7.0 ",
+        "phpoffice/phpspreadsheet": "^1.2"
+    }
+}

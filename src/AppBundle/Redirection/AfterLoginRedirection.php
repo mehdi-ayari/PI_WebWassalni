@@ -51,9 +51,3 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
     }
 }
 
-
-
-
-
-
-

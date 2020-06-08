@@ -1,0 +1,18 @@
+language: php
+
+php:
+    - 5.6
+    - 7.0
+    - 7.1
+    - 7.2
+
+env:
+    - SFEB=^2.3
+    - SFEB=^3.0
+    - SFEB=^4.0
+    - SFEB=^5.0
+
+install:
+    - composer require sensio/framework-extra-bundle:${SFEB}
+
+script: ./vendor/bin/phpunit

@@ -1,0 +1,52 @@
+voyage_index:
+    path:     /
+    defaults: { _controller: "VoyageBundle:Voyage:index" }
+    methods:  [GET, POST]
+
+voyage_indexFront:
+    path:     /voyage
+    defaults: { _controller: "VoyageBundle:Voyage:indexFront" }
+    methods:  [GET, POST]
+
+voyage_map:
+    path:     /{idVoyage}/map
+    defaults: { _controller: "VoyageBundle:Voyage:map" }
+    methods:  [GET, POST]
+
+voyage_show:
+    path:     /{idVoyage}/show
+    defaults: { _controller: "VoyageBundle:Voyage:show" }
+    methods:  GET
+
+
+voyage_new:
+    path:     /new
+    defaults: { _controller: "VoyageBundle:Voyage:new" }
+    methods:  [GET, POST]
+
+voyage_edit:
+    path:     /{idVoyage}/edit
+    defaults: { _controller: "VoyageBundle:Voyage:edit" }
+    methods:  [GET, POST]
+
+voyage_delete:
+    path:     /{idVoyage}/delete
+    defaults: { _controller: "VoyageBundle:Voyage:delete" }
+    methods:  DELETE
+
+all:
+    path:     /all
+    defaults: { _controller: "VoyageBundle:Voyage:all" }
+
+find_voyage:
+    path:     /find
+    defaults: { _controller: "VoyageBundle:Voyage:find" }
+
+findDone_voyage:
+    path:     /findDone
+    defaults: { _controller: "VoyageBundle:Voyage:findDone" }
+
+loginMobile:
+    path:     /findDone
+    defaults: { _controller: "VoyageBundle:Voyage:loginMobile" }
+

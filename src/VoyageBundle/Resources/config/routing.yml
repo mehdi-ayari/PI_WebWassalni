@@ -1,3 +1,13 @@
+voyage_voyage:
+    resource: "@VoyageBundle/Resources/config/routing/voyage.yml"
+    prefix:   /voyage
+
+voyage_reclamationvoyage:
+    resource: "@VoyageBundle/Resources/config/routing/reclamationvoyage.yml"
+
+    prefix:   /reclamationvoyage
+
 voyage_homepage:
     path:     /
     defaults: { _controller: VoyageBundle:Default:index }
+

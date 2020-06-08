@@ -18,6 +18,9 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -53,6 +56,7 @@ class RegistrationFormType extends AbstractType
                     'Chauffeur'=>'ROLE_CHAUFFEUR',
                     'Entreprise'=>'ROLE_ENTREPRISE'),
                 'required' => true, 'multiple'=> true,))
+
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
