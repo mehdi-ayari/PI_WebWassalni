@@ -18,6 +18,17 @@ reservation:
     resource: "@ReservationBundle/Resources/config/routing.yml"
     prefix:   /Reservation
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+loginMobile:
+    path:     /loginMobile/{username}/{password}
+    defaults: { _controller: AppBundle:Default:loginMobile }
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+adesigns_calendar:
+    resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Taxi</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{{ asset('Front/css/linearicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/css/main.css') }}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<>
+
+{% block header %}
+    <header id="header">
+        <div class="header-top">
+            <img class="menu-top" src="img/menu-top.png" alt="">
+            <div class="container main-menu">
+                <div class="row align-items-center justify-content-between d-flex">
+                    <a href=""><img src="img/wassalni.png" alt="" title="" /></a>
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+                            <li class="menu-active"><a href="">Reserver votre chauffeur</a></li>
+                            <li><a href=" {{ path('afficher') }}">Actualités</a></li>
+                            <li><a href="">Reclamer</a></li>
+                            <li><a href="">Voyage</a></li>
+                            <li><a href="">Contact</a></li>
+                            <li><a href="">Promotion</a></li>
+                            <li><a href="">Forum</a></li>
+                            <li><a href="">About US</a></li>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                            {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+
+                                <li class="menu-has-children"><a href="{{ path('fos_user_security_login') }}" class="sf-with-ul">LOGIN</a>
+                                    <ul style="display: none;">
+                                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                                        <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav><!-- #nav-menu-container -->
+                </div>
+            </div>
+        </div>
+    </header><!-- #header -->
+
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <section class="image-gallery-area section-gap">
+        <div class="container">
+            <div class="row section-title">
+                <h1>Galerie d'images que nous aimons partager</h1>
+                <p>Qui sont extrêmement amoureux du système écologique.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 single-gallery">
+                    <a href="img/g1.jpg" class="img-gal"><img class="img-fluid" src="img/g1.jpg" alt=""></a>
+                    <a href="img/g4.jpg" class="img-gal"><img class="img-fluid" src="img/g4.jpg" alt=""></a>
+                </div>
+                <div class="col-lg-4 single-gallery">
+                    <a href="img/g2.jpg" class="img-gal"><img class="img-fluid" src="img/g2.jpg" alt=""></a>
+                    <a href="img/g5.jpg" class="img-gal"><img class="img-fluid" src="img/g5.jpg" alt=""></a>
+                </div>
+                <div class="col-lg-4 single-gallery">
+                    <a href="img/g3.jpg" class="img-gal"><img class="img-fluid" src="img/g3.jpg" alt=""></a>
+                    <a href="img/g6.jpg" class="img-gal"><img class="img-fluid" src="img/g6.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+        <center>
+            <img class="footer-wassalni" src="img/Logo (1).png" alt="" >
+        </center>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 fo-grid1">
+                    <p><i class="fa fa-home" aria-hidden="true"></i>ESPRIT EL GHAZELA</p>
+                </div>
+                <div class="col-md-4 fo-grid1">
+                    <p><i class="fa fa-phone" aria-hidden="true"></i>+216 99999999</p>
+                </div>
+                <div class="col-md-4 fo-grid1">
+                    <p><a href="mailto:info@example.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>Wassalni@esprit.tn</a></p>
+                </div>
+                <div class="clearfix"></div>
+                <p class="mt-80 mx-auto footer-text col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+
+        <img class="footer-bottom" src="img/footer-bottom.png" alt="">
+    </footer>
+    <!-- End footer Area -->
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

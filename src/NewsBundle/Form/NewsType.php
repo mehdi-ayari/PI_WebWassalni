@@ -25,8 +25,8 @@ class NewsType extends AbstractType
                 'attr'=>  [
                     'class' => 'btn btn-warning btn'  ]]);;
     }/**
-     * {@inheritdoc}
-     */
+ * {@inheritdoc}
+ */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

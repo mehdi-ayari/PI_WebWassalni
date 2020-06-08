@@ -17,11 +17,13 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-            new ReservationBundle\ReservationBundle(),
             new NewsBundle\NewsBundle(),
-            new PromotionBundle\PromotionBundle(),
-            new ReclamationBundle\ReclamationBundle(),
-            new VoyageBundle\VoyageBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Tchoulom\ViewCounterBundle\TchoulomViewCounterBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
