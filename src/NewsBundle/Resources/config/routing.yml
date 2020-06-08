@@ -1,3 +1,59 @@
 news_homepage:
     path:     /
     defaults: { _controller: NewsBundle:Default:index }
+
+ajouternews:
+    path:     /ajouterNews
+    defaults: { _controller: NewsBundle:News:ajouterNews }
+afficherNews:
+    path:     /afficherNews
+    defaults: { _controller: NewsBundle:News:afficherNews }
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: NewsBundle:Comment:delete }
+consulter:
+    path:     /consulter/{id}
+    defaults: { _controller: NewsBundle:News:consulter }
+
+modifiernews:
+    path:     /modifiernews/{id}
+    defaults: { _controller: NewsBundle:News:modifiernews }
+supprimernews:
+    path:     /supprimernews/{id}
+    defaults: { _controller: NewsBundle:News:supprimernews }
+afficher:
+    path:     /afficher
+    defaults: { _controller: NewsBundle:News:afficher }
+calendar:
+    path:     /calendar
+    defaults: { _controller: NewsBundle:News:calendar }
+consulterfront:
+    path:     /consulterfront/{id}
+    defaults: { _controller: NewsBundle:News:consulterfront }
+ListNewsMobile:
+    path:     /ListNewsMobile
+    defaults: { _controller: NewsBundle:News:ListNewsMobile }
+AddNewsMobile:
+    path:     /AddNewsMobile/
+    defaults: { _controller: NewsBundle:News:AddNewsMobile }
+deleteNewsMobile:
+    path: /deleteNewsMobile/
+    defaults: {_controller: NewsBundle:News:deleteNewsMobile }
+EditNewsMobile:
+    path: /EditNewsMobile/
+    defaults: {_controller: NewsBundle:News:EditNewsMobile }
+StatNewsMobile:
+    path: /StatNewsMobile/
+    defaults: {_controller: NewsBundle:News:StatNewsMobile }
+AddCommentMobile:
+    path:     /AddCommentMobile/
+    defaults: { _controller: NewsBundle:News:AddCommentMobile }
+deleteCommentMobile:
+    path: /deleteCommentMobile/
+    defaults: {_controller: NewsBundle:News:deleteCommentMobile }
+EditCommentMobile:
+    path: /EditCommentMobile/
+    defaults: {_controller: NewsBundle:News:EditCommentMobile }
+ajax_search:
+    path:     /search
+    defaults: { _controller: NewsBundle:News:search }

@@ -76,3 +76,4 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
