@@ -27,7 +27,7 @@ class VoyageRepository extends \Doctrine\ORM\EntityRepository
     public function myfinddate(){
 
             $qb = $this->getEntityManager()->createQueryBuilder()
-                ->select('R.dateReservation', 'U.id','R.idRes' ,'R.destination')
+                ->select('R.dateReservation', 'U.id idUser','R.id idRes' ,'R.destination')
                 ->from('ReservationBundle:reservation', 'R')
                 ->innerJoin('AppBundle:user' , 'U')
                 ->where("R.dateReservation between DATE_ADD(CURRENT_TIMESTAMP(), '-1' ,'month') and DATE_ADD(CURRENT_TIMESTAMP() , 1 , 'month') and R.userClient = U");
@@ -44,7 +44,8 @@ class VoyageRepository extends \Doctrine\ORM\EntityRepository
             ->select('V')
             ->from('VoyageBundle:voyage', 'V')
             ->innerJoin('ReservationBundle:Reservation','R')
-            ->where("V.dateVoyage between DATE_ADD(CURRENT_TIMESTAMP(), '+300' ,'second') and DATE_ADD(CURRENT_TIMESTAMP() , 1 , 'month') and R = V.reservationRes");
+            ->where("V.dateVoyage between DATE_ADD(CURRENT_TIMESTAMP(), '-3' ,'hour') and DATE_ADD(CURRENT_TIMESTAMP() , '-2'
+             , 'hour') and R = V.reservationRes");
         $query = $qb->getQuery();
 
 
@@ -58,7 +59,7 @@ class VoyageRepository extends \Doctrine\ORM\EntityRepository
             ->select('V')
             ->from('VoyageBundle:voyage', 'V')
             ->innerJoin('ReservationBundle:Reservation','R')
-            ->where("V.dateVoyage between DATE_ADD(CURRENT_TIMESTAMP(), '-12' ,'day') and DATE_ADD(CURRENT_TIMESTAMP(), '+300' ,'second') and R = V.reservationRes");
+            ->where("V.dateVoyage between DATE_ADD(CURRENT_TIMESTAMP(), '-12' ,'day') and DATE_ADD(CURRENT_TIMESTAMP(), '-3' ,'hour') and R = V.reservationRes");
         $query = $qb->getQuery();
 
 

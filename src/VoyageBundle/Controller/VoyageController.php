@@ -103,7 +103,7 @@ class VoyageController extends Controller
                 foreach ($voyages as $voy){
                     $voyage = new Voyage();
                     $Res = $this->getDoctrine()->getManager()->getRepository(Reservation::class)->find($voy['idRes']);
-                    $User = $this->getDoctrine()->getManager()->getRepository(User::class)->find($voy['id']);
+                    $User = $this->getDoctrine()->getManager()->getRepository(User::class)->find($voy['idUser']);
                     $des = $Res->getDestination();
                     $voyage->setReservationRes($Res);
 

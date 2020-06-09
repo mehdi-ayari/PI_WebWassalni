@@ -48,14 +48,16 @@
                         <ul class="nav-menu">
                             {% if app.user %}
                             <li class="menu-active"><a>{{ app.user }}</a></li>
-                             <li>  <a href="/logout">
+                             <li>  <a href="{{ path('fos_user_security_logout') }}">
                                     Log out
                                 </a></li>
-                                <li><a href="">Réserver un chauffeur</a></li>
- 				<ul>
-                                <li><a href="{{ path('rootpassager') }}">Passager</a></li>
-                                <li><a href="{{ path('root') }}">Colis</a></li>
-                            	</ul>
+                            <li class="menu-has-children"><a href="">Reserver votre chauffeur</a>
+                                <ul>
+                                    <li><a href="{{ path('rootpassager') }}">Passager</a></li>
+                                    <li><a href="{{ path('root') }}">Colis</a></li>
+                                </ul>
+                            </li>
+
                                 <li><a href="">Actualités</a></li>
                                 <li><a href="">Reclamer</a></li>
                                 <li><a href="{{ path('voyage_indexFront') }}">Voyage</a></li>
@@ -63,16 +65,12 @@
                                 <li><a href="">Promotion</a></li>
                                 <li><a href="">Forum</a></li>
                                 <li><a href="">About US</a></li>
-                                {% else %}
-                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                                {% endif %}
-                            </div></li>
+                                
                             {% else %}
-                            <li class="menu-active"><a href="/login">SignIn</a></li>
-                                <li class="menu-active"><a href="/register">Register</a></li>
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>                                <li class="menu-active"><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
                             {% endif %}
 
-
+                        </ul>
                         </ul>
                     </nav><!-- #nav-menu-container -->
                 </div>
