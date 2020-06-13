@@ -127,39 +127,6 @@ cmen_google_charts:
     version: "current"
 
 
-nomaya_social:
-    buttons:
-        facebook:
-            url:            null
-            locale:         "fr_FR"
-            send:           false
-            width:          300
-            showFaces:      false
-            layout:         "button_count"
-        twitter:
-            url:            null
-            locale:         "fr"
-            message:        "Je veux partager ça avec vous"
-            text:           "Tweet"
-            via:            "L'Equipe cartedevisitevirtuelle.fr"
-            tag:            "ttot"
-        googleplus:
-            url:            null
-            locale :        "fr"
-            size :          "medium"
-            annotation :    "bubble"
-            width :         300
-        linkedin:
-            url:            null
-            locale:         "fr_FR"
-            counter:        "right"
-        pinterest:
-            url:            null
-    links:
-        facebook:           "http://www.facebook.com/yann.chauvel"
-        googleplus:         "https://plus.google.com/105931415830389032796"
-    theme:                  'default' # optional
-
 
 knp_paginator:
     page_range: 5                       # number of links showed in the pagination menu (e.g: you have 10 pages, a page_range of 3, on the 5th page you'll see links to page 4, 5, 6)

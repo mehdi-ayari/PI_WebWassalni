@@ -32,7 +32,6 @@ class AppKernel extends Kernel
             new Cron\CronBundle\CronCronBundle(),
 
             new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
-            new Nomaya\SocialBundle\NomayaSocialBundle(),
             new Tchoulom\ViewCounterBundle\TchoulomViewCounterBundle(),
 
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
