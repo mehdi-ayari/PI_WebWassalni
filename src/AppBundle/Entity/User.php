@@ -314,7 +314,7 @@ class User extends BaseUser
     }
 
 
-}
+
 
     public function getImage()
     {

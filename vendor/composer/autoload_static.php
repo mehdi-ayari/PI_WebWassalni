@@ -489,8 +489,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
                 0 => __DIR__ . '/..' . '/jms/metadata/src',
             ),
         ),
-        'K' =>
-        'N' => 
+        'N' =>
         array (
             'Nomaya\\SocialBundle\\' => 
             array (
