@@ -1,0 +1,90 @@
+{% extends 'back.html.twig' %}
+
+
+{%  block news %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="text-center">
+                                <h2>{{ News.titre }}</h2>
+                            </p>
+
+
+
+                            </div>
+    <div class="col-md-6">
+
+        <img style="width:350px;" src="{{ asset('images/') }}{{ News.image }}"/>
+        <div class="callout callout-warning">{{ News.descr }}</div>
+
+        <div class="btn btn-block btn-info btn-xs">
+
+            <a class="dropdown-item" href="{{ path('modifiernews',{'id':News.id }) }}">
+                <i
+                        class="fas fa-cogs text-dark-pastel-green"></i> UPDATE</a>
+        </div>
+        <div class="btn btn-block btn-danger btn-xs">
+            <a class="dropdown-item" href="{{ path('supprimernews',{'id':News.id }) }}"><i
+                        class="fas fa-times text-orange-red"></i> DELETE</a>
+        </div>
+
+    </div>
+
+                        <!-- /.col -->
+                        <div class="col-md-6">
+                            <div class="card direct-chat direct-chat-warning">
+
+                                    <strong>COMMENT SECTION</strong>
+
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <!-- Conversations are loaded here -->
+                                    <div class="direct-chat-messages">
+                                        <!-- Message. Default to the left -->
+                                        <div class="direct-chat-msg">
+                                            {% for c in Comment %}
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-left">{{c.user.firstname}} {{ c.user.lastname }}</span>
+                                                <span class="direct-chat-timestamp float-right">{{ c.createdAt|date('Y-m-d H:i:s') }}</span>
+                                            </div>
+                                            <!-- /.direct-chat-infos -->
+                                            <img class="direct-chat-img" src="{{ asset('images/') }}{{ c.user.image }}" alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                {{c.text}}
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                            {% endfor %}
+                                        </div>
+
+
+
+                                    </div>
+                                    <!-- /.direct-chat-pane -->
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <form action="#" method="post">
+                                        {{ form_start(form) }}
+                                        <div class="input-group">
+                                            <span class="input-group-append">
+                                                {{ form_widget(form.text)  }}
+                                            </span>
+                                            <input type="submit" placeholder="Reply ..."  value="Reply" class="btn btn-warning" href="">
+                                        </div>
+                                        {{ form_end(form) }}
+                                    </form>
+                                </div>
+
+                                <!-- /.card-footer-->
+                            </div>
+                        <!-- /.col -->
+
+                    </div>
+                    <!-- /.row -->
+{% endblock %}

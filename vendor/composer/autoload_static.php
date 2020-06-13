@@ -84,6 +84,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'Twilio\\' => 7,
             'Twig\\' => 5,
             'Tests\\' => 6,
+            'Tchoulom\\ViewCounterBundle\\' => 27,
         ),
         'S' => 
         array (
@@ -145,6 +146,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'Knp\\Bundle\\SnappyBundle\\' => 24,
             'Knp\\Bundle\\PaginatorBundle\\' => 27,
         ),
+        'K' => 
+        array (
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
+        ),
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
@@ -159,6 +164,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'FOS\\UserBundle\\' => 15,
             'FOS\\JsRoutingBundle\\' => 20,
             'FOS\\RestBundle\\' => 15,
+
         ),
         'D' => 
         array (
@@ -175,12 +181,14 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'Cron\\CronBundle\\' => 16,
             'Cron\\' => 5,
             'Composer\\CaBundle\\' => 18,
+
             'Complex\\' => 8,
             'CMEN\\GoogleChartsBundle\\' => 24,
         ),
         'A' => 
         array (
             'AncaRebeca\\FullCalendarBundle\\' => 30,
+
         ),
     );
 
@@ -196,6 +204,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         'Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'Tchoulom\\ViewCounterBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tchoulom/view-counter-bundle',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -317,6 +329,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+
         'Knp\\Snappy\\' =>
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
@@ -337,6 +350,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
         ),
+
         'Knp\\Bundle\\PaginatorBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
@@ -350,6 +364,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             0 => __DIR__ . '/..' . '/jms/serializer-bundle',
         ),
         'Incenteev\\ParameterHandler\\' =>
+
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
         ),
@@ -373,6 +388,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/rest-bundle',
         ),
+
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -423,6 +439,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
         ),
+
         'CMEN\\GoogleChartsBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/cmen/google-charts-bundle',
@@ -473,6 +490,14 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             ),
         ),
         'K' =>
+        'N' => 
+        array (
+            'Nomaya\\SocialBundle\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/nomaya/social-bundle',
+            ),
+        ),
+        'K' => 
         array (
             'Knp\\Component' => 
             array (
@@ -494,6 +519,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             array (
                 0 => __DIR__ . '/..' . '/jms/parser-lib/src',
             ),
+
         ),
         'D' => 
         array (

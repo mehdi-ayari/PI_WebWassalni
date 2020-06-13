@@ -10,4 +10,20 @@ namespace NewsBundle\Repository;
  */
 class NewsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findEntitiesByString($str){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT n
+                FROM NewsBundle:News n
+                WHERE n.titre LIKE :str'
+            )
+            ->setParameter('str', '%'.$str.'%')
+            ->getResult();
+    }
+    public function three(){
+        $q= $this->getEntityManager()->createQuery('SELECT n FROM NewsBundle:News n ORDER BY n.id DESC LIMIT 3');
+        return $q->getResult();
+    }
+
+
 }

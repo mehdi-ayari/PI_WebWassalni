@@ -46,6 +46,7 @@ class ReservationBusiness
      */
     private $dateReservation;
 
+
     /**
      * @var string
      *

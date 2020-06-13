@@ -24,7 +24,7 @@ promotion:
 
 news:
     resource: "@NewsBundle/Resources/config/routing.yml"
-    prefix:   /News
+    prefix:   /news
 
 reservation:
     resource: "@ReservationBundle/Resources/config/routing.yml"
@@ -33,13 +33,16 @@ reservation:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 
 
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
 
 
 ancarebeca_fullcalendar:
@@ -49,4 +52,12 @@ ancarebeca_fullcalendar:
 jmose_command_scheduler:
     resource: "@JMoseCommandSchedulerBundle/Resources/config/routing.yml"
     prefix:   /
+
+
+loginMobile:
+    path:     /loginMobile/{username}/{password}
+    defaults: { _controller: AppBundle:Default:loginMobile }
+
+adesigns_calendar:
+    resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"
 

@@ -1,0 +1,273 @@
+{% extends 'base.html.twig' %}
+
+
+{%  block content %}
+
+    <body style="display: block;"><button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>
+    <header id="header" class="header-scrolled">
+        <div class="header-top">
+        </div>
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <a href="index.html"><img src="/img/logo.png" alt="" title=""></a>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li class="menu-has-children"><a href="" class="sf-with-ul">Blog</a>
+                            <ul style="display: none;">
+                                <li><a href="blog-home.html">Blog Home</a></li>
+                                <li><a href="blog-single.html">Blog Single</a></li>
+                                <li class="menu-has-children"><a href="" class="sf-with-ul">Level 2</a>
+                                    <ul style="display: none;">
+                                        <li><a href="#">Item One</a></li>
+                                        <li><a href="#">Item Two</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="elements.html">Elements</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header><!-- #header -->
+
+    <!-- start banner Area -->
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        LIST NEWS
+                    </h1>
+                    <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="{{path ('afficher')}}">News </a> <span class="lnr lnr-arrow-right"></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <section class="top-category-widget-area pt-90 pb-90 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-cat-widget">
+                        <div class="content relative">
+                            <div class="overlay overlay-bg"></div>
+                            <a href="#" target="_blank">
+                                <div class="thumb">
+                                    <img class="content-image img-fluid d-block mx-auto" src="{{ asset('images/') }}{{ new.image }}" alt="">
+                                </div>
+                                <div class="content-details">
+                                    <h4 class="content-title mx-auto text-uppercase">{{ new.titre }}</h4>
+                                    <span></span>
+                                    <p>{{new.introduction}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-cat-widget">
+                        <div class="content relative">
+                            <div class="overlay overlay-bg"></div>
+                            <a href="#" target="_blank">
+                                <div class="thumb">
+                                    <img class="content-image img-fluid d-block mx-auto" src="{{ asset('images/') }}{{ newww.image }}" alt="">
+                                </div>
+                                <div class="content-details">
+                                    <h4 class="content-title mx-auto text-uppercase">{{ newww.titre }}</h4>
+                                    <span></span>
+                                    <p>{{newww.introduction}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-cat-widget">
+                        <div class="content relative">
+                            <div class="overlay overlay-bg"></div>
+                            <a href="#" target="_blank">
+                                <div class="thumb">
+                                    <img class="content-image img-fluid d-block mx-auto" src="{{ asset('images/') }}{{ neww.image }}" alt="">
+                                </div>
+                                <div class="content-details">
+                                    <h4 class="content-title mx-auto text-uppercase">{{ neww.titre }}</h4>
+                                    <span></span>
+                                    <p>{{neww.introduction}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Start post-content Area -->
+    <section class="post-content-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post row">
+                        {% for n in News %}
+                        <div class="col-lg-3  col-md-3 meta-details">
+                            <ul class="tags">
+                                <li>{{ n.introduction }}</li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-9 col-md-9 ">
+
+                            <div class="feature-img">
+                                <img class="img-fluid" src="{{ asset('images/') }}{{ n.image }}"/>
+                            </div>
+                            <a class="posts-title" href="blog-single.html"><h3>{{ n.titre }}</h3></a>
+                            <p class="excert">
+                                {{ n.descr }}
+                            </p>
+
+                            <a href="{{ path('consulterfront', { 'id': n.id }) }}" class="primary-btn">View More</a>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-left"></span>
+		                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="#" class="page-link">01</a></li>
+                            <li class="page-item active"><div class="page-link">{{ knp_pagination_render(News) }}</div></li>
+
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-right"></span>
+		                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+                <div class="col-lg-4 sidebar-widgets">
+                    <div class="widget-wrap">
+
+                        <div class="single-sidebar-widget search-widget">
+                            <form class="search-form">
+                                <input type="text" id="search" class="form-control" placeholder="Search Here">
+                                <button><i class="fa fa-search"></i></button>
+                            </form>
+                            <!-- /input-group -->
+                        </div>
+                        <ul class="nav" id="side-menu">
+                            <li>
+
+                                <ul class="nav nav-second-level" id="entitiesNav">
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- jQuery is necessary -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+                    <script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            var searchRequest = null;
+                            $("#search").keyup(function() {
+                                var minlength = 1;
+                                var that = this;
+                                var value = $(this).val();
+                                var entitySelector = $("#entitiesNav").html('');
+                                if (value.length >= minlength ) {
+                                    if (searchRequest != null)
+                                        searchRequest.abort();
+                                    searchRequest = $.ajax({
+                                        type: "GET",
+                                        url: "{{ path('ajax_search') }}",
+                                        data: {
+                                            'q' : value
+                                        },
+                                        dataType: "text",
+                                        success: function(msg){
+                                            //we need to check if the value is the same
+                                            if (value==$(that).val()) {
+                                                var result = JSON.parse(msg);
+                                                $.each(result, function(key, arr) {
+                                                    $.each(arr, function(id, value) {
+                                                        if (key == 'news') {
+                                                            if (id != 'error') {
+                                                                console.log(value[1]);
+                                                                entitySelector.append('<li><b>'+value[1]+'</b><a href="consulterfront/'+id+'">'+'<img src="/images/+value[0]+" style="width: 50px; height: 50px"/>'+'</a></li>');
+                                                            } else {
+                                                                entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                            }
+                                                        }
+                                                    });
+                                                });
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End post-content Area -->
+
+
+    <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="js/easing.min.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/main.js"></script>
+
+    <nav id="mobile-nav">
+        <ul class="" style="touch-action: pan-y;" id="">
+            <li class="menu-active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li class="menu-has-children"><i class="lnr lnr-chevron-down"></i><a href="" class="sf-with-ul">Blog</a>
+                <ul style="display: none;">
+                    <li><a href="blog-home.html">Blog Home</a></li>
+                    <li><a href="blog-single.html">Blog Single</a></li>
+                    <li class="menu-has-children"><i class="lnr lnr-chevron-down"></i><a href="" class="sf-with-ul">Level 2</a>
+                        <ul style="display: none;">
+                            <li><a href="#">Item One</a></li>
+                            <li><a href="#">Item Two</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="elements.html">Elements</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav><div id="mobile-body-overly"></div></body>
+{% endblock %}

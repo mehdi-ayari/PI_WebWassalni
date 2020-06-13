@@ -1,0 +1,43 @@
+{% extends 'front.html.twig' %}
+
+
+{%  block news %}
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+
+            <th scope="col">Titre</th>
+            <th scope="col">IMAGE</th>
+            <th scope="col">Description</th>
+            <th scope="col">Commentaire</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for n in News %}
+            <tr>
+
+                <td>{{n.titre}}</td>
+                <td style="width: 60px; padding:0px; text-align: center">
+                    {% if n.image != '' %}
+                        <img alt=" Pic" style="width:150px;"
+                             src="{{ asset('/../../images/uploads/') }}{{ n.image }}"
+
+                    {% endif %}
+                </td>
+
+                <td>{{n.descr}}</td>
+
+
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% for message in app.flashes('alert') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}

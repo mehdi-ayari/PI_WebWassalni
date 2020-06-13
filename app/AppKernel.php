@@ -17,18 +17,24 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-            new ReservationBundle\ReservationBundle(),
             new NewsBundle\NewsBundle(),
+            new ReservationBundle\ReservationBundle(),
             new PromotionBundle\PromotionBundle(),
             new ReclamationBundle\ReclamationBundle(),
             new VoyageBundle\VoyageBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
             new Cron\CronBundle\CronCronBundle(),
+
+            new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new Tchoulom\ViewCounterBundle\TchoulomViewCounterBundle(),
+
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 

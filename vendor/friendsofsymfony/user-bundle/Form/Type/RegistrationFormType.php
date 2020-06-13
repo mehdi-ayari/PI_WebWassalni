@@ -21,6 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
+
 class RegistrationFormType extends AbstractType
 {
     /**
@@ -56,6 +57,8 @@ class RegistrationFormType extends AbstractType
                     'Entreprise'=>'ROLE_ENTREPRISE'),
                 'required' => true, 'multiple'=> true,))
 
+
+            ->add('email', EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,

@@ -1,0 +1,64 @@
+{% extends 'back.html.twig' %}
+  {% block new %}   <li class="breadcrumb-item active">Add NEWS</li> {% endblock %}
+
+{%  block news %}
+
+
+<div class="card card-warning">
+    <div class="card-header">
+        <h3 class="card-title">ADD A NEWS</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        {{form_start(form)  }}
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>TITLE</label>
+                    {{ form_widget(form.titre)  }}
+                </div>
+            </div>
+
+
+            <div class="col-sm-6">
+                <!-- textarea -->
+                <div class="form-group">
+                    <label>DESCRIPTION</label>
+                    {{ form_widget(form.descr)  }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <label>IMAGE</label>
+                <div class="callout callout-warning"> {{ form_widget(form.image)  }} </div>
+
+            </div>
+            <div class="form-group">
+                <label>INTRODUCTION</label>
+                {{ form_widget(form.introduction)  }}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card-footer">
+
+        {{ form_end(form) }}
+        </div>
+
+
+
+</div>
+
+    <!-- /.card-body -->
+    </div>
+
+
+    {% endblock %}
+

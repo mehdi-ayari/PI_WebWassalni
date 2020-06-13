@@ -9,6 +9,7 @@ return array(
     'Twilio\\' => array($vendorDir . '/twilio/sdk/src/Twilio'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Tests\\' => array($baseDir . '/tests'),
+    'Tchoulom\\ViewCounterBundle\\' => array($vendorDir . '/tchoulom/view-counter-bundle'),
     'Symfony\\Polyfill\\Util\\' => array($vendorDir . '/symfony/polyfill-util'),
     'Symfony\\Polyfill\\Php70\\' => array($vendorDir . '/symfony/polyfill-php70'),
     'Symfony\\Polyfill\\Php56\\' => array($vendorDir . '/symfony/polyfill-php56'),
@@ -47,12 +48,15 @@ return array(
     'Knp\\Bundle\\PaginatorBundle\\' => array($vendorDir . '/knplabs/knp-paginator-bundle'),
     'JMose\\CommandSchedulerBundle\\' => array($vendorDir . '/jmose/command-scheduler-bundle'),
     'JMS\\SerializerBundle\\' => array($vendorDir . '/jms/serializer-bundle'),
+
     'Incenteev\\ParameterHandler\\' => array($vendorDir . '/incenteev/composer-parameter-handler'),
     'Glooby\\TaskBundle\\' => array($vendorDir . '/glooby/task-bundle/src'),
     'Fig\\Link\\' => array($vendorDir . '/fig/link-util/src'),
     'FOS\\UserBundle\\' => array($vendorDir . '/friendsofsymfony/user-bundle'),
     'FOS\\JsRoutingBundle\\' => array($vendorDir . '/friendsofsymfony/jsrouting-bundle'),
+
     'FOS\\RestBundle\\' => array($vendorDir . '/friendsofsymfony/rest-bundle'),
+
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib/Doctrine/Common/Lexer'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
@@ -63,7 +67,10 @@ return array(
     'Cron\\CronBundle\\' => array($vendorDir . '/cron/cron-bundle'),
     'Cron\\' => array($vendorDir . '/cron/cron/src', $vendorDir . '/mtdowling/cron-expression/src/Cron'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
+
     'AncaRebeca\\FullCalendarBundle\\' => array($vendorDir . '/ancarebeca/full-calendar-bundle'),
+
+    'CMEN\\GoogleChartsBundle\\' => array($vendorDir . '/cmen/google-charts-bundle'),
     '' => array($baseDir . '/src'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
     'CMEN\\GoogleChartsBundle\\' => array($vendorDir . '/cmen/google-charts-bundle'),
