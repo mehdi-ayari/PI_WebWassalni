@@ -1,4 +1,4 @@
-{% extends 'front.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {%  block content %}
 <body style="display: block;"><button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>
@@ -65,16 +65,9 @@
                     <div class="col-lg-3  col-md-3 meta-details">
 
                         <div class="user-details row">
-                             <p class="view col-lg-12 col-md-12 col-6"><a href="#">{{ News.views }}</a> <span class="lnr lnr-eye"></span></p>
+                             <p class="view col-lg-12 col-md-12 col-6">{{ News.views }}  <span class="lnr lnr-eye"></span></p>
                             <p class="comments col-lg-12 col-md-12 col-6"><a href="#">0{{ Comment|length }} Comments</a> <span class="lnr lnr-bubble"></span></p>
-                            <p> SHARE IT ON SOCIAL MEDIA</p>
-                            <ul class="social-links col-lg-12 col-md-12 col-6">
-                                <li>{{ twitterButton() }}</li>
-                                <li>{{ pinterestButton() }}</li>
-                                <li> {{ linkedinButton() }}</li>
-                                <li> {{ googleplusButton() }}</li>
 
-                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9">
@@ -83,10 +76,25 @@
                         <p>{{News.descr}} </p>
 
 
+                    </div>
+                    <div class="quotes">
+                        <p> SHARE IT ON SOCIAL MEDIA</p>
+                        <ul class="social-links col-lg-12 col-md-12 col-6">
+                            <li>{{ twitterButton() }}</li>
+                            <li>{{ pinterestButton() }}</li>
+                            <li> {{ linkedinButton() }}</li>
+                            <li> {{ googleplusButton() }}</li>
 
+                        </ul>
+                        <p> THUMBS UP IF YOU LIKE THE ARTICLE</p>
+                      <span class="badge badge-pill badge-success">
+                          <span class="badge" >Likes {{ News.point }} </span>
+                              <a href="{{ path('LikeFront',{'idc':News.id},true) }}"> <i class="fa fa-heart"></i>  </a>
+                    </span>
                     </div>
 
-                        </div>
+
+                </div>
 
 
                         <div class="row mt-30 mb-30">
@@ -102,42 +110,49 @@
                 </div>
                 <div class="navigation-area">
                     <div class="row">
+                        {% if Newsp != null %}
                         <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                             <div class="thumb">
-                                <a href="#"><img class="img-fluid" src="img/blog/prev.jpg" alt=""></a>
+                                <a href="{{ path('consulterfront', { 'id': Newsp.id }) }}"><img class="img-fluid" src="{{ asset('images/') }}{{ Newsp.image }}" style="height: 60px" alt=""></a>
                             </div>
                             <div class="arrow">
                                 <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
                             </div>
                             <div class="detials">
                                 <p>Prev Post</p>
-                                <a href="#"><h4>Space The Final Frontier</h4></a>
+                                <a href="{{ path('consulterfront', { 'id': Newsp.id }) }}"><h4>{{Newsp.titre}}</h4></a>
                             </div>
                         </div>
+                        {% endif %}
+                        {% if Newsn != null %}
                         <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
                             <div class="detials">
                                 <p>Next Post</p>
-                                <a href="#"><h4>Telescopes 101</h4></a>
+                                <a href="{{ path('consulterfront', { 'id': Newsn.id }) }}"><h4>{{Newsn.titre}}</h4></a>
                             </div>
                             <div class="arrow">
                                 <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
                             </div>
                             <div class="thumb">
-                                <a href="#"><img class="img-fluid" src="img/blog/next.jpg" alt=""></a>
+                                <a href="{{ path('consulterfront', { 'id': Newsn.id }) }}"><img class="img-fluid"src="{{ asset('images/') }}{{ Newsn.image }}" style="height: 60px" alt=""></a>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
+
                 </div>
                 <div class="comments-area">
                     <h4>0{{ Comment|length }} Comments</h4>
                     {% for c in Comment %}
+
+
 
                     <div class="comment-list">
 
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img style="width:150px;" src="{{ asset('images/') }}{{ c.user.image }}"/>
+                                    <img style="width:50px;" src="{{ asset('images/') }}{{ c.user.image }}"/>
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">{{ c.user.firstname }} {{ c.user.lastname }}</a></h5>
@@ -160,6 +175,7 @@
                                 {% endif %}
                             </div>
                         </div>
+
                         {% endfor %}
                     </div>
 
@@ -184,82 +200,7 @@
 </section>
 <!-- End post-content Area -->
 
-<!-- start footer Area -->
-<footer class="footer-area section-gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Quick links</h6>
-                    <ul>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Features</h6>
-                    <ul>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Brand Assets</a></li>
-                        <li><a href="#">Investor Relations</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Resources</h6>
-                    <ul>
-                        <li><a href="#">Guides</a></li>
-                        <li><a href="#">Research</a></li>
-                        <li><a href="#">Experts</a></li>
-                        <li><a href="#">Agencies</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-                <div class="single-footer-widget">
-                    <h6>Follow Us</h6>
-                    <p>Let us be social</p>
-                    <div class="footer-social d-flex align-items-center">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Newsletter</h6>
-                    <p>Stay update with our latest</p>
-                    <div class="" id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline" novalidate="true">
-                            <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-                            <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-                            <div style="position: absolute; left: -5000px;">
-                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                            </div>
 
-                            <div class="info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-80 mx-auto footer-text col-lg-12">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright ©<script>document.write(new Date().getFullYear());</script>2020 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-        </div>
-    </div>
-    <img class="footer-bottom" src="img/footer-bottom.png" alt="">
-</footer>
-<!-- End footer Area -->
 
 <script src="js/vendor/jquery-2.2.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

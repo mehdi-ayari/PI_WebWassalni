@@ -5,7 +5,7 @@ namespace NewsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CommentRepository
+ * Comment
  *
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="NewsBundle\Repository\CommentRepository")
@@ -138,5 +138,5 @@ class Comment
     {
         return $this->createdAt;
     }
-}
 
+}

@@ -4,13 +4,64 @@
              <!-- SEARCH FORM -->
              <form class="form-inline ml-3">
                  <div class="input-group input-group-sm">
-                     <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+
+                     <input type="text" id="search" class="form-control form-control-navbar" placeholder="Search">
                      <div class="input-group-append">
-                         <button class="btn btn-navbar" type="submit">
-                             <i class="fas fa-search"></i>
-                         </button>
+                         <ul class="nav" id="side-menu">
+                             <li>
+                                 <a href="#"> <span class="fa arrow"></span></a>
+                                 <ul class="fas fa-search" id="entitiesNav">
+                                 </ul>
+                             </li>
+                         </ul>
+
                      </div>
                  </div>
+
+
+                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+                 <script type="text/javascript">
+                     jQuery(document).ready(function() {
+                         var searchRequest = null;
+                         $("#search").keyup(function() {
+                             var minlength = 3;
+                             var that = this;
+                             var value = $(this).val();
+                             var entitySelector = $("#entitiesNav").html('');
+                             if (value.length >= minlength ) {
+                                 if (searchRequest != null)
+                                     searchRequest.abort();
+                                 searchRequest = $.ajax({
+                                     type: "GET",
+                                     url: "{{ path('ajax_search') }}",
+                                     data: {
+                                         'q' : value
+                                     },
+                                     dataType: "text",
+                                     success: function(msg){
+                                         //we need to check if the value is the same
+                                         if (value==$(that).val()) {
+                                             var result = JSON.parse(msg);
+                                             $.each(result, function(key, arr) {
+                                                 $.each(arr, function(id, value) {
+                                                     if (key == 'news') {
+                                                         if (id != 'error') {
+                                                             console.log(value[1]);
+                                                             entitySelector.append('<li><b>'+value[1]+'</b><a href="consulter/'+id+'">'+'<img src="/images/'+value[0]+'" style="width: 50px; height: 50px"/>'+'</a></li>');
+                                                         } else {
+                                                             entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                         }
+                                                     }
+                                                 });
+                                             });
+                                         }
+                                     }
+                                 });
+                             }
+                         });
+                     });
+                 </script>
              </form>
          {% endblock %}
 
@@ -92,6 +143,14 @@
 
 
         </div>
+
+        <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+                <li class="page-item"><a class="page-link" href="#">  {{ knp_pagination_render(News) }}</a></li>
+
+            </ul>
+        </div>
+
         </div>
         </div>
 

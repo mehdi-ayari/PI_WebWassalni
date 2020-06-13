@@ -10,4 +10,19 @@ namespace NewsBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+    function ShowCmtBlog($idB){
+        $query=$this->getEntityManager()
+            ->createQuery("select c from NewsBundle:Comment c where c.news=:idB   ")
+            ->setParameter('idB',$idB);
+
+        return $query->getResult();
+    }
+
+    function CountCmtBlog($idB){
+        $query=$this->getEntityManager()
+            ->createQuery("select count(c.id) from NewsBundle:Comment c where c.news_id=:idB  ORDER BY c.point DESC  ")
+            ->setParameter('idB',$idB);
+
+        return $query->getSingleScalarResult();
+    }
 }

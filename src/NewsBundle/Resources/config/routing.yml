@@ -30,6 +30,12 @@ calendar:
 consulterfront:
     path:     /consulterfront/{id}
     defaults: { _controller: NewsBundle:News:consulterfront }
+LikeFront:
+    path:     /like/{idc}
+    defaults: { _controller: NewsBundle:News:Like }
+statistique:
+    path:     /statistique
+    defaults: { _controller: NewsBundle:News:statistique }
 ListNewsMobile:
     path:     /ListNewsMobile
     defaults: { _controller: NewsBundle:News:ListNewsMobile }

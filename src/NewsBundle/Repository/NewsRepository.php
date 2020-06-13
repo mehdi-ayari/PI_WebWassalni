@@ -20,5 +20,10 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('str', '%'.$str.'%')
             ->getResult();
     }
+    public function three(){
+        $q= $this->getEntityManager()->createQuery('SELECT n FROM NewsBundle:News n ORDER BY n.id DESC LIMIT 3');
+        return $q->getResult();
+    }
+
 
 }

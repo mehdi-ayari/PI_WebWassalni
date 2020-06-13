@@ -2,8 +2,8 @@
 
 namespace NewsBundle\Controller;
 
-use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
-use http\Client\Curl\User;
+use AppBundle\Entity\User;
+
 use NewsBundle\Entity\News;
 use NewsBundle\Form\NewsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -31,9 +33,10 @@ class NewsController extends Controller
             $em =$this->getDoctrine()->getManager();
             /** @var UploadedFile $file */
             $file = $News->getImage();
-            $filename= md5(uniqid()) . '.' . $file->guessExtension();
+            $filename= md5(uniqid(rand(), true))  . '.' . $file->guessExtension();
             $file->move($this->getParameter('photos_directory'), $filename);
             $News->setImage($filename);
+            $News->setViews(1);
             $em->persist($News);
             $em->flush();
             return $this->redirectToRoute('afficherNews');
@@ -41,21 +44,65 @@ class NewsController extends Controller
         return $this->render("@News/news/ajoutNews.html.twig",array('form'=>$form->createView()));
     }
 
-    public function afficherNewsAction()
+    public function afficherNewsAction(request $request)
     {
         $em =$this->getDoctrine()->getManager();
         $News = $em->getRepository("NewsBundle:News")->findAll();
-        return $this->render('@News/news/afficherNews.html.twig',array('News'=>$News));
+        $paginator  = $this->get('knp_paginator');
 
+        $result = $paginator->paginate(
+            $News,
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 3)/*limit per page*/
+        );
 
+        return $this->render('NewsBundle:news:afficherNews.html.twig', [
+            'News' => $result,
+        ]);
 
     }
+    public function statistiqueAction(){
+        $pieChart = new PieChart();
+        $em= $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT c  ,UPPER(n.titre) as titre ,COUNT(c.id) as num FROM NewsBundle:Comment c
+        join NewsBundle:News n with n.id=c.news GROUP BY c.news');
+        $reservations=$query->getScalarResult();
+        $data= array();
+        $stat=['news', 'id'];
+        $i=0;
+        array_push($data,$stat);
 
+        $ln= count($reservations);
+        for ($i=0 ;$i<count($reservations);$i++){
+            $stat=array();
+            array_push($stat,$reservations[$i]['titre'],$reservations[$i]['num']/$ln);
+            $stat=[$reservations[$i]['titre'],$reservations[$i]['num']*100/$ln];
+
+            array_push($data,$stat);
+        }
+        $pieChart->getData()->setArrayToDataTable( $data );
+        $pieChart->getOptions()->setTitle('NEWS Les plus commentes!');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        return $this->render('@News\news\statcom.html.twig', array('piechart' => $pieChart));
+    }
     public function calendarAction()
     {
 
-        return $this->render('@News/news/calendar.html.twig');
-
+        $em = $this->getDoctrine()->getManager();
+        $conn = $this->getDoctrine()->getEntityManager()->getConnection();
+        $sql = "SELECT id, title, start, end, color FROM events  ";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $this->getDoctrine()->getManager()->flush();
+        $result=  $stmt->fetchAll();
+        return $this->render('@News/news/calendar.html.twig',array('Events'=>$result));
+// chnou theb tamel ? list news aleeh ?
     }
     public function consulterAction(Request $request, $id)
     {
@@ -71,23 +118,23 @@ class NewsController extends Controller
             $comment->setNews($News);
             $comment->setCreatedAt(new \DateTime());
             $em =$this->getDoctrine()->getManager();
-            $userconnected=$this->getUser();
+
             $em->persist($comment);
             $em->flush();
-            return $this->redirectToRoute("consulter", array('id' => $comment->getId()));
+            return $this->redirectToRoute("consulter", array('id' => $News->getId()));
 
         }
 
 
         $emm =$this->getDoctrine()->getManager();
 
-        $Comment = $emm->getRepository("NewsBundle:CommentRepository")->findAll();
+        $Comment = $emm->getRepository("NewsBundle:Comment")->ShowCmtBlog($id);
 
 
         return $this->render("@News/news/consulterback.html.twig",array(
             'form'=>$form->createView(),
             'News'=>$News,
-            'CommentRepository'=>$Comment));
+            'Comment'=>$Comment));
 
     }
 
@@ -125,23 +172,49 @@ class NewsController extends Controller
     {
 
         $em=$this->getDoctrine()->getManager();
-        $News=$this->getDoctrine()->getRepository(News::class)->find($id);
-        $Form=$this->createForm(NewsType::class,$News);
-        $Form->handleRequest($request);
-        if($Form->isSubmitted() && $Form->isValid())
-        {
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($News);
-            $em->flush();
+        $p= $em->getRepository(News::class)->find(37);
+        //$picture = $p->getImage();
+        // var_dump($picture);die();
+        $picture = $p->getImage();
 
+        $form=$this->createForm(NewsType::class,$p)->handleRequest($request); // fel star hedha tetn7a el image le9dima//chnou taw walet tekhdem? nn att
+
+
+
+
+
+        if($form->isSubmitted() && $form->isValid()){
+            //   var_dump($picture);die();
+
+
+
+            /** @var UploadedFile $file */
+            $file = $p->getImage();
+            var_dump($file);
+            if ($file !== null) {
+                $filename = md5(uniqid(rand(), true)) . '.' . $file->guessExtension();
+                /** @var TYPE_NAME $file */
+                $file->move($this->getParameter('photos_directory'), $filename);
+                $p->setImage($filename);
+            } else
+                $p->setImage($picture);
+
+            //     $filename= md5(uniqid(rand(), true))  . '.' . $file->guessExtension();
+            // $file->move($this->getParameter('photos_directory'), $filename);
+            //   $p->setImage($filename);
+            //    var_dump($p);die();
+            $em->persist($p);
+            $em->flush();
             return $this->redirectToRoute('afficherNews');
 
-        }
 
-        return $this->render('@News/News/modifier.html.twig',
-            array('f' => $Form->createView()));
+        }
+        return $this->render('@News/news/modifier.html.twig', array(
+            "f"=> $form->createView()
+        ));
 
     }
+
 
 
     function supprimernewsAction($id)
@@ -157,6 +230,9 @@ class NewsController extends Controller
     {
         $em =$this->getDoctrine()->getManager();
         $News = $em->getRepository("NewsBundle:News")->findAll();
+        $new = $em->getRepository("NewsBundle:News")->find(38);
+        $neww = $em->getRepository("NewsBundle:News")->find(39);
+        $newww = $em->getRepository("NewsBundle:News")->find(40);
 
         $paginator  = $this->get('knp_paginator');
 
@@ -168,7 +244,7 @@ class NewsController extends Controller
 
 
         return $this->render('NewsBundle:news:afficher.html.twig', [
-            'News' => $result,
+            'News' => $result, 'new'=>$new, 'neww'=>$neww, 'newww'=>$newww
         ]);
 
 
@@ -187,6 +263,20 @@ class NewsController extends Controller
         // parameters to template
         return $this->render('@News/news/afficher.html.twig', ['pagination' => $pagination]);
     }
+    public function listnewsAction(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request)
+    {
+        $dql   = "SELECT a FROM NewsBundle:News a";
+        $query = $em->createQuery($dql);
+
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
+
+        // parameters to template
+        return $this->render('@News/news/afficherNews.html.twig', ['pagination' => $pagination]);
+    }
 
 
     public function consulterfrontAction(Request $request, $id)
@@ -194,6 +284,10 @@ class NewsController extends Controller
         $comment = new Comment();
         $em =$this->getDoctrine()->getManager();
         $News = $em->getRepository("NewsBundle:News")->find($id);
+        $previous = $id-1;
+        $next = $id+1;
+        $Newsp = $em->getRepository("NewsBundle:News")->find($previous);
+        $Newsn = $em->getRepository("NewsBundle:News")->find($next);
         $form = $this->createForm(CommentType::class,$comment);
         $form->handleRequest($request);
         if($form->isSubmitted())
@@ -207,51 +301,37 @@ class NewsController extends Controller
             $userconnected=$this->getUser();
             $em->persist($comment);
             $em->flush();
-                return $this->redirectToRoute("consulterfront", array('id' => $comment->getId()));
+            return $this->redirectToRoute("consulterfront", array('id' => $News->getId()));
 
         }
 
         $emm =$this->getDoctrine()->getManager();
-        $Comment = $emm->getRepository("NewsBundle:CommentRepository")->findAll();
+        $Comment = $emm->getRepository("NewsBundle:Comment")->ShowCmtBlog($id);
 
 
         return $this->render("@News/news/consulter.html.twig",array(
             'form'=>$form->createView(),
             'News'=>$News,
-            'CommentRepository'=>$Comment));
+            'Newsn'=>$Newsn,
+            'Newsp'=>$Newsp,
+            'Comment'=>$Comment));
 
     }
 
-    public function statAction(){
-        $pieChart = new PieChart();
-        $em= $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT c  ,UPPER(n.titre) as nom ,COUNT(c.id) as num FROM NewsBundle:CommentRepository c 
-join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
-        $reservations=$query->getScalarResult();
-        $data= array();
-        $stat=['evenement', 'id'];
-        $i=0;
-        array_push($data,$stat);
+    public function LikeAction(Request $request)
+    { $session = $request->getSession();
+        $em=$this->getDoctrine()->getManager();
+        $idc = $request->get('idc');
+        $p=$this->getDoctrine()->getRepository(News::class)->find($idc);
+        $p->setPoint($p->getPoint()+1);
+        $em->persist($p);
+        $em->flush();
 
-        $ln= count($reservations);
-        for ($i=0 ;$i<count($reservations);$i++){
-            $stat=array();
-            array_push($stat,$reservations[$i]['nom'],$reservations[$i]['num']/$ln);
-            $stat=[$reservations[$i]['nom'],$reservations[$i]['num']*100/$ln];
-
-            array_push($data,$stat);
-        }
-        $pieChart->getData()->setArrayToDataTable( $data );
-        $pieChart->getOptions()->setTitle('Pourcentages des participants par evenement');
-        $pieChart->getOptions()->setHeight(500);
-        $pieChart->getOptions()->setWidth(900);
-        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
-        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
-        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
-        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
-        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
-        return $this->render('@Event\Default\chartEvent.html.twig', array('piechart' => $pieChart));
+        return $this->redirectToRoute('consulterfront',array('id' => $p->getId()
+        ));
     }
+
+
     //Form Mobile
 
     public function ListNewsMobileAction(){
@@ -278,8 +358,10 @@ join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
         $News->setTitre($titre);
 
         $News->setImage($image);
-
+        $News->setIntroduction("Hello");
         $News->setDescr($descr);
+        $News->setViews(1);
+        $News->setPoint(0);
 
         $em=$this->getDoctrine()->getManager();
 
@@ -351,7 +433,7 @@ join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
             'SELECT n.titre ,count(c.news) as nombre
-        FROM NewsBundle:News n ,NewsBundle:CommentRepository c WHERE c.news=n.id  GROUP by n.id'
+        FROM NewsBundle:News n ,NewsBundle:Comment c WHERE c.news=n.id  GROUP by n.id'
         );
         $NEWS = $query->getArrayResult();
         $response = new Response(json_encode($NEWS));
@@ -363,7 +445,7 @@ join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
             'SELECT c
-        FROM NewsBundle:CommentRepository c '
+        FROM NewsBundle:Comment c '
         );
         $Comment = $query->getArrayResult();
         $response = new Response(json_encode($Comment));
@@ -373,12 +455,12 @@ join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
 
     public function deleteCommentMobileAction(Request $request){
         $id = $request->query->get('id');
-        $Comment= $this->getDoctrine()->getRepository('NewsBundle:CommentRepository')->findOneById($id);
+        $Comment= $this->getDoctrine()->getRepository('NewsBundle:Comment')->findOneById($id);
         if($Comment){
             $em = $this->getDoctrine()->getManager();
             $em->remove($Comment);
             $em->flush();
-            $response = array("body"=> "CommentRepository delete");
+            $response = array("body"=> "Comment delete");
         }else{
             $response = array("body"=>"Error");
         }
@@ -409,7 +491,7 @@ join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
             $response = new JsonResponse($data,400);
             return $response;
         }
-        return $this->json(array('text'=>'successful','message'=> "CommentRepository Edited successfully"),200);
+        return $this->json(array('text'=>'successful','message'=> "Comment Edited successfully"),200);
     }
     public function  AddCommentMobileAction(Request $request){
 
@@ -443,7 +525,7 @@ join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
             return $response;
         }
 
-        return $this->json(array('text'=>'successful','message'=> "CommentRepository added successfully"),200);
+        return $this->json(array('text'=>'successful','message'=> "Comment added successfully"),200);
 
 
     }
@@ -470,7 +552,7 @@ join NewsBundle:News n with n.id=c. GROUP BY p.evenement');
     public function getRealEntities($news)
     {
         foreach ($news as $new) {
-            $realEntities[$new->getId()] = [$new->getTitre()];
+            $realEntities[$new->getId()] = [$new->getImage(),$new->getTitre()];
 
         }
         return $realEntities;

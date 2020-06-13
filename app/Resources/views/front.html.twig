@@ -20,14 +20,14 @@
     <!--
     CSS
     ============================================= -->
-    <link rel="stylesheet" href="{{ asset('Front/css/linearicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('Front/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('Front/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('Front/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('Front/css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('Front/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('Front/css/jquery-ui.css') }}">
-    <link rel="stylesheet" href="{{ asset('Front/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/linearicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -104,7 +104,9 @@
     <!-- start footer Area -->
     <footer class="footer-area section-gap">
         <center>
-            <img class="footer-wassalni" src="img/Logo (1).png" alt="" >
+
+            <img class="footer-wassalni" src="{{ asset('img/Logo (1).png')}}" alt="" >
+
         </center>
 
         <div class="container">
@@ -127,7 +129,10 @@
             </div>
         </div>
 
-        <img class="footer-bottom" src="img/footer-bottom.png" alt="">
+        <div>
+            <img class="footer-bottom" src="{{ asset('img/footer-bottom.png')}}" alt="">
+        </div>
+
     </footer>
     <!-- End footer Area -->
 {% endblock %}

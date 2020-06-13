@@ -12,7 +12,7 @@ promotion:
 
 news:
     resource: "@NewsBundle/Resources/config/routing.yml"
-    prefix:   /News
+    prefix:   /news
 
 reservation:
     resource: "@ReservationBundle/Resources/config/routing.yml"

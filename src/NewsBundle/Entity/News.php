@@ -74,6 +74,29 @@ class News implements ViewCountable
         return $this;
     }
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="point", type="integer", nullable=false)
+     */
+    private $point = '0';
+    /**
+     * @return int
+     */
+    public function getPoint()
+    {
+        return $this->point;
+    }
+
+    /**
+     * @param int $point
+     */
+    public function setPoint($point)
+    {
+        $this->point = $point;
+    }
+
+
 
     /**
      * Get id
@@ -134,28 +157,23 @@ class News implements ViewCountable
     }
 
     /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return News
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
      * @return string
      */
     public function getImage()
     {
         return $this->image;
     }
+
+    /**
+     * @param string $image
+     * @return News
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
 
     /**
      * @ORM\OneToMany(targetEntity="Tchoulom\ViewCounterBundle\Entity\ViewCounter", mappedBy="news")
@@ -165,7 +183,7 @@ class News implements ViewCountable
     /**
      * @ORM\Column(name="views", type="integer", nullable=true)
      */
-    protected $views = 0;
+    protected $views = 1;
 
     /**
      * Sets $views
@@ -237,6 +255,4 @@ class News implements ViewCountable
 
 
 }
-
-
 

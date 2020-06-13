@@ -1,4 +1,4 @@
-{% extends 'front.html.twig' %}
+{% extends 'base.html.twig' %}
 
 
 {%  block content %}
@@ -37,22 +37,15 @@
     </header><!-- #header -->
 
     <!-- start banner Area -->
-    <section class="" id="home">
+    <section class="banner-area relative" id="home">
         <div class="overlay overlay-bg"></div>
         <div class="container">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content blog-header-content col-lg-12">
-                    {% for n in News|length %}
-                    <h1 class="text-black-50">
-                        {{n.titre}}
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        LIST NEWS
                     </h1>
-                    <p class="text-white">
-                        introduction
-                    </p>
-                       <a href="" class="primary-btn">View More</a>
-
-                    {% endfor %}
-
+                    <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="{{path ('afficher')}}">News </a> <span class="lnr lnr-arrow-right"></span></p>
                 </div>
             </div>
         </div>
@@ -68,12 +61,12 @@
                             <div class="overlay overlay-bg"></div>
                             <a href="#" target="_blank">
                                 <div class="thumb">
-                                    <img class="content-image img-fluid d-block mx-auto" src="/../web/Front/img/g3.jpg" alt="">
+                                    <img class="content-image img-fluid d-block mx-auto" src="{{ asset('images/') }}{{ new.image }}" alt="">
                                 </div>
                                 <div class="content-details">
-                                    <h4 class="content-title mx-auto text-uppercase">Social life</h4>
+                                    <h4 class="content-title mx-auto text-uppercase">{{ new.titre }}</h4>
                                     <span></span>
-                                    <p>Enjoy your social life together</p>
+                                    <p>{{new.introduction}}</p>
                                 </div>
                             </a>
                         </div>
@@ -85,12 +78,12 @@
                             <div class="overlay overlay-bg"></div>
                             <a href="#" target="_blank">
                                 <div class="thumb">
-                                    <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget2.jpg" alt="">
+                                    <img class="content-image img-fluid d-block mx-auto" src="{{ asset('images/') }}{{ newww.image }}" alt="">
                                 </div>
                                 <div class="content-details">
-                                    <h4 class="content-title mx-auto text-uppercase">Politics</h4>
+                                    <h4 class="content-title mx-auto text-uppercase">{{ newww.titre }}</h4>
                                     <span></span>
-                                    <p>Be a part of politics</p>
+                                    <p>{{newww.introduction}}</p>
                                 </div>
                             </a>
                         </div>
@@ -102,17 +95,18 @@
                             <div class="overlay overlay-bg"></div>
                             <a href="#" target="_blank">
                                 <div class="thumb">
-                                    <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget3.jpg" alt="">
+                                    <img class="content-image img-fluid d-block mx-auto" src="{{ asset('images/') }}{{ neww.image }}" alt="">
                                 </div>
                                 <div class="content-details">
-                                    <h4 class="content-title mx-auto text-uppercase">Food</h4>
+                                    <h4 class="content-title mx-auto text-uppercase">{{ neww.titre }}</h4>
                                     <span></span>
-                                    <p>Let the food be finished</p>
+                                    <p>{{neww.introduction}}</p>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -171,63 +165,17 @@
                 </div>
                 <div class="col-lg-4 sidebar-widgets">
                     <div class="widget-wrap">
+
                         <div class="single-sidebar-widget search-widget">
-                            <form class="search-form" action="#">
-                                <input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                            <form class="search-form">
+                                <input type="text" id="search" class="form-control" placeholder="Search Here">
+                                <button><i class="fa fa-search"></i></button>
                             </form>
-                        </div>
-                        <div class="single-sidebar-widget popular-post-widget">
-                            <h4 class="popular-title">Popular Posts</h4>
-                            <div class="popular-post-list">
-                                <div class="single-post-list d-flex flex-row align-items-center">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="img/blog/pp1.jpg" alt="">
-                                    </div>
-                                    <div class="details">
-                                        <a href="blog-single.html"><h6>Space The Final Frontier</h6></a>
-                                        <p>02 Hours ago</p>
-                                    </div>
-                                </div>
-                                <div class="single-post-list d-flex flex-row align-items-center">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="img/blog/pp2.jpg" alt="">
-                                    </div>
-                                    <div class="details">
-                                        <a href="blog-single.html"><h6>The Amazing Hubble</h6></a>
-                                        <p>02 Hours ago</p>
-                                    </div>
-                                </div>
-                                <div class="single-post-list d-flex flex-row align-items-center">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="img/blog/pp3.jpg" alt="">
-                                    </div>
-                                    <div class="details">
-                                        <a href="blog-single.html"><h6>Astronomy Or Astrology</h6></a>
-                                        <p>02 Hours ago</p>
-                                    </div>
-                                </div>
-                                <div class="single-post-list d-flex flex-row align-items-center">
-                                    <div class="thumb">
-                                        <img class="img-fluid" src="img/blog/pp4.jpg" alt="">
-                                    </div>
-                                    <div class="details">
-                                        <a href="blog-single.html"><h6>Asteroids telescope</h6></a>
-                                        <p>02 Hours ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        //search!!!!!!!!!!!!!!
-                        <div class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" id="search" class="form-control" placeholder="Suche...">
-                            </div>
                             <!-- /input-group -->
                         </div>
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#"> Entities<span class="fa arrow"></span></a>
+
                                 <ul class="nav nav-second-level" id="entitiesNav">
                                 </ul>
                             </li>
@@ -241,7 +189,7 @@
                         jQuery(document).ready(function() {
                             var searchRequest = null;
                             $("#search").keyup(function() {
-                                var minlength = 3;
+                                var minlength = 1;
                                 var that = this;
                                 var value = $(this).val();
                                 var entitySelector = $("#entitiesNav").html('');
@@ -252,7 +200,7 @@
                                         type: "GET",
                                         url: "{{ path('ajax_search') }}",
                                         data: {
-                                            'n' : value
+                                            'q' : value
                                         },
                                         dataType: "text",
                                         success: function(msg){
@@ -263,7 +211,8 @@
                                                     $.each(arr, function(id, value) {
                                                         if (key == 'news') {
                                                             if (id != 'error') {
-                                                                entitySelector.append('<li><a href="/consulter/'+id+'">'+value+'</a></li>');
+                                                                console.log(value[1]);
+                                                                entitySelector.append('<li><b>'+value[1]+'</b><a href="consulterfront/'+id+'">'+'<img src="/images/+value[0]+" style="width: 50px; height: 50px"/>'+'</a></li>');
                                                             } else {
                                                                 entitySelector.append('<li class="errorLi">'+value+'</li>');
                                                             }
@@ -278,87 +227,12 @@
                         });
                     </script>
                 </div>
+
             </div>
         </div>
     </section>
     <!-- End post-content Area -->
 
-    <!-- start footer Area -->
-    <footer class="footer-area section-gap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>Quick links</h6>
-                        <ul>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Brand Assets</a></li>
-                            <li><a href="#">Investor Relations</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>Features</h6>
-                        <ul>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Brand Assets</a></li>
-                            <li><a href="#">Investor Relations</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>Resources</h6>
-                        <ul>
-                            <li><a href="#">Guides</a></li>
-                            <li><a href="#">Research</a></li>
-                            <li><a href="#">Experts</a></li>
-                            <li><a href="#">Agencies</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-                    <div class="single-footer-widget">
-                        <h6>Follow Us</h6>
-                        <p>Let us be social</p>
-                        <div class="footer-social d-flex align-items-center">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>Newsletter</h6>
-                        <p>Stay update with our latest</p>
-                        <div class="" id="mc_embed_signup">
-                            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline" novalidate="true">
-                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-                                <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                </div>
-
-                                <div class="info"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <p class="mt-80 mx-auto footer-text col-lg-12">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright ©<script>document.write(new Date().getFullYear());</script>2020 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-            </div>
-        </div>
-        <img class="footer-bottom" src="img/footer-bottom.png" alt="">
-    </footer>
-    <!-- End footer Area -->
 
     <script src="js/vendor/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -24,6 +24,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             'Twig\\' => 5,
             'Tests\\' => 6,
+            'Tchoulom\\ViewCounterBundle\\' => 27,
         ),
         'S' => 
         array (
@@ -59,6 +60,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             'Monolog\\' => 8,
         ),
+        'K' => 
+        array (
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
+        ),
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
@@ -67,6 +72,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             'Fig\\Link\\' => 9,
             'FOS\\UserBundle\\' => 15,
+            'FOS\\JsRoutingBundle\\' => 20,
         ),
         'D' => 
         array (
@@ -81,6 +87,7 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         'C' => 
         array (
             'Composer\\CaBundle\\' => 18,
+            'CMEN\\GoogleChartsBundle\\' => 24,
         ),
     );
 
@@ -92,6 +99,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         'Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'Tchoulom\\ViewCounterBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tchoulom/view-counter-bundle',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -193,6 +204,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Knp\\Bundle\\PaginatorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+        ),
         'Incenteev\\ParameterHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
@@ -204,6 +219,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         'FOS\\UserBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
+        ),
+        'FOS\\JsRoutingBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/jsrouting-bundle',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -237,6 +256,10 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
+        'CMEN\\GoogleChartsBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cmen/google-charts-bundle',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
@@ -249,6 +272,27 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'Twig_' => 
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'N' => 
+        array (
+            'Nomaya\\SocialBundle\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/nomaya/social-bundle',
+            ),
+        ),
+        'K' => 
+        array (
+            'Knp\\Component' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-components/src',
+            ),
+        ),
+        'J' => 
+        array (
+            'JsonpCallbackValidator' => 
+            array (
+                0 => __DIR__ . '/..' . '/willdurand/jsonp-callback-validator/src',
             ),
         ),
         'D' => 
@@ -268,6 +312,13 @@ class ComposerStaticInitabae40903566c1c7c8491c5200ac3c4a
             'Doctrine\\Common\\Collections\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/collections/lib',
+            ),
+        ),
+        'A' => 
+        array (
+            'ADesigns\\CalendarBundle' => 
+            array (
+                0 => __DIR__ . '/..' . '/adesigns/calendar-bundle',
             ),
         ),
     );
