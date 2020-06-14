@@ -43,7 +43,7 @@
             <img class="menu-top" src={{ asset ('img/menu-top.png') }} alt="">
             <div class="container main-menu">
                 <div class="row align-items-center justify-content-between d-flex">
-                    <a href="/"><img src={{ asset ('img/wassalni.png') }} alt="" title="" /></a>
+                    <a href=""><img src={{ asset ('img/wassalni.png') }} alt="" title="" /></a>
                     <nav id="nav-menu-container">
                         <ul class="nav-menu">
                             {% if app.user %}
@@ -67,7 +67,8 @@
                                 <li><a href="">About US</a></li>
                                 
                             {% else %}
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>                                <li class="menu-active"><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                <li class="menu-active"><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
                             {% endif %}
 
                         </ul>

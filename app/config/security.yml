@@ -24,7 +24,6 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 success_handler: redirect.after.login
-                default_target_path: /home
 
                 # if you are using Symfony < 2.8, use the following config instead:
     # csrf_provider: form.csrf_provider
@@ -35,9 +34,7 @@ security:
             remember_me:
                 secret: '%secret%'
                 
-            logout:
-                target: fos_user_security_login
-            anonymous:    true
+
 
 
     access_control:

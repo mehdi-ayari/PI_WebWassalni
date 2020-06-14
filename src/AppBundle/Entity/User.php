@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -247,11 +247,15 @@ class User extends BaseUser
 	}
 	/**
      * @ORM\Column(type="string")
+     *
+     * @ORM\Column(name="firstname", type="String", nullable=true)
      */
     protected $firstname;
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @ORM\Column(name="lastname", type="String", nullable=true)
      */
     protected $lastname;
 
@@ -313,9 +317,9 @@ class User extends BaseUser
         return $this->roles;
     }
 
-
-
-
+    /**
+     * @return mixed
+     */
     public function getImage()
     {
         return $this->image;
@@ -323,12 +327,12 @@ class User extends BaseUser
 
     /**
      * @param mixed $image
-     * @return User
      */
     public function setImage($image)
     {
         $this->image = $image;
-        return $this;
     }
+
+
 
 }
