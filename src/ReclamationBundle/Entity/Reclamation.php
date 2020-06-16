@@ -36,6 +36,13 @@ class Reclamation
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="etat", type="string", length=50, nullable=false)
+     */
+    private $etat;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_reclamation", type="datetime", nullable=false)
@@ -48,10 +55,20 @@ class Reclamation
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
 
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
      * })
      */
     private $user;
+
+    /**
+     * @var \Type
+     *
+     * @ORM\ManyToOne(targetEntity="ReclamationBundle\Entity\Type")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="typeRec", referencedColumnName="id",onDelete="CASCADE")
+     * })
+     */
+    private $typeRec;
 
     /**
      * @return int
@@ -131,6 +148,38 @@ class Reclamation
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param string $etat
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    }
+
+    /**
+     * @return \Type
+     */
+    public function getTypeRec()
+    {
+        return $this->typeRec;
+    }
+
+    /**
+     * @param \Type $typeRec
+     */
+    public function setTypeRec($typeRec)
+    {
+        $this->typeRec = $typeRec;
     }
 
 

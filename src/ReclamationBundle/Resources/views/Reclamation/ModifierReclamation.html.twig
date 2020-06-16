@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <section>
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Reclamez-Vous</h4>
+                    <p class="card-description">
+                    </p>
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        <label for="exampleInputName1">Sujet :</label>
+                        {{ form_widget(form.titre	, { 'attr': {'class': 'common-input mb-20 form-control'} }) }}
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Description</label>
+                        {{ form_widget(form.description	, { 'attr': {'class': 'common-input mb-20 form-control'} }) }}
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Type</label>
+                        {{ form_widget(form.typeRec	, { 'attr': {'class': 'common-input mb-20 form-control'} }) }}
+
+                    </div>
+
+                    <input type="submit" value="Envoyer" class=" btn btn-primary mr-2"/>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

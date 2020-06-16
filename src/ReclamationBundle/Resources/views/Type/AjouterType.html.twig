@@ -1,0 +1,25 @@
+
+{% extends "back.html.twig" %}
+
+{% block content %}
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Ajouter Type</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    {{ form_start(form) }}
+
+        <div class="card-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Type</label>
+                {{ form_widget(form.type, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -39,7 +39,6 @@
 {% block header %}
     <header id="header">
         <div class="header-top">
-
             <img class="menu-top" src={{ asset ('img/menu-top.png') }} alt="">
             <div class="container main-menu">
                 <div class="row align-items-center justify-content-between d-flex">
@@ -59,8 +58,8 @@
                             </li>
 
                                 <li><a href=" {{ path('afficher') }}">Actualités</a></li>
-                                <li><a href="">Reclamer</a></li>
-                                <li><a href="{{ path('voyage_indexFront') }}">Voyage</a></li>
+								<li><a href="{{ asset('/PI_Webwassalni/web/app_dev.php/Reclamation/Ajouter') }}">Reclamer</a></li>
+								<li><a href="{{ asset('/PI_Webwassalni/web/app_dev.php/Reclamation/Afficher/Reclamation') }}">Liste Reclamation</a></li>                                <li><a href="{{ path('voyage_indexFront') }}">Voyage</a></li>
                                 <li><a href="">Contact</a></li>
                                 <li><a href="">Promotion</a></li>
                                 <li><a href="">Forum</a></li>
@@ -75,8 +74,6 @@
                         </ul>
                     </nav><!-- #nav-menu-container -->
                 </div>
-
-
             </div>
         </div>
     </header><!-- #header -->
