@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <br> <br><br><br><br><br><br><br><br><br><br><br>
+<div class="col-lg-20 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste Reclamations : </h4>
+
+            <div class="table-responsive pt-3">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+
+                        <th>
+                            Sujet
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Data
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Etat
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for r in rec %}
+                        {% if r.etat == "Archiver" %}
+                    {% else %}
+                        <tr>
+                            <td>
+                                {{ r.titre }}
+                            </td>
+                            <td>
+                                {{ r.description }}
+                            </td>
+                            <td>
+                               {{ r.dateReclamation |date }}
+                            </td>
+                            <td>
+                                {{ r.typeRec.type }}
+                            </td>
+                            <td>
+                                {{ r.etat }}
+                            </td>
+
+                            <td>
+                                <a href="{{ path('Modifier_Reclamation',{'id':r.idReclamation}) }}">Modifier</a><br>
+                                <a href="{{ path('delete_Reclamation',{'id':r.idReclamation}) }}">Supprimer</a><br>
+                            </td>
+
+
+
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

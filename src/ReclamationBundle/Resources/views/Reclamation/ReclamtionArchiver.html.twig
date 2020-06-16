@@ -1,0 +1,48 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"> List Reclamation Archivés  </h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">User</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Titre</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Discription</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Etat</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Date</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Type</th>
+                </tr>
+                </thead>
+                {% for r in rec %}
+
+
+                    <tbody>
+                    {% if r.etat == "Archiver" %}
+                    <tr role="row" class="odd">
+                        <td class="sorting_1">{{ r.user.username }}</td>
+                        <td class="sorting_1">{{ r.titre }}</td>
+                        <td class="sorting_1">{{ r.description }}</td>
+                        <td class="sorting_1"><span class="badge-danger">{{ r.etat }}</span></td>
+                        <td class="sorting_1">{{ r.dateReclamation | date }}</td>
+                        <td class="sorting_1">{{ r.typeRec.type }}</td>
+
+                    </tr>
+                    {% else %}
+                    {% endif %}
+                    </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+{% endblock %}
+
+
+

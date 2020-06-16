@@ -1,3 +1,42 @@
 reclamation_homepage:
     path:     /
     defaults: { _controller: ReclamationBundle:Default:index }
+
+Type_Ajout:
+    path:     /Type/Ajout
+    defaults: { _controller: ReclamationBundle:Type:AjoutType }
+Type_Afficher:
+    path:     /Type/Afficher
+    defaults: { _controller: ReclamationBundle:Type:AfficheType }
+Type_Delete:
+    path:     /Type/delete/{id}
+    defaults: { _controller: ReclamationBundle:Type:deleteType}
+
+Ajouter_Reclamation:
+    path:     /Ajouter
+    defaults: { _controller: ReclamationBundle:Reclamation:AjoutReclamation}
+Afficher_Reclamation:
+    path:     /Afficher/Reclamation
+    defaults: { _controller: ReclamationBundle:Reclamation:AfficheReclamtionUser}
+delete_Reclamation:
+    path:     /delete/Reclamation/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:deleteReclamation}
+Modifier_Reclamation:
+    path:     /Modifier/Reclamation/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:ModifierReclamtion}
+AdminAfficher_Reclamation:
+    path:     /AfficherAdmin/Reclamation
+    defaults: { _controller: ReclamationBundle:Reclamation:AfficheReclamtionAdmin}
+Reclamation_Traite:
+    path:     /Reclamation/Traite/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:TraiteRecclamation}
+Reclamation_Archiver:
+    path:     /Reclamation/Archiver/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:ArchiverReclamation}
+Affiche_Archiver:
+    path:     /Reclamation/Archiver
+    defaults: { _controller: ReclamationBundle:Reclamation:AfficheReclamtionArchiver}
+
+
+
+

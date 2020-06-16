@@ -1,0 +1,76 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#rech tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <div class="card">
+        <div class="card-header">
+            {% if c == 0 %}
+            <h3 class="card-title"> List Reclamation <b> <span class="btn-success">{{ c }}</span></b> </h3>
+            {% else %}
+            <h3 class="card-title"> List Reclamation  <span class="btn-danger">{{ c }}</span> </h3>
+              {% endif %}
+        </div>
+        <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">User</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Titre</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Discription</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Etat</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Date</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Type</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 112px;">Action</th>
+
+                </tr>
+                </thead>
+                {% for r in rec %}
+
+                    <tbody id="rech">
+                  {% if r.etat == "Archiver" %}
+                  {% else %}
+                    <tr role="row" class="odd">
+                        <td class="sorting_1">{{ r.user.username }}</td>
+                        <td class="sorting_1">{{ r.titre }}</td>
+                        <td class="sorting_1">{{ r.description }}</td>
+                        {% if r.etat == "En Cours" %}
+                        <td class="sorting_1"><span class="badge-danger">{{ r.etat }}</span></td>
+                        {% else %}
+                        <td class="sorting_1"><span class="badge-success">{{ r.etat }}</span></td>
+                         {% endif %}
+                        <td class="sorting_1">{{ r.dateReclamation | date }}</td>
+                        <td class="sorting_1">{{ r.typeRec.type }}</td>
+                        {% if r.etat == "Traité" %}
+
+                             <td> <a type="button" class="btn btn-block btn-danger" href="{{ path('Reclamation_Archiver',{'id':r.idReclamation})}}"> Archiver</a></td>
+                         {% else %}
+                             <td> <a type="button" class="btn btn-block btn-success" href="{{ path('Reclamation_Traite',{'id':r.idReclamation})}}"> Traiter</a></td>
+                         {% endif%}
+                             </tr>
+                      {% endif %}
+                    </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+{% endblock %}
+
+
+
