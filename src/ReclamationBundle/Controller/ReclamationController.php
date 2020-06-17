@@ -4,6 +4,7 @@ namespace ReclamationBundle\Controller;
 
 use ReclamationBundle\Entity\Reclamation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ReclamationController extends Controller
 {
