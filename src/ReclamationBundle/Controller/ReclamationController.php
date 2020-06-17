@@ -154,4 +154,104 @@ class ReclamationController extends Controller
 
     }
 
+    public function allrecAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //$recs = $em->getRepository('ShopBundle:Reclamation')
+        //->findAll();
+        $recs = $em->getRepository('ReclamationBundle:Reclamation')
+            ->findByUser($id);
+
+        $data= array();
+        foreach ($recs as $key =>$comm){
+            $data[$key]['id']=$comm->getIdReclamation();
+            $data[$key]['titre']=$comm->getTitre();
+            $data[$key]['description']=$comm->getDescription();
+            $data[$key]['etat']=$comm->getEtat();
+            $data[$key]['date']=$comm->getDateReclamation();
+            //->format('d/m/Y H:i');
+            $data[$key]['user']=$comm->getUser()->getId();
+            $data[$key]['type']=$comm->getTypeRec()->getType();
+
+
+        }
+
+        return new JsonResponse($data);
+    }
+
+    public function updateReclamationAction($id,$idt, $titre, $description)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reclamation = $entityManager->getRepository('ReclamationBundle:Reclamation')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $type = $em->getRepository('ReclamationBundle:Type')
+            ->find($idt);
+        if (!$reclamation) {
+            throw $this->createNotFoundException(
+                'No command found for id '.$id
+            );
+        }
+        $reclamation->setTitre($titre);
+        $reclamation->setDescription($description);
+        $reclamation->setTypeRec($type);
+        //$reclamation->setDate(new \DateTime('now'));
+        $entityManager->flush();
+        return new JsonResponse("success");
+    }
+
+
+    public function deleteReclamationByIdAction($id)
+    {
+
+        $sn = $this->getDoctrine()->getManager();
+        $rec = $sn->getRepository('ReclamationBundle:Reclamation')->find($id);
+        $sn->remove($rec);
+        $sn->flush();
+
+        return new JsonResponse("success");
+    }
+
+    public function addReclamationAction($idt,$idu, $titre, $description)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $type = $em->getRepository('ReclamationBundle:Type')
+            ->find($idt);
+        $user = $em->getRepository('AppBundle:User')
+            ->find($idu);
+        $reclamation = new Reclamation();
+        $reclamation->setDateReclamation(new \DateTime('now'));
+        $reclamation->setTitre($titre);
+        $reclamation->setDescription($description);
+        $reclamation->setEtat("En Cours");
+        $reclamation->setUser($user);
+        $reclamation->setTypeRec($type);
+        //$reclamation->setUtilisateur($user);
+        /*
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($user);*/
+        //return new JsonResponse($formatted);
+        $em->persist($reclamation);
+        $em->flush();
+        return new JsonResponse("success");
+    }
+
+    public function getTypesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        //$recs = $em->getRepository('ShopBundle:Reclamation')
+        //->findAll();
+        $types = $em->getRepository('ReclamationBundle:Type')
+            ->findAll();
+
+        $data= array();
+        foreach ($types as $key =>$comm){
+            $data[$key]['id']=$comm->getId();
+            $data[$key]['type']=$comm->getType();
+        }
+
+        return new JsonResponse($data);
+    }
+
+
+
 }

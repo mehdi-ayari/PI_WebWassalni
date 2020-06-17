@@ -38,5 +38,25 @@ Affiche_Archiver:
     defaults: { _controller: ReclamationBundle:Reclamation:AfficheReclamtionArchiver}
 
 
+Reclamation_allRec:
+    path:     /allrec/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:allrec }
+
+Reclamation_updRec:
+    path:     /updRec/{id}/{idt}/{titre}/{description}
+    defaults: { _controller: ReclamationBundle:Reclamation:updateReclamation }
+
+Reclamation_delRec:
+    path:     /delRec/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:deleteReclamationById }
+
+Reclamation_addRec:
+    path:     /addRec/{idt}/{idu}/{titre}/{description}
+    defaults: { _controller: ReclamationBundle:Reclamation:addReclamation }
+
+Reclamation_allTypes:
+    path:     /listTypes
+    defaults: { _controller: ReclamationBundle:Reclamation:getTypes }
+
 
 
