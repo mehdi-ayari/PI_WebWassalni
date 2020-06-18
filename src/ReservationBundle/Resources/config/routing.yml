@@ -138,3 +138,44 @@ modifierbusinessjson:
 mail:
     path: /envoyermail
     defaults: { _controller: ReservationBundle:Admin:mail}
+
+
+
+
+
+
+
+
+
+
+
+
+
+allmobile:
+    path: /allmobile
+    defaults: { _controller: ReservationBundle:UserMobile:allmobile}
+
+newmobile:
+    path: /newmobile
+    defaults: { _controller: ReservationBundle:UserMobile:newmobile}
+
+changeUsername:
+    path: /changeUsername
+    defaults: { _controller: ReservationBundle:UserMobile:changeUsername}
+
+changeEmail:
+    path: /changeEmail
+    defaults: { _controller: ReservationBundle:UserMobile:changeEmail}
+
+changeTel:
+    path: /changeTel
+    defaults: { _controller: ReservationBundle:UserMobile:changeTel}
+
+plainPW:
+    path: /plainPW
+    defaults: { _controller: ReservationBundle:UserMobile:plainPW}
+
+logg:
+    path: /logg
+    defaults: { _controller: ReservationBundle:UserMobile:logg}
+
