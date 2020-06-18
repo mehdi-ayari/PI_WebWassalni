@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -230,9 +232,13 @@ class NewsController extends Controller
     {
         $em =$this->getDoctrine()->getManager();
         $News = $em->getRepository("NewsBundle:News")->findAll();
-        $new = $em->getRepository("NewsBundle:News")->find(38);
-        $neww = $em->getRepository("NewsBundle:News")->find(39);
-        $newww = $em->getRepository("NewsBundle:News")->find(40);
+        $vu = $em->getRepository("NewsBundle:News")->findAll();
+        $id = $em->getRepository("NewsBundle:News")->createQueryBuilder('e')->select('MAX(e.id)')->getQuery()->getSingleScalarResult();
+        $idd=$id-1;
+        $iddd=$id-2;
+        $new = $em->getRepository("NewsBundle:News")->find($id);
+        $neww = $em->getRepository("NewsBundle:News")->find($idd);
+        $newww = $em->getRepository("NewsBundle:News")->find($iddd);
 
         $paginator  = $this->get('knp_paginator');
 
@@ -441,16 +447,33 @@ class NewsController extends Controller
         return $response;
     }
     //COMMENT MOBILE
-    public function ListCommentMobileAction(){
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT c
-        FROM NewsBundle:Comment c '
-        );
-        $Comment = $query->getArrayResult();
-        $response = new Response(json_encode($Comment));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+
+    public function ListCommentMobileAction($idB){
+
+
+        $result= [];
+        $Cmts=$this->getDoctrine()->getRepository(Comment::class)->ShowCmtBlog($idB);
+        $nbC=$this->getDoctrine()->getRepository(Comment::class)->CountCmtBlog($idB);
+
+        foreach ($Cmts as $p) {
+
+            $tmp =array( ["id" => $p->getId(),
+                "id_u"=> $p->getUser()->getId(),
+                "text"=> $p->getText(),
+                "date" => $p->getCreatedAt()->format('d-M-Y'),
+                "UserName" => $p->getUser()->getFirstname(),
+                "UserPhoto" => $p->getUser()->getImage(),
+                "NbrCmt" => $nbC,
+            ]);
+
+            $result= array_merge($result,$tmp);
+
+
+        }
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($result);
+        return new JsonResponse($formatted);
     }
 
     public function deleteCommentMobileAction(Request $request){
