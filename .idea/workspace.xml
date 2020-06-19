@@ -20,36 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="285b3990-9f3f-450d-8cc0-e4c61e02ed06" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/reclamationvoyage/indexFront.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/WebWassalni.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WebWassalni.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/back.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/back.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/reclamationvoyage/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/reclamationvoyage/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/reclamationvoyage/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/reclamationvoyage/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/voyage/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/voyage/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/voyage/indexFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/voyage/indexFront.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/voyage/map.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/voyage/map.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/voyage/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/voyage/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoyageBundle/Controller/ReclamationVoyageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoyageBundle/Controller/ReclamationVoyageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VoyageBundle/Controller/VoyageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoyageBundle/Controller/VoyageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoyageBundle/Form/VoyageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoyageBundle/Form/VoyageType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoyageBundle/Repository/ReclamationVoyageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoyageBundle/Repository/ReclamationVoyageRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VoyageBundle/Repository/VoyageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoyageBundle/Repository/VoyageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoyageBundle/Resources/config/routing/reclamationvoyage.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoyageBundle/Resources/config/routing/reclamationvoyage.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoyageBundle/Resources/config/routing/voyage.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoyageBundle/Resources/config/routing/voyage.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register_content.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register_content.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +118,12 @@
       <path value="$PROJECT_DIR$/vendor/nelmio/api-doc-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/jsrouting-bundle" />
+      <path value="$PROJECT_DIR$/vendor/ancarebeca/full-calendar-bundle" />
+      <path value="$PROJECT_DIR$/vendor/tchoulom/view-counter-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy" />
+      <path value="$PROJECT_DIR$/vendor/adesigns/calendar-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ZdMH91d5aPZeC7y0osrrxE8xc0" />
@@ -263,6 +245,8 @@
       <workItem from="1591003823839" duration="5890000" />
       <workItem from="1591019881222" duration="4355000" />
       <workItem from="1591606146505" duration="1730000" />
+      <workItem from="1592525311774" duration="1117000" />
+      <workItem from="1592560627775" duration="9173000" />
     </task>
     <servers />
   </component>
@@ -324,30 +308,30 @@
     <state x="462" y="106" key="FileChooserDialogImpl/0.0.1366.728/-1280.-134.1280.984@0.0.1366.728" timestamp="1588302583293" />
     <state x="462" y="106" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586747214816" />
     <state x="519" y="121" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1589393465968" />
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom" timestamp="1591606675717">
+    <state width="746" height="198" key="GridCell.Tab.0.bottom" timestamp="1592583157295">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1323" height="162" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.-134.1280.984@0.0.1366.728" timestamp="1588458465766" />
     <state width="1323" height="162" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588579245252" />
-    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591606675717" />
-    <state width="1493" height="198" key="GridCell.Tab.0.center" timestamp="1591606675717">
+    <state width="746" height="198" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1592583157295" />
+    <state width="746" height="198" key="GridCell.Tab.0.center" timestamp="1592583157295">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1323" height="162" key="GridCell.Tab.0.center/0.0.1366.728/-1280.-134.1280.984@0.0.1366.728" timestamp="1588458465766" />
     <state width="1323" height="162" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588579245252" />
-    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1591606675717" />
-    <state width="1493" height="198" key="GridCell.Tab.0.left" timestamp="1591606675717">
+    <state width="746" height="198" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1592583157295" />
+    <state width="746" height="198" key="GridCell.Tab.0.left" timestamp="1592583157295">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1323" height="162" key="GridCell.Tab.0.left/0.0.1366.728/-1280.-134.1280.984@0.0.1366.728" timestamp="1588458465766" />
     <state width="1323" height="162" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588579245251" />
-    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1591606675717" />
-    <state width="1493" height="198" key="GridCell.Tab.0.right" timestamp="1591606675717">
+    <state width="746" height="198" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1592583157295" />
+    <state width="746" height="198" key="GridCell.Tab.0.right" timestamp="1592583157295">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1323" height="162" key="GridCell.Tab.0.right/0.0.1366.728/-1280.-134.1280.984@0.0.1366.728" timestamp="1588458465766" />
     <state width="1323" height="162" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588579245252" />
-    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1591606675717" />
+    <state width="746" height="198" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1592583157295" />
     <state x="421" y="179" key="NewPhpClassDialog" timestamp="1585165694135">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -366,17 +350,17 @@
     </state>
     <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728/-1280.-134.1280.984@0.0.1366.728" timestamp="1588454753462" />
     <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588576423841" />
-    <state x="439" y="33" width="747" height="801" key="find.popup" timestamp="1589408297019">
+    <state x="439" y="33" width="747" height="801" key="find.popup" timestamp="1592581357639">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="390" y="120" width="664" height="488" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1587660302776" />
-    <state x="439" y="33" width="747" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1589408297019" />
-    <state x="381" y="186" width="756" height="776" key="run.anything.popup" timestamp="1591606675529">
+    <state x="439" y="33" width="747" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1592581357639" />
+    <state x="381" y="186" width="756" height="776" key="run.anything.popup" timestamp="1592583157111">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728/-1280.-134.1280.984@0.0.1366.728" timestamp="1588454760024" />
     <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1588577633172" />
-    <state x="381" y="186" width="756" height="776" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1591606675529" />
+    <state x="381" y="186" width="756" height="776" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1592583157111" />
     <state x="389" y="56" width="756" height="777" key="search.everywhere.popup" timestamp="1589348144379">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

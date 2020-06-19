@@ -4,6 +4,7 @@
 
 namespace VoyageBundle\Controller;
 
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\NoResultException;
 use ReservationBundle\Entity\Reservation;
 use Symfony\Component\Serializer\Serializer;
@@ -101,26 +102,32 @@ class VoyageController extends Controller
             echo count($voyages);
             if(count($voyages) > 0) {
                 foreach ($voyages as $voy){
-                    $voyage = new Voyage();
-                    $Res = $this->getDoctrine()->getManager()->getRepository(Reservation::class)->find($voy['idRes']);
-                    $User = $this->getDoctrine()->getManager()->getRepository(User::class)->find($voy['idUser']);
-                    $des = $Res->getDestination();
-                    $voyage->setReservationRes($Res);
 
-                    $voyage->setDistance(null);
-                    $voyage->setDateVoyage($voy['dateReservation']);
-                    $voyage->setAnnul(null);
-                    $entityManager->persist($voyage);
-                    $entityManager->flush();
-                    $tel = $User->getTelephone();
-                    /*   $client->messages->create(
-                       // Where to send a text message (your cell phone?)
-                           '+216'.$tel,
-                           array(
-                               'from' => $sender,
-                               'body' => 'You have a new trip!'
-                           )
-                       );*/
+                        $voyage = new Voyage();
+                        $Res = $this->getDoctrine()->getManager()->getRepository(Reservation::class)->find($voy['idRes']);
+                        $User = $this->getDoctrine()->getManager()->getRepository(User::class)->find($voy['idUser']);
+                        $des = $Res->getDestination();
+                    try {
+                        $voyage->setReservationRes($Res);
+
+                        $voyage->setDistance(null);
+                        $voyage->setDateVoyage($voy['dateReservation']);
+                        $voyage->setAnnul(null);
+                        $this->getDoctrine()->getManager()->persist($voyage);
+                        $this->getDoctrine()->getManager()->flush();
+                        $tel = $User->getTelephone();
+                        /*   $client->messages->create(
+                           // Where to send a text message (your cell phone?)
+                               '+216'.$tel,
+                               array(
+                                   'from' => $sender,
+                                   'body' => 'You have a new trip!'
+                               )
+                           );*/
+                    }
+                    catch (UniqueConstraintViolationException $e) {
+                            $this->getDoctrine()->resetManager();
+                        }
                 }}
 
             return $this->render('voyage/new.html.twig', array(

@@ -44,8 +44,7 @@ class VoyageRepository extends \Doctrine\ORM\EntityRepository
             ->select('V')
             ->from('VoyageBundle:voyage', 'V')
             ->innerJoin('ReservationBundle:Reservation','R')
-            ->where("V.dateVoyage between DATE_ADD(CURRENT_TIMESTAMP(), '-3' ,'hour') and DATE_ADD(CURRENT_TIMESTAMP() , '-2'
-             , 'hour') and R = V.reservationRes");
+            ->where("V.dateVoyage between DATE_ADD(CURRENT_TIMESTAMP(), '-3' ,'hour') and DATE_ADD(CURRENT_TIMESTAMP() , '0' , 'hour') and R = V.reservationRes");
         $query = $qb->getQuery();
 
 
