@@ -229,9 +229,30 @@ class ReservationController extends Controller
         $deleteForm = $this->createDeleteForm($reservation);
         $editForm = $this->createForm('ReservationBundle\Form\ReservationType', $reservation);
         $editForm->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $type=$editForm->get('typeReservation')->getData();
+            $dest=$editForm->get('destination')->getData();
+            $depart=$editForm->get('pointdepart')->getData();
+            $date=new \DateTime('now');
+            $string=$date->format("D, d M Y H:i:s O");
+            $date = explode(" ", $string);
+            $latlong=$this->lat_longAction($dest);
+            $latlong1=$this->lat_longAction($depart);
+            $lat2=$latlong1['lat'];
+            $lon2=$latlong1['lon'];
+            $lat1=$latlong['lat'];
+            $lon1=$latlong['lon'];
+            $distance=$this->distanceAction($lat1,$lon1,$lat2,$lon2,'K');
+            $distance=$distance*1.3;
+            $prix=$this->calcul_prix_Action($type,$distance,$date[4]);
+            $reservation->setPrix($prix);
+            $em->persist($reservation);
+            $em->flush();
+
             return $this->redirectToRoute('reservation_edit', array('id' => $reservation->getId()));
         }
 
